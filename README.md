@@ -6,6 +6,18 @@
 
 ## Usage
 
+```ruby
+da = DeviantArt.new do |config|
+  config.client_id = 9999
+  config.client_secret = 'LMNOPQRSTUVWXYZZZZZZZZ9999999999'
+  # auto refresh access_token with Client Credentials Grant when expired
+  config.client_credentials_auto_refresh = true
+end
+
+deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
+deviation['title'] # => deviation's title
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
