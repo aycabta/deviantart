@@ -18,6 +18,10 @@ deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
 deviation['title'] # => deviation's title
 ```
 
+## Official API Document
+
+[Developers - DeviantArt](https://www.deviantart.com/developers/)
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
