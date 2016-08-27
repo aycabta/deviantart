@@ -72,7 +72,7 @@ module DeviantArt
         refresh_client_credentials
         response = request(method, path, params)
       end
-      response
+      response.json
     end
   end
 end
