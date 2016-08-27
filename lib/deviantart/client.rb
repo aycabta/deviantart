@@ -11,7 +11,7 @@ end
 module DeviantArt
   class Client
     include DeviantArt::Deviation
-    attr_accessor :access_token, :client_id, :client_secret, :client_credentials_auto_refresh
+    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh
     attr_writer :user_agent
     @@host = 'www.deviantart.com'
 
@@ -55,13 +55,34 @@ module DeviantArt
       end
     end
 
-    def perform(method, path, params = {})
-      if @access_token.nil? && @client_credentials_auto_refresh
+    def refresh_authorization_code
+      response = request(
+        :post, '/oauth2/token',
+        { grant_type: 'authorization_code', redirect_uri: @redirect_uri, client_id: @client_id, client_secret: @client_secret }
+      )
+      if response.code == '200'
+        @access_token = response.json['access_token']
+      else
+        @access_token = nil
+      end
+    end
+
+    def refresh_access_token
+      case @grant_type.to_sym
+      when :authorization_code
+        refresh_authorization_code
+      when :client_credentials
         refresh_client_credentials
       end
+    end
+
+    def perform(method, path, params = {})
+      if @access_token.nil? && @access_token_auto_refresh
+        refresh_access_token
+      end
       response = request(method, path, params)
-      if response.code == '401' && @client_credentials_auto_refresh
-        refresh_client_credentials
+      if response.code == '401' && @access_token_auto_refresh
+        refresh_access_token
         response = request(method, path, params)
       end
       response.json
