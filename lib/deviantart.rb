@@ -1,5 +1,8 @@
 require "deviantart/version"
+require "deviantart/client"
 
 module DeviantArt
-  # Your code goes here...
+  def self.new(*args, &block)
+    DeviantArt::Client.new(*args, &block)
+  end
 end
