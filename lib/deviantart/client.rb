@@ -19,9 +19,6 @@ module DeviantArt
       yield(self) if block_given?
       @http = Net::HTTP.new(@@host, 443)
       @http.use_ssl = true
-      puts @access_token
-      puts @client_id
-      puts @client_secret
     end
 
     def user_agent
@@ -51,10 +48,7 @@ module DeviantArt
         :post, '/oauth2/token',
         { grant_type: 'client_credentials', client_id: @client_id, client_secret: @client_secret }
       )
-      puts response
-      puts response.code
       if response.code == '200'
-        puts response.json
         @access_token = response.json['access_token']
       else
         @access_token = nil
@@ -63,12 +57,10 @@ module DeviantArt
 
     def perform(method, path, params = {})
       if @access_token.nil? && @client_credentials_auto_refresh
-        puts 'hi'
         refresh_client_credentials
       end
       response = request(method, path, params)
       if response.code == '401' && @client_credentials_auto_refresh
-        puts 'hi!!!!'
         refresh_client_credentials
         response = request(method, path, params)
       end
