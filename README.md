@@ -2,18 +2,6 @@
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'deviantart'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
     $ gem install deviantart
 
 ## Usage
