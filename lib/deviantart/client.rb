@@ -29,7 +29,7 @@ module DeviantArt
     end
 
     def user_agent
-      @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::Version}"
+      @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::VERSION}/#{RUBY_DESCRIPTION}"
     end
 
     def request(method, path, params = {})
