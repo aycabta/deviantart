@@ -1,4 +1,3 @@
-require 'deviantart'
 require 'deviantart/deviation'
 require 'net/http'
 require 'uri'

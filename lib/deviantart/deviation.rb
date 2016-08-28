@@ -1,5 +1,3 @@
-require 'deviantart'
-
 module DeviantArt
   module Deviation
     def get_deviation(id)
