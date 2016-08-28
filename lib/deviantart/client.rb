@@ -34,6 +34,7 @@ module DeviantArt
         request = Net::HTTP::Post.new(uri.path)
         request.set_form_data(params)
       end
+      request['User-Agent'] = user_agent
       if not @access_token.nil?
         request["Authorization"] = "Bearer #{@access_token}"
       end
