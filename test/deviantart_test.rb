@@ -3,9 +3,31 @@ require 'deviantart'
 require 'deviantart/version'
 
 describe DeviantArt do
-  describe "version number" do
-    it "must be had" do
-      refute_nil(::DeviantArt::VERSION)
+  before do
+    @client_credentials = fixture('client_credentials.json')
+    client_id = 9999
+    client_secret = 'LMNOPQRSTUVWXYZZZZZZZZ9999999999'
+    stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
+      .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'client_credentials' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
+      .to_return(status: 200, body: @client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+    @da = DeviantArt.new do |config|
+      config.client_id = client_id
+      config.client_secret = client_secret
+      config.grant_type = 'client_credentials'
+      config.access_token_auto_refresh = true
+    end
+  end
+  describe '#get_deviation' do
+    before do
+      @deviation = fixture('deviation.json')
+      stub_request(:get, "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}")
+        .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+        .to_return(status: 200, body: @deviation, headers: { content_type: 'application/json; charset=utf-8' })
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation(@deviation.json['deviationid'])
+      assert_equal(result.class, Hash)
+      assert_equal(result['deviationid'], @deviation.json['deviationid'])
     end
   end
 end

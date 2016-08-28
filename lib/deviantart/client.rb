@@ -24,6 +24,10 @@ module DeviantArt
       @http.use_ssl = true
     end
 
+    def self.host
+      @@host
+    end
+
     def user_agent
       @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::Version}"
     end
