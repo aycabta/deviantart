@@ -32,12 +32,16 @@ module DeviantArt
       @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::VERSION}/#{RUBY_DESCRIPTION}"
     end
 
+    def access_token_auto_refresh?
+      @access_token_auto_refresh
+    end
+
     def perform(method, path, params = {})
-      if @access_token.nil? && @access_token_auto_refresh
+      if @access_token.nil? && access_token_auto_refresh?
         refresh_access_token
       end
       response = request(method, path, params)
-      if response.code == '401' && @access_token_auto_refresh
+      if response.code == '401' && access_token_auto_refresh?
         refresh_access_token
         response = request(method, path, params)
       end
