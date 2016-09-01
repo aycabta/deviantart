@@ -30,4 +30,18 @@ describe DeviantArt do
       assert_equal(result['deviationid'], @deviation.json['deviationid'])
     end
   end
+  describe '#get_deviation_content' do
+    before do
+      @deviationid = fixture('deviation_content-input.json').json['deviationid']
+      @deviation_content = fixture('deviation_content.json')
+      stub_request(:get, %r`https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`)
+        .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+        .to_return(status: 200, body: @deviation_content, headers: { content_type: 'application/json; charset=utf-8' })
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation_content(@deviationid)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'html')
+    end
+  end
 end
