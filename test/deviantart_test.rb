@@ -2,7 +2,7 @@ require 'helper'
 require 'deviantart'
 require 'deviantart/version'
 
-describe DeviantArt do
+describe DeviantArt::Deviation do
   before do
     @client_credentials = fixture('client_credentials.json')
     client_id = 9999
