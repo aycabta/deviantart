@@ -1,15 +1,17 @@
 require 'helper'
 require 'deviantart'
-require 'deviantart/version'
 
+WebMock.allow_net_connect! if real?
 describe DeviantArt::Deviation do
   before do
     @client_credentials = fixture('client_credentials.json')
-    client_id = 9999
-    client_secret = 'LMNOPQRSTUVWXYZZZZZZZZ9999999999'
-    stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
-      .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'client_credentials' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
-      .to_return(status: 200, body: @client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+    client_id = 5136
+    client_secret = '1a3d51cc9490ef1d3c06bc2b7907fefe'
+    if not real?
+      stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
+        .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'client_credentials' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
+        .to_return(status: 200, body: @client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+    end
     @da = DeviantArt.new do |config|
       config.client_id = client_id
       config.client_secret = client_secret
@@ -20,9 +22,11 @@ describe DeviantArt::Deviation do
   describe '#get_deviation' do
     before do
       @deviation = fixture('deviation.json')
-      stub_request(:get, "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}")
+      if not real?
+        stub_request(:get, "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}")
         .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
         .to_return(status: 200, body: @deviation, headers: { content_type: 'application/json; charset=utf-8' })
+      end
     end
     it 'requests the correct resource' do
       result = @da.get_deviation(@deviation.json['deviationid'])
@@ -34,9 +38,11 @@ describe DeviantArt::Deviation do
     before do
       @deviationid = fixture('deviation_content-input.json').json['deviationid']
       @deviation_content = fixture('deviation_content.json')
-      stub_request(:get, %r`https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`)
-        .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-        .to_return(status: 200, body: @deviation_content, headers: { content_type: 'application/json; charset=utf-8' })
+      if not real?
+        stub_request(:get, %r`https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`)
+          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+          .to_return(status: 200, body: @deviation_content, headers: { content_type: 'application/json; charset=utf-8' })
+      end
     end
     it 'requests the correct resource' do
       result = @da.get_deviation_content(@deviationid)

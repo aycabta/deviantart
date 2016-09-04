@@ -5,6 +5,10 @@ require 'minitest/autorun'
 require 'webmock/minitest'
 require 'json'
 
+def real?
+  ENV.include?('REAL')
+end
+
 def fixture_path
   File.expand_path('../fixtures', __FILE__)
 end
