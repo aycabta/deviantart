@@ -48,6 +48,8 @@ describe DeviantArt::Deviation do
       result = @da.get_deviation_content(@deviationid)
       assert_equal(result.class, Hash)
       assert_includes(result, 'html')
+      assert_includes(result, 'css')
+      assert_includes(result, 'css_fonts')
     end
   end
 end
