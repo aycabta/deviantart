@@ -14,7 +14,7 @@ def fixture_path
 end
 
 def fixture(file)
-  data = File.new(fixture_path + '/' + file).read
+  data = File.new(File.join(fixture_path, file)).read
   data.instance_eval do
     def json
       @json ||= JSON.parse(self)
