@@ -5,16 +5,16 @@ WebMock.allow_net_connect! if real?
 describe DeviantArt::Deviation do
   before do
     @client_credentials = fixture('client_credentials.json')
-    client_id = 5136
-    client_secret = '1a3d51cc9490ef1d3c06bc2b7907fefe'
+    client_credentials_input = fixture('client_credentials-input.json')
     if not real?
       stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
-        .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'client_credentials' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
+        .with(body: { 'client_id' => client_credentials_input.json['client_id'].to_i, 'client_secret' => client_credentials_input.json['client_secret'], 'grant_type' => 'client_credentials' },
+              headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
         .to_return(status: 200, body: @client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
     end
     @da = DeviantArt.new do |config|
-      config.client_id = client_id
-      config.client_secret = client_secret
+      config.client_id = client_credentials_input.json['client_id'].to_i
+      config.client_secret = client_credentials_input.json['client_secret']
       config.grant_type = 'client_credentials'
       config.access_token_auto_refresh = true
     end
