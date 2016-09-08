@@ -24,7 +24,7 @@ describe DeviantArt::Collections do
       @username = fixture('collections-input.json').json['username']
       @collections_folders = fixture('collections_folders.json')
       if not real?
-        stub_request(:get, %r`https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`)
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`)
           .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
           .to_return(status: 200, body: @collections_folders, headers: { content_type: 'application/json; charset=utf-8' })
       end
@@ -43,7 +43,7 @@ describe DeviantArt::Collections do
       }['folderid']
       @collections = fixture('collections.json')
       if not real?
-        stub_request(:get, "https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}")
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`)
           .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
           .to_return(status: 200, body: @collections, headers: { content_type: 'application/json; charset=utf-8' })
       end
