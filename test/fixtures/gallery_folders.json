@@ -1,0 +1,56 @@
+{
+  "results": [
+    {
+      "folderid": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "parent": null,
+      "name": "Featured"
+    },
+    {
+      "folderid": "090531FA-FD04-004A-C632-213FD1C718C1",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "OriginalArt,Character"
+    },
+    {
+      "folderid": "CB2FD57F-0DE7-C61E-E93B-613208C0B33C",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "LoveAtFirstSight Hitomebore"
+    },
+    {
+      "folderid": "9DE34645-B2E5-084A-49F3-2E2C310472A3",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "FanArt"
+    },
+    {
+      "folderid": "90477E86-0561-28BD-8F0B-925E3498AFD7",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "Skullgirls"
+    },
+    {
+      "folderid": "CF46E40A-64C4-29D3-0682-B0813E2C8A3A",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "UTAU,Vocalod"
+    },
+    {
+      "folderid": "9FC2ECD8-C8EA-CCFB-9EFC-57510560E81E",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "THE iDOLMASTER: Cinderella Girls"
+    },
+    {
+      "folderid": "757A6962-3CCA-ED95-4299-67B9F2A1A7FC",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "gif animation"
+    },
+    {
+      "folderid": "D5D1858C-F6A3-4DCA-BB96-E46778B8B0C0",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "TouhouProject"
+    },
+    {
+      "folderid": "49467190-5C5A-C6E5-785E-C47861CCDBAB",
+      "parent": "A21EC9DA-5967-7C31-35F2-9694D7E3E1BF",
+      "name": "Happy Birthday"
+    }
+  ],
+  "has_more": true,
+  "next_offset": 10
+}
