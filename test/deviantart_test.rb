@@ -40,7 +40,7 @@ describe DeviantArt::Deviation do
       @deviationid = fixture('deviation_content-input.json').json['deviationid']
       @deviation_content = fixture('deviation_content.json')
       if not real?
-        stub_request(:get, %r`https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`)
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`)
           .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
           .to_return(status: 200, body: @deviation_content, headers: { content_type: 'application/json; charset=utf-8' })
       end
