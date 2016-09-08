@@ -1,0 +1,38 @@
+{
+  "results": [
+    {
+      "folderid": "2A9E9959-D040-6D2C-275A-A74C693665C4",
+      "name": "Featured"
+    },
+    {
+      "folderid": "52741BF4-1AD1-6130-544C-F0F8EC9E07CF",
+      "name": "Photomanip Collection"
+    },
+    {
+      "folderid": "85EEE482-A0EF-6443-30E2-ECC9C6560510",
+      "name": "advertising"
+    },
+    {
+      "folderid": "E69D5CB8-A991-7F76-276C-94681F7206A6",
+      "name": "tuturial"
+    },
+    {
+      "folderid": "C1C8EA0E-F0C8-750F-1C2A-9957D5889C19",
+      "name": "animation flash"
+    },
+    {
+      "folderid": "DEA5D0BE-F25A-1546-1907-347E867A8EF9",
+      "name": "photography"
+    },
+    {
+      "folderid": "59566CBF-B13A-1320-DDD7-56C4A39865C7",
+      "name": "brush n 3D"
+    },
+    {
+      "folderid": "C2251915-5DD2-B84F-EF54-8F728329ED26",
+      "name": "stamps"
+    }
+  ],
+  "has_more": false,
+  "next_offset": null
+}
