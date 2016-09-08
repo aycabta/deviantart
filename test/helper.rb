@@ -23,3 +23,4 @@ def fixture(file)
   data
 end
 
+WebMock.allow_net_connect! if real?

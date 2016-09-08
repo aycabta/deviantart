@@ -1,7 +1,6 @@
 require 'helper'
 require 'deviantart'
 
-WebMock.allow_net_connect! if real?
 describe DeviantArt::Deviation do
   before do
     @client_credentials = fixture('client_credentials.json')
