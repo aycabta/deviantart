@@ -1,0 +1,86 @@
+{
+  "user": {
+    "userid": "5193726C-B7A7-C2D9-3C03-DF6D24490E3E",
+    "username": "Ray-kbys",
+    "usericon": "http://a.deviantart.net/avatars/r/a/ray-kbys.jpg?3",
+    "type": "premium"
+  },
+  "is_watching": false,
+  "profile_url": "http://ray-kbys.deviantart.com",
+  "user_is_artist": true,
+  "artist_level": "Student",
+  "artist_specialty": null,
+  "real_name": "Ray",
+  "tagline": "",
+  "countryid": 1,
+  "country": "United States",
+  "website": "http://ray-days-trash.tumblr.com/post/80076424325",
+  "bio": "I'm living in the U.S, but I'm Japanese.<br />My English is not perfect.<br /><br />Thanks for all comments, watch, and fav.<br />Forgive me if I didn't react for those. <br />Every time I feel glad and those give great energy for next work.<br />I'm happy if you enjoy my pictures.<br /><br />Now I don't accept a request and commission. sorry.",
+  "cover_photo": "",
+  "profile_pic": {
+    "deviationid": "807FAD56-0A39-A578-7F44-63B44F29B36D",
+    "printid": null,
+    "url": "http://ray-kbys.deviantart.com/art/Profile-picture-464446399",
+    "title": "Profile picture",
+    "category": "Uncategorized",
+    "category_path": "",
+    "is_favourited": false,
+    "is_deleted": false,
+    "author": {
+      "userid": "5193726C-B7A7-C2D9-3C03-DF6D24490E3E",
+      "username": "Ray-kbys",
+      "usericon": "http://a.deviantart.net/avatars/r/a/ray-kbys.jpg?3",
+      "type": "premium"
+    },
+    "stats": {
+      "comments": 0,
+      "favourites": 0
+    },
+    "published_time": 1404084394,
+    "allows_comments": true,
+    "preview": {
+      "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+      "height": 300,
+      "width": 300,
+      "transparency": false
+    },
+    "content": {
+      "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+      "height": 300,
+      "width": 300,
+      "transparency": false,
+      "filesize": 63846
+    },
+    "thumbs": [
+      {
+        "src": "http://t00.deviantart.net/bcyY9sVsFqicBzAXw85ETtKSQjM=/fit-in/150x150/filters:no_upscale():origin()/pre11/266e/th/pre/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "height": 150,
+        "width": 150,
+        "transparency": false
+      },
+      {
+        "src": "http://t01.deviantart.net/0Me3xLkPN-w5YwI1hOWx-yOHbG8=/300x200/filters:fixed_height(100,100):origin()/pre11/266e/th/pre/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "height": 200,
+        "width": 200,
+        "transparency": false
+      },
+      {
+        "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "height": 300,
+        "width": 300,
+        "transparency": false
+      }
+    ],
+    "is_mature": false,
+    "is_downloadable": true,
+    "download_filesize": 63846
+  },
+  "last_status": null,
+  "stats": {
+    "user_deviations": 162,
+    "user_favourites": 21,
+    "user_comments": 161,
+    "profile_pageviews": 79348,
+    "profile_comments": 174
+  }
+}
