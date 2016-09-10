@@ -7,6 +7,10 @@ module DeviantArt
     def get_deviation_content(deviationid)
       perform(:get, "/api/v1/oauth2/deviation/content", { deviationid: deviationid })
     end
+
+    def download_deviation(deviationid)
+      perform(:get, "/api/v1/oauth2/deviation/download/#{deviationid}")
+    end
   end
 end
 
