@@ -52,4 +52,23 @@ describe DeviantArt::Deviation do
       assert_includes(result, 'css_fonts')
     end
   end
+  describe '#download_deviation' do
+    before do
+      @deviationid = fixture('deviation_download-input.json').json['deviationid']
+      @deviation_download = fixture('deviation_download.json')
+      if not real?
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/download/#{@deviationid}`)
+          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+          .to_return(status: 200, body: @deviation_download, headers: { content_type: 'application/json; charset=utf-8' })
+      end
+    end
+    it 'requests the correct resource' do
+      result = @da.download_deviation(@deviationid)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'src')
+      assert_includes(result, 'filesize')
+      assert_includes(result, 'width')
+      assert_includes(result, 'height')
+    end
+  end
 end
