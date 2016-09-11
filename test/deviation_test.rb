@@ -52,6 +52,22 @@ describe DeviantArt::Deviation do
       assert_includes(result, 'css_fonts')
     end
   end
+  describe '#get_deviation_whofaved' do
+    before do
+      @deviationid = fixture('deviation_whofaved-input.json').json['deviationid']
+      @deviation_whofaved = fixture('deviation_whofaved.json')
+      if not real?
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/whofaved\?deviationid=.*`)
+          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+          .to_return(status: 200, body: @deviation_whofaved, headers: { content_type: 'application/json; charset=utf-8' })
+      end
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation_whofaved(@deviationid)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
   describe '#download_deviation' do
     before do
       @deviationid = fixture('deviation_download-input.json').json['deviationid']
