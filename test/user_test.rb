@@ -35,4 +35,20 @@ describe DeviantArt::User do
       assert_includes(result, 'user')
     end
   end
+  describe '#get_friends' do
+    before do
+      @username = fixture('user_friends-input.json').json['username']
+      @friends = fixture('user_friends.json')
+      if not real?
+        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends`)
+          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+          .to_return(status: 200, body: @friends, headers: { content_type: 'application/json; charset=utf-8' })
+      end
+    end
+    it 'requests the correct resource' do
+      result = @da.get_friends(username: @username)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
 end
