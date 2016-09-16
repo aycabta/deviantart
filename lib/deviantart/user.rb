@@ -13,6 +13,12 @@ module DeviantArt
       params['limit'] = limit if limit != 10
       perform(:get, "/api/v1/oauth2/user/friends/#{username.nil? ? '' : username}", params)
     end
+
+    def whois(users)
+      params = { 'usernames[]' => users.is_a?(Enumerable) ? users : [users] }
+      puts params
+      perform(:post, "/api/v1/oauth2/user/whois", params)
+    end
   end
 end
 
