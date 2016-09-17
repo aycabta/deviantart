@@ -103,6 +103,8 @@ module DeviantArt
     end
 
     def refresh_authorization_code
+      # TODO: use grant_type=refresh_token when !@access_token.nil? && response.code == '401'
+      # https://www.deviantart.com/developers/authentication
       response = request(
         :post, '/oauth2/token',
         { grant_type: 'authorization_code', redirect_uri: @redirect_uri, client_id: @client_id, client_secret: @client_secret }
