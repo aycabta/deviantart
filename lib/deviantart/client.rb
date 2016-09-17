@@ -64,7 +64,22 @@ module DeviantArt
         request = Net::HTTP::Get.new(uri)
       when :post
         request = Net::HTTP::Post.new(uri.path)
-        request.set_form_data(params)
+        if params.any?{ |key, value| value.is_a?(Enumerable) }
+          converted_params = []
+          params.each { |key, value|
+            if value.is_a?(Enumerable)
+              value.each do |v|
+                converted_params << ["#{key}[]", value]
+              end
+            else
+              converted_params << [key, value]
+            end
+          }
+          request.body = URI.encode_www_form(converted_params)
+        else
+          #request.body = URI.encode_www_form(params.to_a)
+          request.set_form_data(params)
+        end
       end
       request['User-Agent'] = user_agent
       if not @access_token.nil?
