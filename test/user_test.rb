@@ -51,4 +51,20 @@ describe DeviantArt::User do
       assert_includes(result, 'results')
     end
   end
+  describe '#whois' do
+    before do
+      @users = fixture('user_whois-input.json')
+      @whois = fixture('user_whois.json')
+      if not real?
+        stub_request(:post, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whois`)
+          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
+          .to_return(status: 200, body: @whois, headers: { content_type: 'application/json; charset=utf-8' })
+      end
+    end
+    it 'requests the correct resource' do
+      result = @da.whois(@users.json)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
 end
