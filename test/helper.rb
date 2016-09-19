@@ -34,6 +34,7 @@ def create_da
     .to_return(status: 200, body: client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
   end
   da = DeviantArt.new do |config|
+    # TODO: use Authorization Code Grant for other scopes and closed resource
     config.client_id = client_id
     config.client_secret = client_secret
     config.grant_type = 'client_credentials'
