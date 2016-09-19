@@ -42,4 +42,12 @@ def create_da
   [da, client_credentials]
 end
 
+def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", client_credentials: nil, body: nil)
+  if not real?
+    stub_request(method, url)
+      .with(headers: { 'Authorization' => "Bearer #{client_credentials.json['access_token']}" })
+      .to_return(status: 200, body: body, headers: { content_type: 'application/json; charset=utf-8' })
+  end
+end
+
 WebMock.allow_net_connect! if real?

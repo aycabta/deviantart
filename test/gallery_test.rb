@@ -9,11 +9,11 @@ describe DeviantArt::Gallery do
     before do
       @username = fixture('gallery-input.json').json['username']
       @gallery_all = fixture('gallery_all.json')
-      if not real?
-        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/all`)
-          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-          .to_return(status: 200, body: @gallery_all, headers: { content_type: 'application/json; charset=utf-8' })
-      end
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/all`,
+        client_credentials: @client_credentials,
+        body: @gallery_all)
     end
     it 'requests the correct resource' do
       result = @da.get_gallery_all(username: @username)
@@ -25,11 +25,11 @@ describe DeviantArt::Gallery do
     before do
       @username = fixture('gallery-input.json').json['username']
       @gallery_folders = fixture('gallery_folders.json')
-      if not real?
-        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/folders`)
-          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-          .to_return(status: 200, body: @gallery_folders, headers: { content_type: 'application/json; charset=utf-8' })
-      end
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/folders`,
+        client_credentials: @client_credentials,
+        body: @gallery_folders)
     end
     it 'requests the correct resource' do
       result = @da.get_gallery_folders(username: @username)
@@ -43,11 +43,11 @@ describe DeviantArt::Gallery do
       @username = gallery_input['username']
       @folderid = gallery_input['folderid']
       @gallery = fixture('gallery.json')
-      if not real?
-        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/#{@folderid}`)
-          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-          .to_return(status: 200, body: @gallery, headers: { content_type: 'application/json; charset=utf-8' })
-      end
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/#{@folderid}`,
+        client_credentials: @client_credentials,
+        body: @gallery)
     end
     it 'requests the correct resource' do
       result = @da.get_gallery(username: @username, folderid: @folderid)

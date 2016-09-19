@@ -9,11 +9,11 @@ describe DeviantArt::Collections do
     before do
       @username = fixture('collections-input.json').json['username']
       @collections_folders = fixture('collections_folders.json')
-      if not real?
-        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`)
-          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-          .to_return(status: 200, body: @collections_folders, headers: { content_type: 'application/json; charset=utf-8' })
-      end
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`,
+        client_credentials: @client_credentials,
+        body: @collections_folders)
     end
     it 'requests the correct resource' do
       result = @da.get_collections_folders(username: @username)
@@ -28,11 +28,11 @@ describe DeviantArt::Collections do
          c['name'] == 'tuturial'
       }['folderid']
       @collections = fixture('collections.json')
-      if not real?
-        stub_request(:get, %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`)
-          .with(headers: { 'Authorization' => "Bearer #{@client_credentials.json['access_token']}" })
-          .to_return(status: 200, body: @collections, headers: { content_type: 'application/json; charset=utf-8' })
-      end
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`,
+        client_credentials: @client_credentials,
+        body: @collections)
     end
     it 'requests the correct resource' do
       result = @da.get_collections(@folderid, username: @username)
