@@ -68,8 +68,8 @@ module DeviantArt
           converted_params = []
           params.each do |key, value|
             if value.is_a?(Enumerable)
-              value.each do |v|
-                converted_params << ["#{key}[]", v]
+              value.each_index do |i|
+                converted_params << ["#{key}[#{i}]", value[i]]
               end
             else
               converted_params << [key, value]
