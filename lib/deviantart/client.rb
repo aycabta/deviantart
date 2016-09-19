@@ -77,7 +77,6 @@ module DeviantArt
           end
           request.body = URI.encode_www_form(converted_params)
         else
-          #request.body = URI.encode_www_form(params.to_a)
           request.set_form_data(params)
         end
       end
