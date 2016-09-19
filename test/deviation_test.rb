@@ -2,7 +2,7 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Deviation do
-  before do
+  before(:all) do
     @da, @client_credentials = create_da
   end
   describe '#get_deviation' do

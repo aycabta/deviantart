@@ -2,7 +2,7 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Collections do
-  before do
+  before(:all) do
     @da, @client_credentials = create_da
   end
   describe '#get_collections_folders' do

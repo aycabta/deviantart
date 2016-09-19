@@ -2,7 +2,7 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Gallery do
-  before do
+  before(:all) do
     @da, @client_credentials = create_da
   end
   describe '#get_gallery_all' do
