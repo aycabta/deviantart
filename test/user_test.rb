@@ -3,21 +3,7 @@ require 'deviantart'
 
 describe DeviantArt::User do
   before do
-    @client_credentials = fixture('client_credentials.json')
-    client_credentials_input = fixture('client_credentials-input.json')
-    client_id = client_credentials_input.json['client_id']
-    client_secret = client_credentials_input.json['client_secret']
-    if not real?
-      stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
-        .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'client_credentials' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
-        .to_return(status: 200, body: @client_credentials, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
-    end
-    @da = DeviantArt.new do |config|
-      config.client_id = client_id
-      config.client_secret = client_secret
-      config.grant_type = 'client_credentials'
-      config.access_token_auto_refresh = true
-    end
+    @da, @client_credentials = create_da
   end
   describe '#get_profile' do
     before do
