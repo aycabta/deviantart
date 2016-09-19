@@ -66,7 +66,7 @@ module DeviantArt
         request = Net::HTTP::Post.new(uri.path)
         if params.any?{ |key, value| value.is_a?(Enumerable) }
           converted_params = []
-          params.each { |key, value|
+          params.each do |key, value|
             if value.is_a?(Enumerable)
               value.each do |v|
                 converted_params << ["#{key}[]", value]
@@ -74,7 +74,7 @@ module DeviantArt
             else
               converted_params << [key, value]
             end
-          }
+          end
           request.body = URI.encode_www_form(converted_params)
         else
           #request.body = URI.encode_www_form(params.to_a)
