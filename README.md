@@ -11,7 +11,7 @@ da = DeviantArt.new do |config|
   config.client_id = 9999
   config.client_secret = 'LMNOPQRSTUVWXYZZZZZZZZ9999999999'
   # auto refresh access_token with Client Credentials Grant when expired
-  config.grant_type = 'client_credentials'
+  config.grant_type = :client_credentials
   config.access_token_auto_refresh = true
 end
 
