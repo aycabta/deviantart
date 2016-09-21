@@ -80,6 +80,7 @@ module DeviantArt
           request.set_form_data(params)
         end
       end
+      request['Content-Type'] = 'application/x-www-form-urlencoded'
       request['User-Agent'] = user_agent
       if not @access_token.nil?
         request["Authorization"] = "Bearer #{@access_token}"
