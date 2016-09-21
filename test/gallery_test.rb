@@ -3,7 +3,7 @@ require 'deviantart'
 
 describe DeviantArt::Gallery do
   before(:all) do
-    @da, @client_credentials = create_da
+    @da, @credentials = create_da
   end
   describe '#get_gallery_all' do
     before do
@@ -12,7 +12,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/all`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @gallery_all)
     end
     it 'requests the correct resource' do
@@ -28,7 +28,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/folders`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @gallery_folders)
     end
     it 'requests the correct resource' do
@@ -46,7 +46,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/#{@folderid}`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @gallery)
     end
     it 'requests the correct resource' do

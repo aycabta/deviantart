@@ -3,7 +3,7 @@ require 'deviantart'
 
 describe DeviantArt::User do
   before(:all) do
-    @da, @client_credentials = create_da
+    @da, @credentials = create_da
   end
   describe '#get_profile' do
     before do
@@ -12,7 +12,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/profile/#{@username}`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @profile)
     end
     it 'requests the correct resource' do
@@ -28,7 +28,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @friends)
     end
     it 'requests the correct resource' do
@@ -44,7 +44,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :post,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whois`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @whois)
     end
     it 'requests the correct resource' do

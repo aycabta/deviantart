@@ -3,7 +3,7 @@ require 'deviantart'
 
 describe DeviantArt::Deviation do
   before(:all) do
-    @da, @client_credentials = create_da
+    @da, @credentials = create_da
   end
   describe '#get_deviation' do
     before do
@@ -11,7 +11,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @deviation)
     end
     it 'requests the correct resource' do
@@ -27,7 +27,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @deviation_content)
     end
     it 'requests the correct resource' do
@@ -45,7 +45,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/whofaved\?deviationid=.*`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @deviation_whofaved)
     end
     it 'requests the correct resource' do
@@ -61,7 +61,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/download/#{@deviationid}`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @deviation_download)
     end
     it 'requests the correct resource' do

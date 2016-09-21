@@ -3,7 +3,7 @@ require 'deviantart'
 
 describe DeviantArt::Collections do
   before(:all) do
-    @da, @client_credentials = create_da
+    @da, @credentials = create_da
   end
   describe '#get_collections_folders' do
     before do
@@ -12,7 +12,7 @@ describe DeviantArt::Collections do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @collections_folders)
     end
     it 'requests the correct resource' do
@@ -31,7 +31,7 @@ describe DeviantArt::Collections do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`,
-        client_credentials: @client_credentials,
+        credentials: @credentials,
         body: @collections)
     end
     it 'requests the correct resource' do

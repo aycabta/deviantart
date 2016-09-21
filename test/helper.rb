@@ -24,17 +24,16 @@ def fixture(file)
 end
 
 def create_da
-  # TODO: rename client_credentials with credentials
-  client_credentials = fixture('client_credentials.json')
-  client_credentials_input = fixture('client_credentials-input.json')
-  client_id = client_credentials_input.json['authorization_code']['client_id']
-  client_secret = client_credentials_input.json['authorization_code']['client_secret']
-  access_token = client_credentials_input.json['authorization_code']['access_token']
-  refresh_token = client_credentials_input.json['authorization_code']['refresh_token']
+  credentials = fixture('credentials.json')
+  credentials_input = fixture('credentials-input.json')
+  client_id = credentials_input.json['authorization_code']['client_id']
+  client_secret = credentials_input.json['authorization_code']['client_secret']
+  access_token = credentials_input.json['authorization_code']['access_token']
+  refresh_token = credentials_input.json['authorization_code']['refresh_token']
   if not real?
     stub_request(:post, "https://#{DeviantArt::Client.host}/oauth2/token")
     .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'refresh_token' }, headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
-    .to_return(status: 200, body: client_credentials.json['authorization_code'].to_s, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+    .to_return(status: 200, body: credentials.json['authorization_code'].to_s, headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
   end
   da = DeviantArt.new do |config|
     config.client_id = client_id
@@ -44,13 +43,13 @@ def create_da
     config.refresh_token = refresh_token
     config.access_token_auto_refresh = true
   end
-  [da, client_credentials]
+  [da, credentials]
 end
 
-def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", client_credentials: nil, body: nil)
+def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", credentials: nil, body: nil)
   if not real?
     stub_request(method, url)
-      .with(headers: { 'Authorization' => "Bearer #{client_credentials.json['authorization_code']['access_token']}" })
+      .with(headers: { 'Authorization' => "Bearer #{credentials.json['authorization_code']['access_token']}" })
       .to_return(status: 200, body: body, headers: { content_type: 'application/json; charset=utf-8' })
   end
 end
