@@ -16,7 +16,7 @@ module DeviantArt
     include DeviantArt::Gallery
     include DeviantArt::Collections
     include DeviantArt::User
-    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh
+    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token
     attr_writer :user_agent
     @@host = 'www.deviantart.com'
 
@@ -102,11 +102,9 @@ module DeviantArt
     end
 
     def refresh_authorization_code
-      # TODO: use grant_type=refresh_token when !@access_token.nil? && response.code == '401'
-      # https://www.deviantart.com/developers/authentication
       response = request(
         :post, '/oauth2/token',
-        { grant_type: 'authorization_code', redirect_uri: @redirect_uri, client_id: @client_id, client_secret: @client_secret }
+        { grant_type: 'refresh_token', client_id: @client_id, client_secret: @client_secret, refresh_token: @refresh_token }
       )
       if response.code == '200'
         @access_token = response.json['access_token']
