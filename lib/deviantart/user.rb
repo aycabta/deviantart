@@ -18,6 +18,10 @@ module DeviantArt
       params = { usernames: users.is_a?(Enumerable) ? users : [users] }
       perform(:post, "/api/v1/oauth2/user/whois", params)
     end
+
+    def whoami
+      perform(:get, '/api/v1/oauth2/user/whoami?')
+    end
   end
 end
 

@@ -53,4 +53,19 @@ describe DeviantArt::User do
       assert_includes(result, 'results')
     end
   end
+  describe '#whoami' do
+    before do
+      @whoami = fixture('user_whoami.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whoami",
+        da: @da,
+        body: @whoami)
+    end
+    it 'requests the correct resource' do
+      result = @da.whoami
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'userid')
+    end
+  end
 end
