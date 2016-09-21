@@ -12,7 +12,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/profile/#{@username}`,
-        credentials: @credentials,
+        da: @da,
         body: @profile)
     end
     it 'requests the correct resource' do
@@ -28,7 +28,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends`,
-        credentials: @credentials,
+        da: @da,
         body: @friends)
     end
     it 'requests the correct resource' do
@@ -44,7 +44,7 @@ describe DeviantArt::User do
       stub_da_request(
         method: :post,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whois`,
-        credentials: @credentials,
+        da: @da,
         body: @whois)
     end
     it 'requests the correct resource' do

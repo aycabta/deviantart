@@ -12,7 +12,7 @@ describe DeviantArt::Collections do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`,
-        credentials: @credentials,
+        da: @da,
         body: @collections_folders)
     end
     it 'requests the correct resource' do
@@ -31,7 +31,7 @@ describe DeviantArt::Collections do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`,
-        credentials: @credentials,
+        da: @da,
         body: @collections)
     end
     it 'requests the correct resource' do

@@ -11,7 +11,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
-        credentials: @credentials,
+        da: @da,
         body: @deviation)
     end
     it 'requests the correct resource' do
@@ -27,7 +27,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`,
-        credentials: @credentials,
+        da: @da,
         body: @deviation_content)
     end
     it 'requests the correct resource' do
@@ -45,7 +45,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/whofaved\?deviationid=.*`,
-        credentials: @credentials,
+        da: @da,
         body: @deviation_whofaved)
     end
     it 'requests the correct resource' do
@@ -61,7 +61,7 @@ describe DeviantArt::Deviation do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/download/#{@deviationid}`,
-        credentials: @credentials,
+        da: @da,
         body: @deviation_download)
     end
     it 'requests the correct resource' do

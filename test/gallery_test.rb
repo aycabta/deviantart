@@ -12,7 +12,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/all`,
-        credentials: @credentials,
+        da: @da,
         body: @gallery_all)
     end
     it 'requests the correct resource' do
@@ -28,7 +28,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/folders`,
-        credentials: @credentials,
+        da: @da,
         body: @gallery_folders)
     end
     it 'requests the correct resource' do
@@ -46,7 +46,7 @@ describe DeviantArt::Gallery do
       stub_da_request(
         method: :get,
         url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/#{@folderid}`,
-        credentials: @credentials,
+        da: @da,
         body: @gallery)
     end
     it 'requests the correct resource' do
