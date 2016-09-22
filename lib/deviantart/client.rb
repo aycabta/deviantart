@@ -28,6 +28,8 @@ module DeviantArt
       yield(self) if block_given?
       @http = Net::HTTP.new(@@host, 443)
       @http.use_ssl = true
+      @on_refreshed_access_token = nil
+      @on_refreshed_authorization_code = nil
     end
 
     def self.host
@@ -52,6 +54,14 @@ module DeviantArt
         response = request(method, path, params)
       end
       response.json
+    end
+
+    def on_refreshed_authorization_code(&block)
+      @on_refreshed_authorization_code = block
+    end
+
+    def on_refreshed_access_token(&block)
+      @on_refreshed_access_token = block
     end
 
   private
@@ -97,6 +107,7 @@ module DeviantArt
       )
       if response.code == '200'
         @access_token = response.json['access_token']
+        @on_refreshed_access_token.call(@access_token) if @on_refreshed_access_token
       else
         @access_token = nil
       end
@@ -109,6 +120,8 @@ module DeviantArt
       )
       if response.code == '200'
         @access_token = response.json['access_token']
+        @on_refreshed_access_token.call(@access_token) if @on_refreshed_access_token
+        @on_refreshed_authorization_code.call(@access_token, response.json['refresh_token']) if @on_refreshed_authorization_code
       else
         @access_token = nil
       end
