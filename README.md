@@ -19,6 +19,8 @@ deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
 deviation['title'] # => deviation's title
 ```
 
+## API
+
 ## Official API Document
 
 [Developers - DeviantArt](https://www.deviantart.com/developers/)
