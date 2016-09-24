@@ -16,7 +16,7 @@ module DeviantArt
 
     def whois(users)
       params = { usernames: users.is_a?(Enumerable) ? users : [users] }
-      perform(:post, "/api/v1/oauth2/user/whois", params)
+      perform(:post, '/api/v1/oauth2/user/whois', params)
     end
 
     def whoami

@@ -7,7 +7,7 @@ module DeviantArt
       params['ext_preload'] = ext_preload if ext_preload
       params['offset'] = offset if offset != 0
       params['limit'] = limit if limit != 10
-      perform(:get, "/api/v1/oauth2/collections/folders", params)
+      perform(:get, '/api/v1/oauth2/collections/folders', params)
     end
 
     def get_collections(folderid, username: nil, offset: 0, limit: 10)
