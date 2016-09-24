@@ -33,7 +33,7 @@ Rake::TestTask.new(:real) do |t|
     fork do
       sleep 1
       fork do
-        sleep 1
+        sleep 1 # TODO: wait for Sinatra server launch
         puts 'Open browser for authorization'
         system("#{browser_command} http://localhost:4567/auth/deviantart")
       end
