@@ -19,6 +19,57 @@ deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
 deviation['title'] # => deviation's title
 ```
 
+## How to Test
+
+At the first, install gems:
+
+```bash
+$ bundle install
+```
+
+And you will run test with stub APIs:
+
+```bash
+$ bundle exec rake test
+```
+
+If you want to use *real* API in test, run this one:
+
+```bash
+$ bundle exec rake real
+Input your browser command>
+```
+
+This prompt demands browser command for OAuth 2 authorization of deviantART.
+After this, OAuth consumer server launches internal and the browser opens authorization page.
+
+```bash
+$ bundle exec rake real
+Input your browser command> firefox
+Wrote "firefox" to test/browser_command
+Boot Sinatra OAuth consumer...
+Open browser for authorization
+```
+
+The OAuth consumer server terminates after you permitted it.
+Rake takes access token from the OAuth consumer server via named pipe.
+The tests run with the access token.
+
+```bash
+--snip--
+Open browser for authorization
+Got access token!
+# Running:
+
+..............
+
+Finished in 4.44s, 3.14159 runs/s, 11.4478 assertions/s.
+
+14 runs, 51 assertions, 0 failures, 0 errors, 0 skips
+```
+
+The browser command is cached at `test/browser_command`, the access token is cached at `test/fixtures/authorization_code.json`.
+
 ## API
 
 ## Official API Document
