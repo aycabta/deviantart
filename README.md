@@ -14,6 +14,7 @@ da = DeviantArt.new do |config|
   config.grant_type = :client_credentials
   config.access_token_auto_refresh = true
 end
+# da is DeviantArt::Client object
 
 deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
 deviation['title'] # => deviation's title
