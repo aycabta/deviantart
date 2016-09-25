@@ -41,7 +41,11 @@ Input your browser command>
 ```
 
 This prompt demands browser command for OAuth 2 authorization of deviantART.
-After this, OAuth consumer server launches internal and the browser opens authorization page.
+After this, Rake task performs some steps:
+
+- creates named pipe
+- OAuth consumer server launches internal
+- opens the browser with authorization page
 
 ```bash
 $ bundle exec rake real
@@ -51,8 +55,8 @@ Boot Sinatra OAuth consumer...
 Open browser for authorization
 ```
 
-The OAuth consumer server terminates after you permitted it.
-Rake takes access token from the OAuth consumer server via named pipe.
+The OAuth consumer server writes access token to named pipe and terminates after you permit it on browser.
+Rake task takes access token via named pipe.
 The tests run with the access token.
 
 ```bash
