@@ -1,5 +1,6 @@
 module DeviantArt
   module Gallery
+    # Get the "all" view of a users gallery
     def get_gallery_all(username: nil, offset: 0, limit: 10)
       params = {}
       params['username'] = username unless username.nil?
@@ -8,6 +9,7 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/gallery/all', params)
     end
 
+    # Fetch gallery folders
     def get_gallery_folders(username: nil, calculate_size: false, ext_preload: false, offset: 0, limit: 10)
       params = {}
       params['username'] = username unless username.nil?
@@ -18,6 +20,7 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/gallery/folders', params)
     end
 
+    # Fetch gallery folder contents
     def get_gallery(username: nil, folderid: nil, mode: nil, offset: 0, limit: 10)
       params = {}
       params['username'] = username unless username.nil?
