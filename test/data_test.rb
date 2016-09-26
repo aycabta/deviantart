@@ -35,4 +35,19 @@ describe DeviantArt::Data do
       assert_includes(result, 'text')
     end
   end
+  describe '#get_submission' do
+    before do
+      @privacy = fixture('data_submission.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/submission",
+        da: @da,
+        body: @privacy)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_submission
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'text')
+    end
+  end
 end
