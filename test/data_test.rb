@@ -37,12 +37,12 @@ describe DeviantArt::Data do
   end
   describe '#get_submission' do
     before do
-      @privacy = fixture('data_submission.json')
+      @submission = fixture('data_submission.json')
       stub_da_request(
         method: :get,
         url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/submission",
         da: @da,
-        body: @privacy)
+        body: @submission)
     end
     it 'requests the correct resource' do
       result = @da.get_submission
