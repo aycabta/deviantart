@@ -14,6 +14,11 @@ module DeviantArt
     def get_submission
       perform(:get, '/api/v1/oauth2/data/submission')
     end
+
+    # Returns the DeviantArt Terms of Service
+    def get_tos
+      perform(:get, '/api/v1/oauth2/data/tos')
+    end
   end
 end
 

@@ -50,4 +50,19 @@ describe DeviantArt::Data do
       assert_includes(result, 'text')
     end
   end
+  describe '#get_tos' do
+    before do
+      @tos = fixture('data_tos.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/tos",
+        da: @da,
+        body: @tos)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_tos
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'text')
+    end
+  end
 end
