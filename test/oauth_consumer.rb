@@ -8,6 +8,9 @@ OUTPUT_PIPE = 'test/output_pipe'
 configure do
   set :sessions, true
   set :inline_templates, true
+  open(OUTPUT_PIPE, 'w') do |f|
+    f.write('ping')
+  end
 end
 
 use OmniAuth::Builder do

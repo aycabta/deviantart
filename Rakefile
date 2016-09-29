@@ -33,17 +33,37 @@ Rake::TestTask.new(:real) do |t|
     end
     File.mkfifo(OUTPUT_PIPE)
     browser_command = get_browser_command
-    fork do
-      sleep 1
-      fork do
-        sleep 1 # TODO: wait for Sinatra server launch
+    cv = ConditionVariable.new
+    mutex = Mutex.new
+    is_pinged = false
+    Thread.new {
+      mutex.synchronize {
+        puts 'Boot Sinatra OAuth consumer...'
+        system('bundle exec ruby test/oauth_consumer.rb > /dev/null 2>&1 &')
+        open(OUTPUT_PIPE).read # block to get 'ping'
+        is_pinged = true
+        cv.signal
+      }
+    }
+    is_browsed = false
+    Thread.new {
+      mutex.synchronize {
+        until is_pinged
+          cv.wait(mutex)
+        end
         puts 'Open browser for authorization'
-        system("#{browser_command} http://localhost:4567/auth/deviantart")
+        system("#{browser_command} http://localhost:4567/auth/deviantart &")
+        is_browsed = true
+        cv.signal
+      }
+    }
+    result = nil
+    mutex.synchronize {
+      until is_browsed
+        cv.wait(mutex)
       end
-      puts 'Boot Sinatra OAuth consumer...'
-      system('bundle exec ruby test/oauth_consumer.rb > /dev/null 2>&1')
-    end
-    result = open(OUTPUT_PIPE).read
+      result = open(OUTPUT_PIPE).read # block to get authorization code
+    }
     puts 'Got access token!'
     File.unlink(OUTPUT_PIPE)
     open(AUTHORIZATION_CODE_FILE, 'w') do |f|
