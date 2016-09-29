@@ -3,6 +3,7 @@ require 'deviantart/gallery'
 require 'deviantart/collections'
 require 'deviantart/user'
 require 'deviantart/data'
+require 'deviantart/feed'
 require 'net/http'
 require 'uri'
 require 'json'
@@ -18,6 +19,7 @@ module DeviantArt
     include DeviantArt::Collections
     include DeviantArt::User
     include DeviantArt::Data
+    include DeviantArt::Feed
     attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token
     attr_writer :user_agent
     @@host = 'www.deviantart.com'
