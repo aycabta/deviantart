@@ -11,21 +11,21 @@ Rake::TestTask.new(:test) do |t|
 end
 
 def get_browser_command
-  if !File.exists?(BROWSER_COMMAND)
+  browser_command_file = 'test/browser_command'
+  if !File.exists?(browser_command_file)
     browser_command = Readline.readline('Input your browser command> ')
-    open(BROWSER_COMMAND, 'w') do |f|
+    open(browser_command_file, 'w') do |f|
       f.write(browser_command)
     end
-    puts "Wrote \"#{browser_command}\" to #{BROWSER_COMMAND}"
+    puts "Wrote \"#{browser_command}\" to #{browser_command_file}"
     browser_command
   else
-    open(BROWSER_COMMAND, 'r').read
+    open(browser_command_file, 'r').read
   end
 end
 
 Rake::TestTask.new(:real) do |t|
   AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
-  BROWSER_COMMAND = 'test/browser_command'
   if !File.exists?(AUTHORIZATION_CODE_FILE)
     OUTPUT_PIPE = 'test/output_pipe'
     if File.exists?(OUTPUT_PIPE)
