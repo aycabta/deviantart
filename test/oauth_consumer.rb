@@ -3,6 +3,8 @@ require 'sinatra'
 require 'omniauth'
 require 'omniauth-deviantart'
 
+OUTPUT_PIPE = 'test/output_pipe'
+
 configure do
   set :sessions, true
   set :inline_templates, true
@@ -20,7 +22,7 @@ end
 
 get '/auth/:provider/callback' do
   result = request.env['omniauth.auth']
-  open('test/output_pipe', 'w') do |f|
+  open(OUTPUT_PIPE, 'w') do |f|
     f.write(JSON.pretty_generate(result))
   end
   erb "<a href='/'>Top</a><br>
@@ -29,7 +31,7 @@ get '/auth/:provider/callback' do
 end
 
 Thread.new do
-  named_pipe = File.open('test/output_pipe', 'r')
+  named_pipe = File.open(OUTPUT_PIPE, 'r')
   named_pipe.size
   sleep 1
   exit 0
