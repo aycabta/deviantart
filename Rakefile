@@ -32,7 +32,6 @@ Rake::TestTask.new(:real) do |t|
       File.unlink(OUTPUT_PIPE)
     end
     File.mkfifo(OUTPUT_PIPE)
-    browser_command = get_browser_command
     cv = ConditionVariable.new
     mutex = Mutex.new
     is_pinged = false
@@ -52,7 +51,7 @@ Rake::TestTask.new(:real) do |t|
           cv.wait(mutex)
         end
         puts 'Open browser for authorization'
-        system("#{browser_command} http://localhost:4567/auth/deviantart &")
+        system("#{get_browser_command} http://localhost:4567/auth/deviantart &")
         is_browsed = true
         cv.signal
       }
