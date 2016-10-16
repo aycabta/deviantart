@@ -23,6 +23,8 @@ module DeviantArt
     def download_deviation(deviationid)
       perform(:get, "/api/v1/oauth2/deviation/download/#{deviationid}")
     end
+
+    # TODO: embeddedcontent, metadata
   end
 end
 

@@ -4,6 +4,7 @@ require 'deviantart/collections'
 require 'deviantart/user'
 require 'deviantart/data'
 require 'deviantart/feed'
+# TODO: comments, cured, messages, notes, stash, util
 require 'net/http'
 require 'uri'
 require 'json'

@@ -26,6 +26,8 @@ module DeviantArt
     def whoami
       perform(:get, '/api/v1/oauth2/user/whoami?')
     end
+
+    # TODO: damntoken, friends/search, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/, statuses/{statusid}, statuses/post, watchers/{username}
   end
 end
 

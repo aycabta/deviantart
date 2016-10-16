@@ -34,6 +34,8 @@ module DeviantArt
       end
       perform(:get, path, params)
     end
+
+    # TODO: create, remove/{folderid}
   end
 end
 

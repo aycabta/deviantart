@@ -7,6 +7,8 @@ module DeviantArt
       params['mature_content'] = mature_content
       perform(:get, '/api/v1/oauth2/feed/home', params)
     end
+
+    # TODO: home/{bucketid}, notifications, profile, settings, settings/update
   end
 end
 

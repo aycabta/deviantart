@@ -19,6 +19,8 @@ module DeviantArt
       params['limit'] = limit if limit != 10
       perform(:get, "/api/v1/oauth2/collections/#{folderid}", params)
     end
+
+    # TODO: fave, folders/create, folders/remove/{folderid}, unfav
   end
 end
 
