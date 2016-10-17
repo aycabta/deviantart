@@ -68,4 +68,19 @@ describe DeviantArt::User do
       assert_includes(result, 'userid')
     end
   end
+  describe '#search_friends' do
+    before do
+      @friends_search = fixture('user_friends_search.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends/search`,
+        da: @da,
+        body: @friends_search)
+    end
+    it 'requests the correct resource' do
+      result = @da.search_friends('n', 'Ray-kbys')
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
 end
