@@ -27,7 +27,15 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/user/whoami?')
     end
 
-    # TODO: damntoken, friends/search, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/, statuses/{statusid}, statuses/post, watchers/{username}
+    # Search friends by username
+    def search_friends(query, username = nil)
+      params = {}
+      params['query'] = query
+      params['username'] = username unless username.nil?
+      perform(:get, '/api/v1/oauth2/user/friends/search', params)
+    end
+
+    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/, statuses/{statusid}, statuses/post, watchers/{username}
   end
 end
 
