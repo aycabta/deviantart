@@ -16,7 +16,7 @@ describe DeviantArt::User do
         body: @profile)
     end
     it 'requests the correct resource' do
-      result = @da.get_profile(username: @username)
+      result = @da.get_profile(@username)
       assert_equal(result.class, Hash)
       assert_includes(result, 'user')
     end

@@ -1,7 +1,7 @@
 module DeviantArt
   module User
     # Get user profile information
-    def get_profile(username: nil, ext_collections: false, ext_galleries: false)
+    def get_profile(username, ext_collections: false, ext_galleries: false)
       params = {}
       params['ext_collections'] = ext_collections if ext_collections
       params['ext_galleries'] = ext_galleries if ext_galleries
