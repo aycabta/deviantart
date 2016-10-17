@@ -28,7 +28,7 @@ module DeviantArt
     end
 
     # Search friends by username
-    def search_friends(query, username = nil)
+    def search_friends(query, username: nil)
       params = {}
       params['query'] = query
       params['username'] = username unless username.nil?

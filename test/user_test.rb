@@ -78,7 +78,7 @@ describe DeviantArt::User do
         body: @friends_search)
     end
     it 'requests the correct resource' do
-      result = @da.search_friends('n', 'Ray-kbys')
+      result = @da.search_friends('n', username: 'Ray-kbys')
       assert_equal(result.class, Hash)
       assert_includes(result, 'results')
     end
