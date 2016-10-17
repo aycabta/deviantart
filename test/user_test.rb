@@ -32,7 +32,7 @@ describe DeviantArt::User do
         body: @friends)
     end
     it 'requests the correct resource' do
-      result = @da.get_friends(username: @username)
+      result = @da.get_friends(@username)
       assert_equal(result.class, Hash)
       assert_includes(result, 'results')
     end

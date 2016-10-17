@@ -9,7 +9,7 @@ module DeviantArt
     end
 
     # Get the users list of friends
-    def get_friends(username: nil, offset: 0, limit: 10)
+    def get_friends(username, offset: 0, limit: 10)
       params = {}
       params['offset'] = offset if offset != 0
       params['limit'] = limit if limit != 10
