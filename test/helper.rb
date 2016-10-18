@@ -6,6 +6,10 @@ require 'webmock/minitest'
 require 'json'
 
 def real?
+  puts ENV.include?('REAL')
+  puts ENV['REAL'].nil?
+  puts ENV['REAL'].empty?
+  puts ENV['REAL']
   ENV.include?('REAL') && !ENV['REAL'].nil? && !ENV['REAL'].empty?
 end
 
