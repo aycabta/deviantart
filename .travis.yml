@@ -1,4 +1,4 @@
 ---
 language: ruby
 rvm: 2.3.1
-script: REAL='' bundle exec rake test
+script: env && REAL='' bundle exec rake test
