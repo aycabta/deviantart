@@ -62,7 +62,7 @@ def get_access_token
   end
 end
 
-Rake::TestTask.new(:real) do |t|
+task :access_token do
   AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
   if !File.exists?(AUTHORIZATION_CODE_FILE)
     OUTPUT_PIPE = 'test/output_pipe'
@@ -73,6 +73,10 @@ Rake::TestTask.new(:real) do |t|
     get_access_token
     File.unlink(OUTPUT_PIPE)
   end
+end
+
+Rake::TestTask.new(:real) do |t|
+  t.deps << :access_token
   t.ruby_opts << '-I. -e "ENV[\'REAL\']=\'1\'"'
   t.loader = :direct
   t.libs << "test"
