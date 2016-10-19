@@ -38,7 +38,7 @@ def create_da
     client_secret = credentials_input.json['authorization_code']['client_secret']
     access_token = credentials_input.json['authorization_code']['access_token']
     refresh_token = credentials_input.json['authorization_code']['refresh_token']
-    stub_request(:get, "https://#{DeviantArt::Client.host}/oauth2/token")
+    stub_request(:get, "https://#{DeviantArt::Client.default_host}/oauth2/token")
       .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'refresh_token' },
             headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
       .to_return(status: 200,

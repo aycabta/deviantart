@@ -23,10 +23,11 @@ module DeviantArt
     include DeviantArt::Feed
     attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token, :host
     attr_writer :user_agent
+    @@default_host = 'www.deviantart.com'
 
     def initialize(options = {})
       @access_token = nil
-      @host = 'www.deviantart.com'
+      @host = @@default_host
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
