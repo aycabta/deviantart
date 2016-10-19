@@ -25,7 +25,20 @@ module DeviantArt
     attr_writer :user_agent
     @@default_host = 'www.deviantart.com'
 
-    # TODO: documentation
+    # Create client object.
+    #
+    # [#host] Host name to access API
+    # [#client_id] App's +client_id+.
+    # [#client_secret] App's +client_secret+.
+    # [#grant_type]
+    #   Use for refresh token.
+    #   - +:authorization_code+
+    #   - +:client_credentials+
+    # [#access_token] This is valid access token for now.
+    # [#code] This is for +:authorization_code+. Authorization step returns this.
+    # [#redirect_uri] This is for +:authorization_code+. URL what is exactly match the value in authorization step.
+    # [#refresh_token] This is for +:authorization_code+. Refresh token for +:authorization_code+
+    # [#access_token_auto_refresh] This is for +:authorization_code+ and +:client_credentials+. Bool for auto refresh access token
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
