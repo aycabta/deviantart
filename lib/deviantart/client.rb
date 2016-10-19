@@ -25,6 +25,7 @@ module DeviantArt
     attr_writer :user_agent
     @@default_host = 'www.deviantart.com'
 
+    # TODO: documentation
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
@@ -38,18 +39,22 @@ module DeviantArt
       @http.use_ssl = true
     end
 
+    # Default host name, it's 'www.deviantart.com'
     def self.default_host
       @@default_host
     end
 
+    # User agent name
     def user_agent
       @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::VERSION}/#{RUBY_DESCRIPTION}"
     end
 
+    # Auto refresh access token flag
     def access_token_auto_refresh?
       @access_token_auto_refresh
     end
 
+    # Access API with params by method
     def perform(method, path, params = {})
       if @access_token.nil? && access_token_auto_refresh?
         refresh_access_token
@@ -62,10 +67,12 @@ module DeviantArt
       response.json
     end
 
+    # Call given block when authorization code is refreshed
     def on_refresh_authorization_code(&block)
       @on_refresh_authorization_code = block
     end
 
+    # Call given block when access token is refreshed
     def on_refresh_access_token(&block)
       @on_refresh_access_token = block
     end
