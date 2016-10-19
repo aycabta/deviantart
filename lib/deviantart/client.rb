@@ -38,6 +38,10 @@ module DeviantArt
       @on_refresh_authorization_code = nil
     end
 
+    def self.default_host
+      @@default_host
+    end
+
     def user_agent
       @user_agent ||= "DeviantArtRubyGem/#{DeviantArt::VERSION}/#{RUBY_DESCRIPTION}"
     end
