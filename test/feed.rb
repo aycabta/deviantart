@@ -10,7 +10,7 @@ describe DeviantArt::Feed do
       @feed_home = fixture('feed_home.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/feed/home`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/feed/home`,
         da: @da,
         body: @feed_home)
     end

@@ -11,7 +11,7 @@ describe DeviantArt::User do
       @username = @profile.json['user']['username']
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/profile/#{@username}`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/profile/#{@username}`,
         da: @da,
         body: @profile)
     end
@@ -27,7 +27,7 @@ describe DeviantArt::User do
       @friends = fixture('user_friends.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends`,
         da: @da,
         body: @friends)
     end
@@ -43,7 +43,7 @@ describe DeviantArt::User do
       @whois = fixture('user_whois.json')
       stub_da_request(
         method: :post,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whois`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/whois`,
         da: @da,
         body: @whois)
     end
@@ -58,7 +58,7 @@ describe DeviantArt::User do
       @whoami = fixture('user_whoami.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/user/whoami",
+        url: "https://#{@da.host}/api/v1/oauth2/user/whoami",
         da: @da,
         body: @whoami)
     end
@@ -73,7 +73,7 @@ describe DeviantArt::User do
       @friends_search = fixture('user_friends_search.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/user/friends/search`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/search`,
         da: @da,
         body: @friends_search)
     end

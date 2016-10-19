@@ -11,7 +11,7 @@ describe DeviantArt::Collections do
       @collections_folders = fixture('collections_folders.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/folders`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/collections/folders`,
         da: @da,
         body: @collections_folders)
     end
@@ -30,7 +30,7 @@ describe DeviantArt::Collections do
       @collections = fixture('collections.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/collections/#{@folderid}`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/collections/#{@folderid}`,
         da: @da,
         body: @collections)
     end

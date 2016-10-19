@@ -10,7 +10,7 @@ describe DeviantArt::Data do
       @countries = fixture('data_countries.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/countries",
+        url: "https://#{@da.host}/api/v1/oauth2/data/countries",
         da: @da,
         body: @countries)
     end
@@ -25,7 +25,7 @@ describe DeviantArt::Data do
       @privacy = fixture('data_privacy.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/privacy",
+        url: "https://#{@da.host}/api/v1/oauth2/data/privacy",
         da: @da,
         body: @privacy)
     end
@@ -40,7 +40,7 @@ describe DeviantArt::Data do
       @submission = fixture('data_submission.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/submission",
+        url: "https://#{@da.host}/api/v1/oauth2/data/submission",
         da: @da,
         body: @submission)
     end
@@ -55,7 +55,7 @@ describe DeviantArt::Data do
       @tos = fixture('data_tos.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/data/tos",
+        url: "https://#{@da.host}/api/v1/oauth2/data/tos",
         da: @da,
         body: @tos)
     end

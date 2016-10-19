@@ -11,7 +11,7 @@ describe DeviantArt::Gallery do
       @gallery_all = fixture('gallery_all.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/all`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/all`,
         da: @da,
         body: @gallery_all)
     end
@@ -27,7 +27,7 @@ describe DeviantArt::Gallery do
       @gallery_folders = fixture('gallery_folders.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/folders`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/folders`,
         da: @da,
         body: @gallery_folders)
     end
@@ -45,7 +45,7 @@ describe DeviantArt::Gallery do
       @gallery = fixture('gallery.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/gallery/#{@folderid}`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/#{@folderid}`,
         da: @da,
         body: @gallery)
     end

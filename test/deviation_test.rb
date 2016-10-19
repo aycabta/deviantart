@@ -10,7 +10,7 @@ describe DeviantArt::Deviation do
       @deviation = fixture('deviation.json')
       stub_da_request(
         method: :get,
-        url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
+        url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
         da: @da,
         body: @deviation)
     end
@@ -26,7 +26,7 @@ describe DeviantArt::Deviation do
       @deviation_content = fixture('deviation_content.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/content\?deviationid=.*`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/content\?deviationid=.*`,
         da: @da,
         body: @deviation_content)
     end
@@ -44,7 +44,7 @@ describe DeviantArt::Deviation do
       @deviation_whofaved = fixture('deviation_whofaved.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/whofaved\?deviationid=.*`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/whofaved\?deviationid=.*`,
         da: @da,
         body: @deviation_whofaved)
     end
@@ -60,7 +60,7 @@ describe DeviantArt::Deviation do
       @deviation_download = fixture('deviation_download.json')
       stub_da_request(
         method: :get,
-        url: %r`^https://#{DeviantArt::Client.host}/api/v1/oauth2/deviation/download/#{@deviationid}`,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/download/#{@deviationid}`,
         da: @da,
         body: @deviation_download)
     end
