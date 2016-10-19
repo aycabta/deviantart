@@ -28,14 +28,14 @@ module DeviantArt
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
+      @on_refresh_access_token = nil
+      @on_refresh_authorization_code = nil
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
       yield(self) if block_given?
       @http = Net::HTTP.new(@host, 443)
       @http.use_ssl = true
-      @on_refresh_access_token = nil
-      @on_refresh_authorization_code = nil
     end
 
     def self.default_host
