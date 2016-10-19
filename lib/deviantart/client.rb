@@ -21,24 +21,20 @@ module DeviantArt
     include DeviantArt::User
     include DeviantArt::Data
     include DeviantArt::Feed
-    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token
+    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token, :host
     attr_writer :user_agent
-    @@host = 'www.deviantart.com'
 
     def initialize(options = {})
       @access_token = nil
+      @host = 'www.deviantart.com'
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
       yield(self) if block_given?
-      @http = Net::HTTP.new(@@host, 443)
+      @http = Net::HTTP.new(@host, 443)
       @http.use_ssl = true
       @on_refresh_access_token = nil
       @on_refresh_authorization_code = nil
-    end
-
-    def self.host
-      @@host
     end
 
     def user_agent
@@ -72,7 +68,7 @@ module DeviantArt
   private
 
     def request(method, path, params = {})
-      uri = URI.parse("https://#{@@host}#{path}")
+      uri = URI.parse("https://#{@host}#{path}")
       case method
       when :get
         uri.query = URI.encode_www_form(params)
