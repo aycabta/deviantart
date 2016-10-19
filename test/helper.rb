@@ -53,7 +53,7 @@ def create_da
     config.refresh_token = refresh_token
     config.access_token_auto_refresh = true
   end
-  da.on_refreshed_authorization_code do |access_token, refresh_token|
+  da.on_refresh_authorization_code do |access_token, refresh_token|
     authorization_code_file = 'test/fixtures/authorization_code.json'
     authorization_code = nil
     open(authorization_code_file, 'r') do |f|
