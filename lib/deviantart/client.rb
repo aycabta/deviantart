@@ -27,18 +27,26 @@ module DeviantArt
 
     # Create client object.
     #
-    # [#host] Host name to access API
-    # [#client_id] App's +client_id+.
-    # [#client_secret] App's +client_secret+.
+    # [#host] Host name to access API.
+    # [#access_token_auto_refresh] Bool for auto refresh access token.
     # [#grant_type]
     #   Use for refresh token.
     #   - +:authorization_code+
     #   - +:client_credentials+
     # [#access_token] This is valid access token for now.
-    # [#code] This is for +:authorization_code+. Authorization step returns this.
-    # [#redirect_uri] This is for +:authorization_code+. URL what is exactly match the value in authorization step.
-    # [#refresh_token] This is for +:authorization_code+. Refresh token for +:authorization_code+
-    # [#access_token_auto_refresh] This is for +:authorization_code+ and +:client_credentials+. Bool for auto refresh access token
+    #
+    # For refresh token with +:authorization_code+
+    #
+    # [#client_id] App's +client_id+.
+    # [#client_secret] App's +client_secret+.
+    # [#redirect_uri] URL what is exactly match the value in authorization step.
+    # [#code] Authorization step returns this.
+    # [#refresh_token] Refresh token for +:authorization_code+.
+    #
+    # For refresh token with +:client_credentials+
+    #
+    # [#client_id] App's +client_id+.
+    # [#client_secret] App's +client_secret+.
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
