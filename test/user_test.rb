@@ -83,4 +83,19 @@ describe DeviantArt::User do
       assert_includes(result, 'results')
     end
   end
+  describe '#get_statuses' do
+    before do
+      @statuses = fixture('user_statuses.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/statuses`,
+        da: @da,
+        body: @statuses)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_statuses('XxMLRPJordanxX')
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
 end
