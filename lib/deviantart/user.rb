@@ -35,7 +35,16 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/user/friends/search', params)
     end
 
-    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/, statuses/{statusid}, statuses/post, watchers/{username}
+    def get_statuses(username, offset: 0, limit: 10, mature_content: false)
+      params = {}
+      params['username'] = username
+      params['mature_content'] = mature_content
+      params['offset'] = offset if offset != 0
+      params['limit'] = limit if limit != 10
+      perform(:get, '/api/v1/oauth2/user/statuses/', params)
+    end
+
+    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, ertatuses/{statusid}, statuses/post, watchers/{username}
   end
 end
 
