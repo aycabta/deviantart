@@ -44,7 +44,13 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/user/statuses/', params)
     end
 
-    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/{statusid}, statuses/post, watchers/{username}
+    def get_status(statusid, mature_content: true)
+      params = {}
+      params['mature_content'] = mature_content
+      perform(:get, "/api/v1/oauth2/user/statuses/#{statusid}", params)
+    end
+
+    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post, watchers/{username}
   end
 end
 
