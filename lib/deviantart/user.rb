@@ -35,7 +35,7 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/user/friends/search', params)
     end
 
-    def get_statuses(username, offset: 0, limit: 10, mature_content: false)
+    def get_statuses(username, offset: 0, limit: 10, mature_content: true)
       params = {}
       params['username'] = username
       params['mature_content'] = mature_content
