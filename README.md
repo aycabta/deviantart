@@ -34,7 +34,7 @@ And you will run test with stub APIs:
 $ bundle exec rake test
 ```
 
-If you want to use *real* API in test, run this one:
+If you want to use **real** API in test, run this one:
 
 ```bash
 $ bundle exec rake real
