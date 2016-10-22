@@ -44,7 +44,7 @@ module DeviantArt
       perform(:get, '/api/v1/oauth2/user/statuses/', params)
     end
 
-    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, ertatuses/{statusid}, statuses/post, watchers/{username}
+    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/{statusid}, statuses/post, watchers/{username}
   end
 end
 
