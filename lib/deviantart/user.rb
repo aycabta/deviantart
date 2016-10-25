@@ -52,7 +52,15 @@ module DeviantArt
       perform(:get, "/api/v1/oauth2/user/statuses/#{statusid}", params)
     end
 
-    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post, watchers/{username}
+    # Get the user's list of watchers
+    def get_watchers(username: nil, offset: 0, limit: 10)
+      params = {}
+      params['offset'] = offset if offset != 0
+      params['limit'] = limit if limit != 10
+      perform(:get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params)
+    end
+
+    # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post
   end
 end
 
