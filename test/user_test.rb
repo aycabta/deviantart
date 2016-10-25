@@ -113,4 +113,20 @@ describe DeviantArt::User do
       assert_includes(result, 'body')
     end
   end
+  describe '#get_watchers' do
+    before do
+      @watchers = fixture('user_watchers.json')
+      @username = fixture('user_watchers-input.json').json['username']
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/watchers/`,
+        da: @da,
+        body: @watchers)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_watchers(username: @username)
+      assert_equal(result.class, Hash)
+      assert_includes(result, 'results')
+    end
+  end
 end
