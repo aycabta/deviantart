@@ -17,8 +17,8 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.get_profile(@username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'user')
+      assert_instance_of(DeviantArt::User::Profile, result)
+      assert_instance_of(DeviantArt::User, result.user)
     end
   end
   describe '#get_friends' do
