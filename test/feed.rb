@@ -1,7 +1,7 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Feed do
+describe DeviantArt::Client::Feed do
   before(:all) do
     @da, @credentials = create_da
   end

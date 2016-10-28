@@ -1,7 +1,7 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::User do
+describe DeviantArt::Client::User do
   before(:all) do
     @da, @credentials = create_da
   end
