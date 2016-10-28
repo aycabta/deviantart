@@ -10,12 +10,7 @@ module DeviantArt
     def define_hash_attrs(receiver, attrs)
       that = self
       attrs.each_pair do |key, value|
-        #puts ?= * 10
-        #puts key
-        #puts value
         receiver.instance_eval do
-          #puts self
-          #puts receiver
           define_singleton_method(:"#{key}=", ->(sym, obj){instance_variable_set(sym, obj)}.curry.(:"@#{key}"))
           define_singleton_method(key.to_sym, proc { instance_variable_get(:"@#{key}") })
           instance_variable_set(:"@#{key}", that.__send__(:nested_value, value))
