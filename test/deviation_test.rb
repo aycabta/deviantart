@@ -35,9 +35,9 @@ describe DeviantArt::Client::Deviation do
     it 'requests the correct resource' do
       result = @da.get_deviation_content(@deviationid)
       assert_instance_of(DeviantArt::Deviation::Content, result)
-      assert_respond_to(result, 'html')
-      assert_respond_to(result, 'css')
-      assert_respond_to(result, 'css_fonts')
+      assert_instance_of(String, result.html)
+      assert_instance_of(String, result.css)
+      assert_instance_of(Array, result.css_fonts)
     end
   end
   describe '#get_deviation_whofaved' do
@@ -53,7 +53,7 @@ describe DeviantArt::Client::Deviation do
     it 'requests the correct resource' do
       result = @da.get_deviation_whofaved(@deviationid)
       assert_instance_of(DeviantArt::Deviation::WhoFaved, result)
-      assert_respond_to(result, 'results')
+      assert_instance_of(Array, result.results)
     end
   end
   describe '#download_deviation' do
@@ -69,10 +69,10 @@ describe DeviantArt::Client::Deviation do
     it 'requests the correct resource' do
       result = @da.download_deviation(@deviationid)
       assert_instance_of(DeviantArt::Deviation::Download, result)
-      assert_respond_to(result, 'src')
-      assert_respond_to(result, 'filesize')
-      assert_respond_to(result, 'width')
-      assert_respond_to(result, 'height')
+      assert_instance_of(String, result.src)
+      assert_instance_of(Fixnum, result.filesize)
+      assert_instance_of(Fixnum, result.width)
+      assert_instance_of(Fixnum, result.height)
     end
   end
 end
