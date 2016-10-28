@@ -1,3 +1,6 @@
+require 'deviantart/user'
+require 'deviantart/user/profile'
+
 module DeviantArt
   class Client
     module User
@@ -6,7 +9,7 @@ module DeviantArt
         params = {}
         params['ext_collections'] = ext_collections if ext_collections
         params['ext_galleries'] = ext_galleries if ext_galleries
-        perform(:get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params)
+        DeviantArt::User::Profile.new(perform(:get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params))
       end
 
       # Get the users list of friends
