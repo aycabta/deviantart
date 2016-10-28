@@ -16,8 +16,10 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation(@deviation.json['deviationid'])
-      assert_equal(result.class, Hash)
-      assert_equal(result['deviationid'], @deviation.json['deviationid'])
+      assert_equal(result.class, DeviantArt::Deviation)
+      assert_equal(result.thumbs.class, Array)
+      assert_equal(result.thumbs.first.width.class, Fixnum)
+      assert_equal(result.deviationid, @deviation.json['deviationid'])
     end
   end
   describe '#get_deviation_content' do
@@ -32,10 +34,10 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation_content(@deviationid)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'html')
-      assert_includes(result, 'css')
-      assert_includes(result, 'css_fonts')
+      assert_equal(result.class, DeviantArt::Deviation::Content)
+      assert_respond_to(result, 'html')
+      assert_respond_to(result, 'css')
+      assert_respond_to(result, 'css_fonts')
     end
   end
   describe '#get_deviation_whofaved' do
@@ -50,8 +52,8 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation_whofaved(@deviationid)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_equal(result.class, DeviantArt::Deviation::WhoFaved)
+      assert_respond_to(result, 'results')
     end
   end
   describe '#download_deviation' do
@@ -66,11 +68,11 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.download_deviation(@deviationid)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'src')
-      assert_includes(result, 'filesize')
-      assert_includes(result, 'width')
-      assert_includes(result, 'height')
+      assert_equal(result.class, DeviantArt::Deviation::Download)
+      assert_respond_to(result, 'src')
+      assert_respond_to(result, 'filesize')
+      assert_respond_to(result, 'width')
+      assert_respond_to(result, 'height')
     end
   end
 end
