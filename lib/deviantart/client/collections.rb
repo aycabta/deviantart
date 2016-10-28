@@ -25,4 +25,3 @@ module DeviantArt
     end
   end
 end
-
