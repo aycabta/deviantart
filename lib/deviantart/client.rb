@@ -1,9 +1,9 @@
-require 'deviantart/deviation'
-require 'deviantart/gallery'
-require 'deviantart/collections'
-require 'deviantart/user'
-require 'deviantart/data'
-require 'deviantart/feed'
+require 'deviantart/client/deviation'
+require 'deviantart/client/gallery'
+require 'deviantart/client/collections'
+require 'deviantart/client/user'
+require 'deviantart/client/data'
+require 'deviantart/client/feed'
 # TODO: comments, cured, messages, notes, stash, util
 require 'net/http'
 require 'uri'
@@ -15,12 +15,12 @@ end
 
 module DeviantArt
   class Client
-    include DeviantArt::Deviation
-    include DeviantArt::Gallery
-    include DeviantArt::Collections
-    include DeviantArt::User
-    include DeviantArt::Data
-    include DeviantArt::Feed
+    include DeviantArt::Client::Deviation
+    include DeviantArt::Client::Gallery
+    include DeviantArt::Client::Collections
+    include DeviantArt::Client::User
+    include DeviantArt::Client::Data
+    include DeviantArt::Client::Feed
     attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token, :host
     attr_writer :user_agent
     @@default_host = 'www.deviantart.com'
