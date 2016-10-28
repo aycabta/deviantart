@@ -16,9 +16,9 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation(@deviation.json['deviationid'])
-      assert_equal(result.class, DeviantArt::Deviation)
-      assert_equal(result.thumbs.class, Array)
-      assert_equal(result.thumbs.first.width.class, Fixnum)
+      assert_instance_of(DeviantArt::Deviation, result)
+      assert_instance_of(Array, result.thumbs)
+      assert_instance_of(Fixnum, result.thumbs.first.width)
       assert_equal(result.deviationid, @deviation.json['deviationid'])
     end
   end
@@ -34,7 +34,7 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation_content(@deviationid)
-      assert_equal(result.class, DeviantArt::Deviation::Content)
+      assert_instance_of(DeviantArt::Deviation::Content, result)
       assert_respond_to(result, 'html')
       assert_respond_to(result, 'css')
       assert_respond_to(result, 'css_fonts')
@@ -52,7 +52,7 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.get_deviation_whofaved(@deviationid)
-      assert_equal(result.class, DeviantArt::Deviation::WhoFaved)
+      assert_instance_of(DeviantArt::Deviation::WhoFaved, result)
       assert_respond_to(result, 'results')
     end
   end
@@ -68,7 +68,7 @@ describe DeviantArt::Client::Deviation do
     end
     it 'requests the correct resource' do
       result = @da.download_deviation(@deviationid)
-      assert_equal(result.class, DeviantArt::Deviation::Download)
+      assert_instance_of(DeviantArt::Deviation::Download, result)
       assert_respond_to(result, 'src')
       assert_respond_to(result, 'filesize')
       assert_respond_to(result, 'width')
