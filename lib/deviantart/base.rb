@@ -47,4 +47,6 @@ module DeviantArt
       end
     end
   end
+
+  class Deviation < Base; end
 end
