@@ -1,5 +1,5 @@
-require "deviantart/version"
-require "deviantart/client"
+require 'deviantart/version'
+require 'deviantart/client'
 
 module DeviantArt
   # Bypass args and block to DeviantArt::Client

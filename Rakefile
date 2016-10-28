@@ -1,6 +1,6 @@
-require "bundler/gem_tasks"
-require "rake/testtask"
-require "readline"
+require 'bundler/gem_tasks'
+require 'rake/testtask'
+require 'readline'
 
 test_pettern = FileList['test/**/*_test.rb']
 
