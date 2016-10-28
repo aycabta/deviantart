@@ -1,86 +1,101 @@
 {
   "user": {
-    "userid": "5193726C-B7A7-C2D9-3C03-DF6D24490E3E",
-    "username": "Ray-kbys",
-    "usericon": "http://a.deviantart.net/avatars/r/a/ray-kbys.jpg?3",
-    "type": "premium"
+    "userid": "A59296B8-97D4-4BB4-0E68-CBE1CA8226DC",
+    "username": "polycephallic",
+    "usericon": "http://a.deviantart.net/avatars/p/o/polycephallic.png?7",
+    "type": "regular"
   },
-  "is_watching": false,
-  "profile_url": "http://ray-kbys.deviantart.com",
+  "is_watching": true,
+  "profile_url": "http://polycephallic.deviantart.com",
   "user_is_artist": true,
-  "artist_level": "Student",
+  "artist_level": null,
   "artist_specialty": null,
-  "real_name": "Ray",
-  "tagline": "",
-  "countryid": 1,
-  "country": "United States",
-  "website": "http://ray-days-trash.tumblr.com/post/80076424325",
-  "bio": "I'm living in the U.S, but I'm Japanese.<br />My English is not perfect.<br /><br />Thanks for all comments, watch, and fav.<br />Forgive me if I didn't react for those. <br />Every time I feel glad and those give great energy for next work.<br />I'm happy if you enjoy my pictures.<br /><br />Now I don't accept a request and commission. sorry.",
+  "real_name": "miette",
+  "tagline": "putrescent maggot",
+  "countryid": 221,
+  "country": "Ukraine",
+  "website": "https://www.facebook.com/MietteMerlot?fref=ts",
+  "bio": "<img src=\"http://e.deviantart.net/emoticons/s/smile.gif\" width=\"15\" height=\"15\" alt=\":)\" data-embed-type=\"emoticon\" data-embed-id=\"391\" title=\":) (Smile)\"/><img src=\"http://e.deviantart.net/emoticons/s/smile.gif\" width=\"15\" height=\"15\" alt=\":)\" data-embed-type=\"emoticon\" data-embed-id=\"391\" title=\":) (Smile)\"/><img src=\"http://e.deviantart.net/emoticons/s/smile.gif\" width=\"15\" height=\"15\" alt=\":)\" data-embed-type=\"emoticon\" data-embed-id=\"391\" title=\":) (Smile)\"/><img src=\"http://e.deviantart.net/emoticons/f/fork.gif\" width=\"37\" height=\"18\" alt=\":fork:\" data-embed-type=\"emoticon\" data-embed-id=\"46\" title=\"Stabbed with a Fork!\"/>",
   "cover_photo": "",
   "profile_pic": {
-    "deviationid": "807FAD56-0A39-A578-7F44-63B44F29B36D",
+    "deviationid": "2AE01D46-C6E5-214B-763D-80483EF04924",
     "printid": null,
-    "url": "http://ray-kbys.deviantart.com/art/Profile-picture-464446399",
+    "url": "http://polycephallic.deviantart.com/art/Profile-picture-598538575",
     "title": "Profile picture",
     "category": "Uncategorized",
     "category_path": "",
     "is_favourited": false,
     "is_deleted": false,
     "author": {
-      "userid": "5193726C-B7A7-C2D9-3C03-DF6D24490E3E",
-      "username": "Ray-kbys",
-      "usericon": "http://a.deviantart.net/avatars/r/a/ray-kbys.jpg?3",
-      "type": "premium"
+      "userid": "A59296B8-97D4-4BB4-0E68-CBE1CA8226DC",
+      "username": "polycephallic",
+      "usericon": "http://a.deviantart.net/avatars/p/o/polycephallic.png?7",
+      "type": "regular"
     },
     "stats": {
       "comments": 0,
       "favourites": 0
     },
-    "published_time": 1404084394,
+    "published_time": 1458791894,
     "allows_comments": true,
     "preview": {
-      "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+      "src": "http://orig05.deviantart.net/21fe/f/2016/083/b/7/profile_picture_by_polycephallic-d9wcrbj.jpg",
       "height": 300,
-      "width": 300,
+      "width": 264,
       "transparency": false
     },
     "content": {
-      "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+      "src": "http://orig05.deviantart.net/21fe/f/2016/083/b/7/profile_picture_by_polycephallic-d9wcrbj.jpg",
       "height": 300,
-      "width": 300,
+      "width": 264,
       "transparency": false,
-      "filesize": 63846
+      "filesize": 10657
     },
     "thumbs": [
       {
-        "src": "http://t00.deviantart.net/bcyY9sVsFqicBzAXw85ETtKSQjM=/fit-in/150x150/filters:no_upscale():origin()/pre11/266e/th/pre/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "src": "http://t01.deviantart.net/Ye5JRdtxm4gl8dzUFhzkBC2Vz1M=/fit-in/150x150/filters:no_upscale():origin()/pre05/fd5b/th/pre/f/2016/083/b/7/profile_picture_by_polycephallic-d9wcrbj.jpg",
         "height": 150,
-        "width": 150,
+        "width": 132,
         "transparency": false
       },
       {
-        "src": "http://t01.deviantart.net/0Me3xLkPN-w5YwI1hOWx-yOHbG8=/300x200/filters:fixed_height(100,100):origin()/pre11/266e/th/pre/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "src": "http://t12.deviantart.net/kQ4qvCCdmWi10G_OUQDwwNN-7nQ=/300x200/filters:fixed_height(100,100):origin()/pre05/fd5b/th/pre/f/2016/083/b/7/profile_picture_by_polycephallic-d9wcrbj.jpg",
         "height": 200,
-        "width": 200,
+        "width": 176,
         "transparency": false
       },
       {
-        "src": "http://orig09.deviantart.net/92e1/f/2014/180/5/8/profile_picture_by_ray_kbys-d7oip4v.jpg",
+        "src": "http://orig05.deviantart.net/21fe/f/2016/083/b/7/profile_picture_by_polycephallic-d9wcrbj.jpg",
         "height": 300,
-        "width": 300,
+        "width": 264,
         "transparency": false
       }
     ],
     "is_mature": false,
     "is_downloadable": true,
-    "download_filesize": 63846
+    "download_filesize": 10657
   },
-  "last_status": null,
+  "last_status": {
+    "statusid": "329AB111-3E48-3C79-0C9B-40E7E1CA4249",
+    "body": "<img src=\"http://e.deviantart.net/emoticons/p/picknose.gif\" alt=\"Digging for gold\" style=\"width: 20px; height: 30px;\" data-embed-type=\"emoticon\" data-embed-id=\"91\">&nbsp;",
+    "ts": "2014-10-30T19:36:26-0700",
+    "url": "http://polycephallic.deviantart.com/status/135038",
+    "comments_count": 0,
+    "is_share": false,
+    "is_deleted": false,
+    "author": {
+      "userid": "A59296B8-97D4-4BB4-0E68-CBE1CA8226DC",
+      "username": "polycephallic",
+      "usericon": "http://a.deviantart.net/avatars/p/o/polycephallic.png?7",
+      "type": "regular"
+    },
+    "items": []
+  },
   "stats": {
-    "user_deviations": 162,
-    "user_favourites": 21,
-    "user_comments": 161,
-    "profile_pageviews": 79348,
-    "profile_comments": 174
+    "user_deviations": 118,
+    "user_favourites": 2144,
+    "user_comments": 1340,
+    "profile_pageviews": 9435,
+    "profile_comments": 413
   }
 }
