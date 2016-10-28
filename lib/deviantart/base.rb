@@ -49,4 +49,6 @@ module DeviantArt
   end
 
   class Deviation < Base; end
+  class User < Base; end
+  class Status < Base; end
 end
