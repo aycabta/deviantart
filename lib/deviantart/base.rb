@@ -16,13 +16,24 @@ module DeviantArt
     def define_hash_attrs(receiver, attrs, point)
       that = self
       attrs.each_pair do |key, value|
-        receiver.instance_eval do
-          define_singleton_method(:"#{key}=", method(:instance_variable_set).curry.(:"@#{key}"))
-          define_singleton_method(key.to_sym, proc { instance_variable_get(:"@#{key}") })
-          instance_variable_set(:"@#{key}", that.__send__(:nested_value, value, point + [key.to_sym]))
-        end
+        attr_accessor_with_receiver(receiver, key)
+        receiver.instance_variable_set(:"@#{key}", nested_value(value, point + [key.to_sym]))
       end
       receiver
+    end
+
+    def attr_accessor_with_receiver(receiver, name)
+      receiver.instance_eval do
+        reader_name = name.to_sym
+        writer_name = :"#{name}="
+        variable_name = :"@#{name}"
+        if !receiver.respond_to?(reader_name)
+          define_singleton_method(reader_name, proc { |dummy=nil| instance_variable_get(variable_name) })
+        end
+        if !receiver.respond_to?(writer_name)
+          define_singleton_method(writer_name, method(:instance_variable_set).curry.(variable_name))
+        end
+      end
     end
 
     def define_array_attrs(array, attrs, point)
