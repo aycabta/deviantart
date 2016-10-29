@@ -17,7 +17,7 @@ module DeviantArt
       that = self
       attrs.each_pair do |key, value|
         receiver.instance_eval do
-          define_singleton_method(:"#{key}=", ->(sym, obj){instance_variable_set(sym, obj)}.curry.(:"@#{key}"))
+          define_singleton_method(:"#{key}=", method(:instance_variable_set).curry.(:"@#{key}"))
           define_singleton_method(key.to_sym, proc { instance_variable_get(:"@#{key}") })
           instance_variable_set(:"@#{key}", that.__send__(:nested_value, value, point + [key.to_sym]))
         end
