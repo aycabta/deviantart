@@ -14,7 +14,6 @@ module DeviantArt
     private
 
     def define_hash_attrs(receiver, attrs, point)
-      that = self
       attrs.each_pair do |key, value|
         attr_accessor_with_receiver(receiver, key)
         receiver.instance_variable_set(:"@#{key}", nested_value(value, point + [key.to_sym]))
