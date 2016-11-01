@@ -2,6 +2,10 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'readline'
 
+BROWSER_COMMAND_FILE = 'test/browser_command'
+AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
+OUTPUT_PIPE = 'test/output_pipe'
+
 test_pettern = FileList['test/**/*_test.rb']
 
 Rake::TestTask.new(:test) do |t|
@@ -11,20 +15,22 @@ Rake::TestTask.new(:test) do |t|
 end
 
 def get_browser_command
-  browser_command_file = 'test/browser_command'
-  if !File.exists?(browser_command_file)
-    browser_command = Readline.readline('Input your browser command> ')
-    open(browser_command_file, 'w') do |f|
-      f.write(browser_command)
-    end
-    puts "Wrote \"#{browser_command}\" to #{browser_command_file}"
-    browser_command
-  else
-    open(browser_command_file, 'r').read
-  end
+  open(BROWSER_COMMAND_FILE, 'r').read
 end
 
-def get_access_token
+file BROWSER_COMMAND_FILE do
+  browser_command = Readline.readline('Input your browser command> ')
+  open(BROWSER_COMMAND_FILE, 'w') do |f|
+    f.write(browser_command)
+  end
+  puts "Wrote \"#{browser_command}\" to #{BROWSER_COMMAND_FILE}"
+end
+
+file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
+  if File.exists?(OUTPUT_PIPE)
+    File.unlink(OUTPUT_PIPE)
+  end
+  File.mkfifo(OUTPUT_PIPE)
   cv = ConditionVariable.new
   mutex = Mutex.new
   is_pinged = false
@@ -60,19 +66,10 @@ def get_access_token
   open(AUTHORIZATION_CODE_FILE, 'w') do |f|
     f.write(result)
   end
+  File.unlink(OUTPUT_PIPE)
 end
 
-task :access_token do
-  AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
-  if !File.exists?(AUTHORIZATION_CODE_FILE)
-    OUTPUT_PIPE = 'test/output_pipe'
-    if File.exists?(OUTPUT_PIPE)
-      File.unlink(OUTPUT_PIPE)
-    end
-    File.mkfifo(OUTPUT_PIPE)
-    get_access_token
-    File.unlink(OUTPUT_PIPE)
-  end
+task :access_token => AUTHORIZATION_CODE_FILE do
 end
 
 Rake::TestTask.new(:real) do |t|
