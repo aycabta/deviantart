@@ -1,5 +1,6 @@
 require 'deviantart/user'
 require 'deviantart/user/profile'
+require 'deviantart/user/friends'
 
 module DeviantArt
   class Client
@@ -17,7 +18,7 @@ module DeviantArt
         params = {}
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, "/api/v1/oauth2/user/friends/#{username.nil? ? '' : username}", params)
+        DeviantArt::User::Friends.new(perform(:get, "/api/v1/oauth2/user/friends/#{username.nil? ? '' : username}", params))
       end
 
       # Fetch user info for given usernames
