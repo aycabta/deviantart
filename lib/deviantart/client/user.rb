@@ -1,6 +1,7 @@
 require 'deviantart/user'
 require 'deviantart/user/profile'
 require 'deviantart/user/friends'
+require 'deviantart/user/whois'
 
 module DeviantArt
   class Client
@@ -24,7 +25,7 @@ module DeviantArt
       # Fetch user info for given usernames
       def whois(users)
         params = { usernames: users.is_a?(Enumerable) ? users : [users] }
-        perform(:post, '/api/v1/oauth2/user/whois', params)
+        DeviantArt::User::Whois.new(perform(:post, '/api/v1/oauth2/user/whois', params))
       end
 
       # Fetch user info of authenticated user
