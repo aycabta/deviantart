@@ -49,8 +49,8 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.whois(@users.json)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::User::Whois, result)
+      assert_instance_of(DeviantArt::User, result.results.first)
     end
   end
   describe '#whoami' do
