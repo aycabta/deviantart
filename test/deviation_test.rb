@@ -19,6 +19,7 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(DeviantArt::Deviation, result)
       assert_instance_of(Array, result.thumbs)
       assert_instance_of(Fixnum, result.thumbs.first.width)
+      assert_instance_of(DeviantArt::User, result.author)
       result.thumbs.first.height = 1234
       assert_equal(result.thumbs.first.height, 1234)
       assert_equal(result.deviationid, @deviation.json['deviationid'])
