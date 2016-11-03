@@ -57,6 +57,7 @@ describe DeviantArt::Client::Deviation do
       result = @da.get_deviation_whofaved(@deviationid)
       assert_instance_of(DeviantArt::Deviation::WhoFaved, result)
       assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::User, result.results.first.user)
     end
   end
   describe '#download_deviation' do
