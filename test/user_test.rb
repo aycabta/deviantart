@@ -64,8 +64,7 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.whoami
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'userid')
+      assert_instance_of(DeviantArt::User, result)
     end
   end
   describe '#search_friends' do
