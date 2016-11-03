@@ -30,7 +30,7 @@ module DeviantArt
 
       # Fetch user info of authenticated user
       def whoami
-        perform(:get, '/api/v1/oauth2/user/whoami?')
+        DeviantArt::User.new(perform(:get, '/api/v1/oauth2/user/whoami?'))
       end
 
       # Search friends by username
