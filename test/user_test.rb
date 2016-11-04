@@ -78,8 +78,9 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.search_friends('n', username: 'Ray-kbys')
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::User::Friends::Search, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::User, result.results.first)
     end
   end
   describe '#get_statuses' do
