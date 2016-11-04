@@ -1,6 +1,7 @@
 require 'deviantart/user'
 require 'deviantart/user/profile'
 require 'deviantart/user/friends'
+require 'deviantart/user/friends/search'
 require 'deviantart/user/whois'
 
 module DeviantArt
@@ -38,7 +39,7 @@ module DeviantArt
         params = {}
         params['query'] = query
         params['username'] = username unless username.nil?
-        perform(:get, '/api/v1/oauth2/user/friends/search', params)
+        DeviantArt::User::Friends::Search.new(perform(:get, '/api/v1/oauth2/user/friends/search', params))
       end
 
       # User Statuses
