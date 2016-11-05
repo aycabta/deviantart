@@ -56,7 +56,7 @@ module DeviantArt
       def get_status(statusid, mature_content: true)
         params = {}
         params['mature_content'] = mature_content
-        perform(:get, "/api/v1/oauth2/user/statuses/#{statusid}", params)
+        DeviantArt::Status.new(perform(:get, "/api/v1/oauth2/user/statuses/#{statusid}", params))
       end
 
       # Get the user's list of watchers
