@@ -109,8 +109,7 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.get_status(@status.json['statusid'])
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'body')
+      assert_instance_of(DeviantArt::Status, result)
     end
   end
   describe '#get_watchers' do
