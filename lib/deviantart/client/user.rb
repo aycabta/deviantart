@@ -3,6 +3,7 @@ require 'deviantart/user/profile'
 require 'deviantart/user/friends'
 require 'deviantart/user/friends/search'
 require 'deviantart/user/whois'
+require 'deviantart/user/statuses'
 
 module DeviantArt
   class Client
@@ -49,7 +50,7 @@ module DeviantArt
         params['mature_content'] = mature_content
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, '/api/v1/oauth2/user/statuses/', params)
+        DeviantArt::User::Statuses.new(perform(:get, '/api/v1/oauth2/user/statuses/', params))
       end
 
       # Fetch the status
