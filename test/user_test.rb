@@ -94,8 +94,9 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.get_statuses(@statuses.json['results'].first['author']['username'])
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::User::Statuses, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::User, result.results.first)
     end
   end
   describe '#get_status' do
