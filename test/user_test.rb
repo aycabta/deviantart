@@ -34,6 +34,7 @@ describe DeviantArt::Client::User do
     it 'requests the correct resource' do
       result = @da.get_friends(@username)
       assert_instance_of(DeviantArt::User::Friends, result)
+      assert_instance_of(Array, result.results)
       assert_instance_of(DeviantArt::User, result.results.first.user)
     end
   end
@@ -50,6 +51,7 @@ describe DeviantArt::Client::User do
     it 'requests the correct resource' do
       result = @da.whois(@users.json)
       assert_instance_of(DeviantArt::User::Whois, result)
+      assert_instance_of(Array, result.results)
       assert_instance_of(DeviantArt::User, result.results.first)
     end
   end
