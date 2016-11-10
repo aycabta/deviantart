@@ -129,8 +129,9 @@ describe DeviantArt::Client::User do
     end
     it 'requests the correct resource' do
       result = @da.get_watchers(username: @username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::User::Watchers, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::User, result.results.first)
     end
   end
 end
