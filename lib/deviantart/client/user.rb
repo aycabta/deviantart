@@ -4,6 +4,7 @@ require 'deviantart/user/friends'
 require 'deviantart/user/friends/search'
 require 'deviantart/user/whois'
 require 'deviantart/user/statuses'
+require 'deviantart/user/watchers'
 
 module DeviantArt
   class Client
@@ -65,7 +66,7 @@ module DeviantArt
         params = {}
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params)
+        DeviantArt::User::Watchers.new(perform(:get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params))
       end
 
       # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post
