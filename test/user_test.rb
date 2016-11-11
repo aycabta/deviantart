@@ -131,7 +131,7 @@ describe DeviantArt::Client::User do
       result = @da.get_watchers(username: @username)
       assert_instance_of(DeviantArt::User::Watchers, result)
       assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first)
+      assert_instance_of(DeviantArt::User, result.results.first.user)
     end
   end
 end
