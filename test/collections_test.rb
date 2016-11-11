@@ -16,9 +16,10 @@ describe DeviantArt::Client::Collections do
         body: @collections_folders)
     end
     it 'requests the correct resource' do
-      result = @da.get_collections_folders(username: @username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      result = @da.get_collections_folders(username: @username, ext_preload: true)
+      assert_instance_of(DeviantArt::Collections::Folders, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::Deviation, result.results.first.deviations.first)
     end
   end
   describe '#get_collections' do
