@@ -36,8 +36,9 @@ describe DeviantArt::Client::Collections do
     end
     it 'requests the correct resource' do
       result = @da.get_collections(@folderid, username: @username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::Collections, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::Deviation, result.results.first)
     end
   end
 end
