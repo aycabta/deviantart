@@ -1,4 +1,5 @@
 require 'deviantart/collections'
+require 'deviantart/collections/folders'
 
 module DeviantArt
   class Client
@@ -11,7 +12,7 @@ module DeviantArt
         params['ext_preload'] = ext_preload if ext_preload
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, '/api/v1/oauth2/collections/folders', params)
+        DeviantArt::Collections::Folders.new(perform(:get, '/api/v1/oauth2/collections/folders', params))
       end
 
       # Fetch collection folder contents
