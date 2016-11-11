@@ -69,8 +69,7 @@ file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
   File.unlink(OUTPUT_PIPE)
 end
 
-task :access_token => AUTHORIZATION_CODE_FILE do
-end
+task :access_token => AUTHORIZATION_CODE_FILE
 
 Rake::TestTask.new(:real) do |t|
   t.deps << :access_token
