@@ -1,3 +1,5 @@
+require 'deviantart/collections'
+
 module DeviantArt
   class Client
     module Collections
@@ -18,7 +20,7 @@ module DeviantArt
         params['username'] = username unless username.nil?
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, "/api/v1/oauth2/collections/#{folderid}", params)
+        DeviantArt::Collections.new(perform(:get, "/api/v1/oauth2/collections/#{folderid}", params))
       end
 
       # TODO: fave, folders/create, folders/remove/{folderid}, unfav
