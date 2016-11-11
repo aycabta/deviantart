@@ -1,14 +1,23 @@
 module DeviantArt
   class Base
-    @@points_class_mapping = {}
+    @points_class_mapping = {}
 
     def initialize(attrs)
       @attrs = attrs
       define_hash_attrs(self, @attrs, [])
     end
 
-    def self.point_to_class(point, klass)
-      @@points_class_mapping[point] = klass
+    class << self
+      def points_class_mapping
+        @points_class_mapping ||= {}
+      end
+      def points_class_mapping=(v)
+        @points_class_mapping = v
+      end
+
+      def point_to_class(point, klass)
+        self.points_class_mapping[point] = klass
+      end
     end
 
     private
@@ -43,8 +52,8 @@ module DeviantArt
     end
 
     def nested_value(value, point)
-      if @@points_class_mapping.include?(point)
-        @@points_class_mapping[point].new(value)
+      if self.class.points_class_mapping.include?(point)
+        self.class.points_class_mapping[point].new(value)
       else
         case value
         when Array
