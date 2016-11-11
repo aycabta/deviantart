@@ -19,6 +19,7 @@ describe DeviantArt::Client::User do
       result = @da.get_profile(@username)
       assert_instance_of(DeviantArt::User::Profile, result)
       assert_instance_of(DeviantArt::User, result.user)
+      assert_instance_of(DeviantArt::Deviation, result.profile_pic)
     end
   end
   describe '#get_friends' do
