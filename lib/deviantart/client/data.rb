@@ -1,9 +1,12 @@
+require 'deviantart/data'
+require 'deviantart/data/countries'
+
 module DeviantArt
   class Client
     module Data
       # Get a list of countries
       def get_countries
-        perform(:get, '/api/v1/oauth2/data/countries')
+        DeviantArt::Data::Countries.new(perform(:get, '/api/v1/oauth2/data/countries'))
       end
 
       # Returns the DeviantArt Privacy Policy
