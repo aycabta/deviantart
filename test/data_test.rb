@@ -16,8 +16,9 @@ describe DeviantArt::Client::Data do
     end
     it 'requests the correct resource' do
       result = @da.get_countries
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::Data::Countries, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(String, result.results.first.name)
     end
   end
   describe '#get_privacy' do
