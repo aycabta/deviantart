@@ -16,8 +16,9 @@ describe DeviantArt::Client::Feed do
     end
     it 'requests the correct resource' do
       result = @da.get_feed
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'items')
+      assert_instance_of(DeviantArt::Feed::Home, result)
+      assert_instance_of(Array, result.items)
+      assert_instance_of(DeviantArt::User, result.items.first.by_user)
     end
   end
 end
