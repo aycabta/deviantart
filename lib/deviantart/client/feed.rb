@@ -1,3 +1,6 @@
+require 'deviantart/feed'
+require 'deviantart/feed/home'
+
 module DeviantArt
   class Client
     module Feed
@@ -6,7 +9,7 @@ module DeviantArt
         params = {}
         params['cursor'] = cursor unless cursor.nil?
         params['mature_content'] = mature_content
-        perform(:get, '/api/v1/oauth2/feed/home', params)
+        DeviantArt::Feed::Home.new(perform(:get, '/api/v1/oauth2/feed/home', params))
       end
 
       # TODO: home/{bucketid}, notifications, profile, settings, settings/update
