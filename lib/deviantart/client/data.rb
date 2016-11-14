@@ -1,5 +1,8 @@
 require 'deviantart/data'
 require 'deviantart/data/countries'
+require 'deviantart/data/privacy'
+require 'deviantart/data/submission'
+require 'deviantart/data/tos'
 
 module DeviantArt
   class Client
@@ -11,17 +14,17 @@ module DeviantArt
 
       # Returns the DeviantArt Privacy Policy
       def get_privacy
-        perform(:get, '/api/v1/oauth2/data/privacy')
+        DeviantArt::Data::Privacy.new(perform(:get, '/api/v1/oauth2/data/privacy'))
       end
 
       # Returns the DeviantArt Submission Policy
       def get_submission
-        perform(:get, '/api/v1/oauth2/data/submission')
+        DeviantArt::Data::Submission.new(perform(:get, '/api/v1/oauth2/data/submission'))
       end
 
       # Returns the DeviantArt Terms of Service
       def get_tos
-        perform(:get, '/api/v1/oauth2/data/tos')
+        DeviantArt::Data::TOS.new(perform(:get, '/api/v1/oauth2/data/tos'))
       end
     end
   end
