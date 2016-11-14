@@ -32,8 +32,8 @@ describe DeviantArt::Client::Data do
     end
     it 'requests the correct resource' do
       result = @da.get_privacy
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'text')
+      assert_instance_of(DeviantArt::Data::Privacy, result)
+      assert_instance_of(String, result.text)
     end
   end
   describe '#get_submission' do
@@ -47,8 +47,8 @@ describe DeviantArt::Client::Data do
     end
     it 'requests the correct resource' do
       result = @da.get_submission
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'text')
+      assert_instance_of(DeviantArt::Data::Submission, result)
+      assert_instance_of(String, result.text)
     end
   end
   describe '#get_tos' do
@@ -62,8 +62,8 @@ describe DeviantArt::Client::Data do
     end
     it 'requests the correct resource' do
       result = @da.get_tos
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'text')
+      assert_instance_of(DeviantArt::Data::TOS, result)
+      assert_instance_of(String, result.text)
     end
   end
 end
