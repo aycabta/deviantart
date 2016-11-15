@@ -27,6 +27,24 @@ file BROWSER_COMMAND_FILE do
   puts "Wrote \"#{browser_command}\" to #{BROWSER_COMMAND_FILE}"
 end
 
+def wait_oauth_consumer_booting
+  http = Net::HTTP.new('localhost', 4567)
+  http.open_timeout = 1
+  begin
+    http.start
+  rescue Errno::ECONNREFUSED
+    sleep 1
+    retry
+  rescue Net::OpenTimeout
+    retry
+  rescue => e
+    puts e.class.name
+  end
+  while http.head('/').code != '200'
+    sleep 1
+  end
+end
+
 file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
   if File.exists?(OUTPUT_PIPE)
     File.unlink(OUTPUT_PIPE)
@@ -41,21 +59,7 @@ file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
       system('bundle exec ruby test/oauth_consumer.rb > /dev/null 2>&1 &')
       open(OUTPUT_PIPE).read # block to get 'ping'
       is_pinged = true
-      http = Net::HTTP.new('localhost', 4567)
-      http.open_timeout = 1
-      begin
-        http.start
-      rescue Errno::ECONNREFUSED
-        sleep 1
-        retry
-      rescue Net::OpenTimeout
-        retry
-      rescue => e
-        puts e.class.name
-      end
-      while http.head('/').code != '200'
-        sleep 1
-      end
+      wait_oauth_consumer_booting
       cv.signal
     }
   }
