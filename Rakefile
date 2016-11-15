@@ -1,6 +1,7 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'readline'
+require 'net/http'
 
 BROWSER_COMMAND_FILE = 'test/browser_command'
 AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
@@ -40,6 +41,21 @@ file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
       system('bundle exec ruby test/oauth_consumer.rb > /dev/null 2>&1 &')
       open(OUTPUT_PIPE).read # block to get 'ping'
       is_pinged = true
+      http = Net::HTTP.new('localhost', 4567)
+      http.open_timeout = 1
+      begin
+        http.start
+      rescue Errno::ECONNREFUSED
+        sleep 1
+        retry
+      rescue Net::OpenTimeout
+        retry
+      rescue => e
+        puts e.class.name
+      end
+      while http.head('/').code != '200'
+        sleep 1
+      end
       cv.signal
     }
   }
