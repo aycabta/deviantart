@@ -33,7 +33,7 @@ module DeviantArt
         else
           path = '/api/v1/oauth2/gallery/'
         end
-        perform(:get, path, params)
+        DeviantArt::Gallery.new(perform(:get, path, params))
       end
 
       # TODO: create, remove/{folderid}
