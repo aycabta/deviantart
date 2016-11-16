@@ -1,3 +1,5 @@
+require 'deviantart/gallery'
+
 module DeviantArt
   class Client
     module Gallery
