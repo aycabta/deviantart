@@ -99,8 +99,7 @@ describe DeviantArt::Client::User do
       result = @da.get_statuses(@statuses.json['results'].first['author']['username'])
       assert_instance_of(DeviantArt::User::Statuses, result)
       assert_instance_of(Array, result.results)
-      # assert_boolean(result.has_more)
-      # MiniTest doesn't have assert_boolean https://github.com/seattlerb/minitest/pull/655
+      assert_includes([true, false], result.has_more)
       assert_instance_of(DeviantArt::Status, result.results.first)
     end
   end
