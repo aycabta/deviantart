@@ -33,9 +33,10 @@ describe DeviantArt::Client::Gallery do
         body: @gallery_folders)
     end
     it 'requests the correct resource' do
-      result = @da.get_gallery_folders(username: @username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      result = @da.get_gallery_folders(username: @username, calculate_size: true, ext_preload: true)
+      assert_instance_of(DeviantArt::Gallery::Folders, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::Deviation, result.results.first.deviations.first)
     end
   end
   describe '#get_gallery' do
