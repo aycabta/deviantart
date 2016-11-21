@@ -1,5 +1,6 @@
 require 'deviantart/gallery'
 require 'deviantart/gallery/all'
+require 'deviantart/gallery/folders'
 
 module DeviantArt
   class Client
@@ -21,7 +22,7 @@ module DeviantArt
         params['ext_preload'] = ext_preload if ext_preload
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, '/api/v1/oauth2/gallery/folders', params)
+        DeviantArt::Gallery::Folders.new(perform(:get, '/api/v1/oauth2/gallery/folders', params))
       end
 
       # Fetch gallery folder contents
