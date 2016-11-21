@@ -17,8 +17,9 @@ describe DeviantArt::Client::Gallery do
     end
     it 'requests the correct resource' do
       result = @da.get_gallery_all(username: @username)
-      assert_equal(result.class, Hash)
-      assert_includes(result, 'results')
+      assert_instance_of(DeviantArt::Gallery::All, result)
+      assert_instance_of(Array, result.results)
+      assert_instance_of(DeviantArt::Deviation, result.results.first)
     end
   end
   describe '#get_gallery_folders' do
