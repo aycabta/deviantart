@@ -1,4 +1,5 @@
 require 'deviantart/gallery'
+require 'deviantart/gallery/all'
 
 module DeviantArt
   class Client
@@ -9,7 +10,7 @@ module DeviantArt
         params['username'] = username unless username.nil?
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        perform(:get, '/api/v1/oauth2/gallery/all', params)
+        DeviantArt::Gallery::All.new(perform(:get, '/api/v1/oauth2/gallery/all', params))
       end
 
       # Fetch gallery folders
