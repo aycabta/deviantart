@@ -71,9 +71,16 @@ end
 
 def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", da: nil, body: nil)
   if not real?
-    stub_request(method, url)
-      .with(headers: { 'Authorization' => "Bearer #{da.access_token}" })
-      .to_return(status: 200, body: body, headers: { content_type: 'application/json; charset=utf-8' })
+    request = stub_request(method, url)
+    if !da.nil?
+      request = request.with(headers: { 'Authorization' => "Bearer #{da.access_token}" })
+    end
+    response_parameters = {}
+    if !body.nil?
+      response_parameters[:body] = body
+    end
+    response_parameters[:headers] = { content_type: 'application/json; charset=utf-8' }
+    request.to_return(response_parameters)
   end
 end
 
