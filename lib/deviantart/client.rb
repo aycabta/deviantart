@@ -53,6 +53,8 @@ module DeviantArt
       @host = @@default_host
       @on_refresh_access_token = nil
       @on_refresh_authorization_code = nil
+      @access_token_auto_refresh = true
+      @grant_type = nil
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
