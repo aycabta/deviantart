@@ -75,7 +75,7 @@ module DeviantArt
 
     # Auto refresh access token flag
     def access_token_auto_refresh?
-      @access_token_auto_refresh
+      @access_token_auto_refresh && !@grant_type.nil?
     end
 
     # Access API with params by method
