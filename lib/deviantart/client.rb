@@ -130,7 +130,12 @@ module DeviantArt
         request["Authorization"] = "Bearer #{@access_token}"
       end
       response = @http.request(request)
-      response.json = JSON.parse(response.body)
+      if response.code == '403'
+        # You must send User-Agent and use HTTP compression in request
+        response.json = JSON.parse('{}')
+      else
+        response.json = JSON.parse(response.body)
+      end
       response
     end
 
