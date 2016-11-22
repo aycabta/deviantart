@@ -76,7 +76,7 @@ module DeviantArt
     end
 
     # Access API with params by method
-    def perform(method, path, params = {})
+    def perform(klass, method, path, params = {})
       if @access_token.nil? && access_token_auto_refresh?
         refresh_access_token
       end
@@ -85,7 +85,7 @@ module DeviantArt
         refresh_access_token
         response = request(method, path, params)
       end
-      response.json
+      klass.new(response.json)
     end
 
     # Call given block when authorization code is refreshed
