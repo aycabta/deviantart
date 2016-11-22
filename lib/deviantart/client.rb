@@ -5,6 +5,7 @@ require 'deviantart/client/user'
 require 'deviantart/client/data'
 require 'deviantart/client/feed'
 # TODO: comments, cured, messages, notes, stash, util
+require 'deviantart/error'
 require 'net/http'
 require 'uri'
 require 'json'
@@ -85,7 +86,26 @@ module DeviantArt
         refresh_access_token
         response = request(method, path, params)
       end
-      klass.new(response.json)
+      case response.code
+      when '200'
+        klass.new(response.json)
+      when '400'
+        # Request failed due to client error,
+        # e.g. validation failed or User not found
+        DeviantArt::Error.new(response.json, response.code.to_i)
+      when '429'
+        # Rate limit reached or service overloaded
+        DeviantArt::Error.new(response.json, response.code.to_i)
+      when '500'
+        # Our servers encountered an internal error, try again
+        DeviantArt::Error.new(response.json, response.code.to_i)
+      when '503'
+        # Our servers are currently unavailable, try again later.
+        # This is normally due to planned or emergency maintenance.
+        DeviantArt::Error.new(response.json, response.code.to_i)
+      else
+        DeviantArt::Error.new(response.json, response.code.to_i)
+      end
     end
 
     # Call given block when authorization code is refreshed
