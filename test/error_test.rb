@@ -18,6 +18,8 @@ describe DeviantArt::Error do
       result = @da.get_deviation(@dummyid)
       assert_instance_of(DeviantArt::Error, result)
       assert_equal(404, result.status_code)
+      assert_equal("error", result.status)
+      assert_equal("invalid_request", result.error)
     end
   end
 end
