@@ -9,22 +9,22 @@ module DeviantArt
     module Data
       # Get a list of countries
       def get_countries
-        DeviantArt::Data::Countries.new(perform(:get, '/api/v1/oauth2/data/countries'))
+        perform(DeviantArt::Data::Countries, :get, '/api/v1/oauth2/data/countries')
       end
 
       # Returns the DeviantArt Privacy Policy
       def get_privacy
-        DeviantArt::Data::Privacy.new(perform(:get, '/api/v1/oauth2/data/privacy'))
+        perform(DeviantArt::Data::Privacy, :get, '/api/v1/oauth2/data/privacy')
       end
 
       # Returns the DeviantArt Submission Policy
       def get_submission
-        DeviantArt::Data::Submission.new(perform(:get, '/api/v1/oauth2/data/submission'))
+        perform(DeviantArt::Data::Submission, :get, '/api/v1/oauth2/data/submission')
       end
 
       # Returns the DeviantArt Terms of Service
       def get_tos
-        DeviantArt::Data::TOS.new(perform(:get, '/api/v1/oauth2/data/tos'))
+        perform(DeviantArt::Data::TOS, :get, '/api/v1/oauth2/data/tos')
       end
     end
   end

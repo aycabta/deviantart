@@ -12,7 +12,7 @@ module DeviantArt
         params['ext_preload'] = ext_preload if ext_preload
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::Collections::Folders.new(perform(:get, '/api/v1/oauth2/collections/folders', params))
+        perform(DeviantArt::Collections::Folders, :get, '/api/v1/oauth2/collections/folders', params)
       end
 
       # Fetch collection folder contents
@@ -21,7 +21,7 @@ module DeviantArt
         params['username'] = username unless username.nil?
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::Collections.new(perform(:get, "/api/v1/oauth2/collections/#{folderid}", params))
+        perform(DeviantArt::Collections, :get, "/api/v1/oauth2/collections/#{folderid}", params)
       end
 
       # TODO: fave, folders/create, folders/remove/{folderid}, unfav

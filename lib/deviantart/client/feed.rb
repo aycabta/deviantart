@@ -9,7 +9,7 @@ module DeviantArt
         params = {}
         params['cursor'] = cursor unless cursor.nil?
         params['mature_content'] = mature_content
-        DeviantArt::Feed::Home.new(perform(:get, '/api/v1/oauth2/feed/home', params))
+        perform(DeviantArt::Feed::Home, :get, '/api/v1/oauth2/feed/home', params)
       end
 
       # TODO: home/{bucketid}, notifications, profile, settings, settings/update

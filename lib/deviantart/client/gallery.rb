@@ -11,7 +11,7 @@ module DeviantArt
         params['username'] = username unless username.nil?
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::Gallery::All.new(perform(:get, '/api/v1/oauth2/gallery/all', params))
+        perform(DeviantArt::Gallery::All, :get, '/api/v1/oauth2/gallery/all', params)
       end
 
       # Fetch gallery folders
@@ -22,7 +22,7 @@ module DeviantArt
         params['ext_preload'] = ext_preload if ext_preload
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::Gallery::Folders.new(perform(:get, '/api/v1/oauth2/gallery/folders', params))
+        perform(DeviantArt::Gallery::Folders, :get, '/api/v1/oauth2/gallery/folders', params)
       end
 
       # Fetch gallery folder contents
@@ -37,7 +37,7 @@ module DeviantArt
         else
           path = '/api/v1/oauth2/gallery/'
         end
-        DeviantArt::Gallery.new(perform(:get, path, params))
+        perform(DeviantArt::Gallery, :get, path, params)
       end
 
       # TODO: create, remove/{folderid}

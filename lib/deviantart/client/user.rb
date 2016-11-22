@@ -14,7 +14,7 @@ module DeviantArt
         params = {}
         params['ext_collections'] = ext_collections if ext_collections
         params['ext_galleries'] = ext_galleries if ext_galleries
-        DeviantArt::User::Profile.new(perform(:get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params))
+        perform(DeviantArt::User::Profile, :get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params)
       end
 
       # Get the users list of friends
@@ -22,18 +22,18 @@ module DeviantArt
         params = {}
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::User::Friends.new(perform(:get, "/api/v1/oauth2/user/friends/#{username.nil? ? '' : username}", params))
+        perform(DeviantArt::User::Friends, :get, "/api/v1/oauth2/user/friends/#{username.nil? ? '' : username}", params)
       end
 
       # Fetch user info for given usernames
       def whois(users)
         params = { usernames: users.is_a?(Enumerable) ? users : [users] }
-        DeviantArt::User::Whois.new(perform(:post, '/api/v1/oauth2/user/whois', params))
+        perform(DeviantArt::User::Whois, :post, '/api/v1/oauth2/user/whois', params)
       end
 
       # Fetch user info of authenticated user
       def whoami
-        DeviantArt::User.new(perform(:get, '/api/v1/oauth2/user/whoami?'))
+        perform(DeviantArt::User, :get, '/api/v1/oauth2/user/whoami?')
       end
 
       # Search friends by username
@@ -41,7 +41,7 @@ module DeviantArt
         params = {}
         params['query'] = query
         params['username'] = username unless username.nil?
-        DeviantArt::User::Friends::Search.new(perform(:get, '/api/v1/oauth2/user/friends/search', params))
+        perform(DeviantArt::User::Friends::Search, :get, '/api/v1/oauth2/user/friends/search', params)
       end
 
       # User Statuses
@@ -51,14 +51,14 @@ module DeviantArt
         params['mature_content'] = mature_content
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::User::Statuses.new(perform(:get, '/api/v1/oauth2/user/statuses/', params))
+        perform(DeviantArt::User::Statuses, :get, '/api/v1/oauth2/user/statuses/', params)
       end
 
       # Fetch the status
       def get_status(statusid, mature_content: true)
         params = {}
         params['mature_content'] = mature_content
-        DeviantArt::Status.new(perform(:get, "/api/v1/oauth2/user/statuses/#{statusid}", params))
+        perform(DeviantArt::Status, :get, "/api/v1/oauth2/user/statuses/#{statusid}", params)
       end
 
       # Get the user's list of watchers
@@ -66,7 +66,7 @@ module DeviantArt
         params = {}
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
-        DeviantArt::User::Watchers.new(perform(:get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params))
+        perform(DeviantArt::User::Watchers, :get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params)
       end
 
       # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post
