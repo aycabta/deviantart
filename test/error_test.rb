@@ -7,7 +7,7 @@ describe DeviantArt::Error do
   end
   describe '#get_deviation' do
     before do
-      @error = fixture('deviation.json')
+      @error = fixture('error_404.json')
       @dummyid = 'dummy-id'
       stub_da_request(
         method: :get,
