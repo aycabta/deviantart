@@ -20,6 +20,7 @@ describe DeviantArt::Error do
       assert_equal(404, result.status_code)
       assert_equal("error", result.status)
       assert_equal("invalid_request", result.error)
+      assert_equal("Api endpoint not found.", result.error_description)
     end
   end
 end
