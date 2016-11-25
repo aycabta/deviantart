@@ -45,7 +45,8 @@ describe DeviantArt::Error do
       @da, @credentials = create_da
       @error = fixture('error_version_error.json')
       @deviation = fixture('deviation.json')
-      dummy_version = { 'dA-minor-version' => 'test' }
+      @minor_version = 'test'
+      dummy_version = { 'dA-minor-version' => @minor_version }
       @da.headers = @da.headers.merge(dummy_version)
       stub_da_request(
         method: :get,
@@ -59,7 +60,7 @@ describe DeviantArt::Error do
       assert_equal(404, result.status_code)
       assert_equal("error", result.status)
       assert_equal("version_error", result.error)
-      assert_equal("Api Version 1.test not supported", result.error_description)
+      assert_equal("Api Version 1.#{@minor_version} not supported", result.error_description)
     end
   end
 end
