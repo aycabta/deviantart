@@ -1,0 +1,5 @@
+{
+  "error": "version_error",
+  "error_description": "Api Version 1.test not supported",
+  "status": "error"
+}
