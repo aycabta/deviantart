@@ -2,11 +2,9 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Error do
-  before(:all) do
-    @da = DeviantArt.new
-  end
   describe '#get_deviation' do
     before do
+      @da = DeviantArt.new
       @error = fixture('error_404.json')
       @dummyid = 'dummy-id'
       stub_da_request(
@@ -25,6 +23,7 @@ describe DeviantArt::Error do
   end
   describe '#get_deviation' do
     before do
+      @da = DeviantArt.new
       @error = fixture('error_access_token.json')
       @deviation = fixture('deviation.json')
       stub_da_request(
