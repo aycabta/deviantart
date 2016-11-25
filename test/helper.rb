@@ -69,11 +69,12 @@ def create_da
   [da, credentials]
 end
 
-def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", da: nil, body: nil, status_code: 200)
+def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", da: nil, body: nil, status_code: 200, headers: {})
   if not real?
     request = stub_request(method, url)
+    built_headers = {}
     if !da.nil?
-      request = request.with(headers: { 'Authorization' => "Bearer #{da.access_token}" })
+      built_headers = built_headers.merge({ 'Authorization' => "Bearer #{da.access_token}" })
     end
     response_parameters = {}
     if !body.nil?
@@ -81,6 +82,7 @@ def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v
     end
     response_parameters[:status] = status_code
     response_parameters[:headers] = { content_type: 'application/json; charset=utf-8' }
+    request = request.with(headers: built_headers.merge(headers))
     request.to_return(response_parameters)
   end
 end
