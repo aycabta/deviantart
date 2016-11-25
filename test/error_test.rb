@@ -50,7 +50,8 @@ describe DeviantArt::Error do
       stub_da_request(
         method: :get,
         url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
-        body: @error, status_code: 401, headers: dummy_version)
+        da: @da,
+        body: @error, status_code: 404, headers: dummy_version)
     end
     it 'requests the correct resource' do
       result = @da.get_deviation(@deviation.json['deviationid'])
