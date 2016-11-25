@@ -40,4 +40,25 @@ describe DeviantArt::Error do
       assert_equal("Must provide an access_token to access this resource.", result.error_description)
     end
   end
+  describe '#get_deviation version error' do
+    before do
+      @da, @credentials = create_da
+      @error = fixture('error_version_error.json')
+      @deviation = fixture('deviation.json')
+      dummy_version = { 'dA-minor-version' => 'test' }
+      @da.headers = @da.headers.merge(dummy_version)
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
+        body: @error, status_code: 401, headers: dummy_version)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation(@deviation.json['deviationid'])
+      assert_instance_of(DeviantArt::Error, result)
+      assert_equal(404, result.status_code)
+      assert_equal("error", result.status)
+      assert_equal("version_error", result.error)
+      assert_equal("Api Version 1.test not supported", result.error_description)
+    end
+  end
 end
