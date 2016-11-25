@@ -25,7 +25,7 @@ describe DeviantArt::Error do
   end
   describe '#get_deviation' do
     before do
-      @error = fixture('error_401.json')
+      @error = fixture('error_access_token.json')
       @deviation = fixture('deviation.json')
       stub_da_request(
         method: :get,
