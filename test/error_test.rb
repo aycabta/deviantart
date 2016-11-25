@@ -2,7 +2,7 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Error do
-  describe '#get_deviation' do
+  describe '#get_deviation 404' do
     before do
       @da = DeviantArt.new
       @error = fixture('error_404.json')
@@ -21,7 +21,7 @@ describe DeviantArt::Error do
       assert_equal("Api endpoint not found.", result.error_description)
     end
   end
-  describe '#get_deviation' do
+  describe '#get_deviation 401' do
     before do
       @da = DeviantArt.new
       @error = fixture('error_access_token.json')
