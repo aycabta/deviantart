@@ -1,5 +1,6 @@
 module DeviantArt
   class Base
+    attr_reader :attrs
     @points_class_mapping = {}
 
     def initialize(attrs)
