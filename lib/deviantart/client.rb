@@ -22,7 +22,7 @@ module DeviantArt
     include DeviantArt::Client::User
     include DeviantArt::Client::Data
     include DeviantArt::Client::Feed
-    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token, :host
+    attr_accessor :access_token, :client_id, :client_secret, :code, :redirect_uri, :grant_type, :access_token_auto_refresh, :refresh_token, :host, :headers
     attr_writer :user_agent
     @@default_host = 'www.deviantart.com'
 
@@ -43,6 +43,7 @@ module DeviantArt
     # [#redirect_uri] URL what is exactly match the value in authorization step.
     # [#code] Authorization step returns this.
     # [#refresh_token] Refresh token for +:authorization_code+.
+    # [#headers] Add custom headers for request.
     #
     # For refresh token with +:client_credentials+
     #
@@ -55,6 +56,7 @@ module DeviantArt
       @on_refresh_authorization_code = nil
       @access_token_auto_refresh = true
       @grant_type = nil
+      @headers = {}
       options.each do |key, value|
         instance_variable_set("@#{key}", value)
       end
@@ -150,6 +152,9 @@ module DeviantArt
       request['User-Agent'] = user_agent
       if not @access_token.nil?
         request["Authorization"] = "Bearer #{@access_token}"
+      end
+      @headers.each_pair do |key, value|
+        request[key] = value
       end
       response = @http.request(request)
       if response.code == '403'
