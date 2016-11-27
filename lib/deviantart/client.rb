@@ -97,6 +97,9 @@ module DeviantArt
         # Request failed due to client error,
         # e.g. validation failed or User not found
         DeviantArt::Error.new(response.json, response.code.to_i)
+      when '401'
+        # Invalid token
+        DeviantArt::Error.new(response.json, response.code.to_i)
       when '429'
         # Rate limit reached or service overloaded
         DeviantArt::Error.new(response.json, response.code.to_i)
