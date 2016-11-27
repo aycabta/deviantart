@@ -40,10 +40,10 @@ describe DeviantArt::Error do
       assert_equal("Must provide an access_token to access this resource.", result.error_description)
     end
   end
-  describe '#get_deviation version error' do
+  describe '#get_deviation 404 version error' do
     before do
       @da, @credentials = create_da
-      @error = fixture('error_version_error.json')
+      @error = fixture('error_404_version_error.json')
       @deviation = fixture('deviation.json')
       @minor_version = 'test'
       dummy_version = { 'dA-minor-version' => @minor_version }

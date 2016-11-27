@@ -1,5 +1,0 @@
-{
-  "error": "invalid_request",
-  "error_description": "Must provide an access_token to access this resource.",
-  "status": "error"
-}
