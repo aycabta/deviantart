@@ -2,10 +2,10 @@ require 'helper'
 require 'deviantart'
 
 describe DeviantArt::Error do
-  describe '#get_deviation 404' do
+  describe '#get_deviation 404 API endpoint not found' do
     before do
       @da = DeviantArt.new
-      @error = fixture('error_404.json')
+      @error = fixture('error_404_api_endpoint_not_found.json')
       @dummyid = 'dummy-id'
       stub_da_request(
         method: :get,
