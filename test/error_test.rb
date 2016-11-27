@@ -63,4 +63,35 @@ describe DeviantArt::Error do
       assert_equal("Api Version 1.#{@minor_version} not supported", result.error_description)
     end
   end
+  describe '#get_deviation 401 invalid token' do
+    before do
+      client_id = 9999
+      client_secret = 'GreatPerfect'
+      @da = DeviantArt.new do |config|
+        config.client_id = client_id
+        config.client_secret = client_secret
+        config.grant_type = :client_credentials
+        config.access_token_auto_refresh = true
+      end
+      @error = fixture('error_401_invalid_token.json')
+      @deviation = fixture('deviation.json')
+      @minor_version = 'test'
+      dummy_token = { 'Authorization' => "Bearer dummybearer" }
+      @da.headers = @da.headers.merge(dummy_token)
+      stub_request(:post, "https://#{DeviantArt::Client.default_host}/oauth2/token")
+        .to_return(status: 401, body: @error)
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
+        da: @da,
+        body: @error, status_code: 404, headers: dummy_token)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation(@deviation.json['deviationid'])
+      assert_instance_of(DeviantArt::Error, result)
+      assert_equal("error", result.status)
+      assert_equal("invalid_token", result.error)
+      assert_equal("Invalid token.", result.error_description)
+    end
+  end
 end
