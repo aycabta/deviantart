@@ -21,10 +21,10 @@ describe DeviantArt::Error do
       assert_equal("Api endpoint not found.", result.error_description)
     end
   end
-  describe '#get_deviation 401' do
+  describe '#get_deviation 401 invalid request with no access token' do
     before do
       @da = DeviantArt.new
-      @error = fixture('error_access_token.json')
+      @error = fixture('error_401_invalid_request_with_no_access_token.json')
       @deviation = fixture('deviation.json')
       stub_da_request(
         method: :get,
