@@ -20,6 +20,10 @@ deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
 deviation.title # => deviation's title
 ```
 
+## Documantation
+
+[On the RubyDoc.info](http://www.rubydoc.info/gems/deviantart)
+
 ## How to Test
 
 At the first, install gems:
