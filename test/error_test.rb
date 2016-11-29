@@ -4,7 +4,7 @@ require 'deviantart'
 describe DeviantArt::Error do
   describe '#get_deviation 404 API endpoint not found' do
     before do
-      @da = DeviantArt.new
+      @da = DeviantArt::Client.new
       @error = fixture('error_404_api_endpoint_not_found.json')
       @dummyid = 'dummy-id'
       stub_da_request(
@@ -23,7 +23,7 @@ describe DeviantArt::Error do
   end
   describe '#get_deviation 401 invalid request with no access token' do
     before do
-      @da = DeviantArt.new
+      @da = DeviantArt::Client.new
       @error = fixture('error_401_invalid_request_with_no_access_token.json')
       @deviation = fixture('deviation.json')
       stub_da_request(
@@ -67,7 +67,7 @@ describe DeviantArt::Error do
     before do
       client_id = 9999
       client_secret = 'GreatPerfect'
-      @da = DeviantArt.new do |config|
+      @da = DeviantArt::Client.new do |config|
         config.client_id = client_id
         config.client_secret = client_secret
         config.grant_type = :client_credentials
