@@ -45,7 +45,7 @@ def create_da
                  body: credentials.json['authorization_code'].to_s,
                  headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
   end
-  da = DeviantArt.new do |config|
+  da = DeviantArt::Client.new do |config|
     config.client_id = client_id
     config.client_secret = client_secret
     config.grant_type = :authorization_code
