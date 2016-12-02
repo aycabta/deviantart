@@ -2,6 +2,7 @@ require 'deviantart/deviation'
 require 'deviantart/deviation/content'
 require 'deviantart/deviation/whofaved'
 require 'deviantart/deviation/download'
+require 'deviantart/deviation/embeddedcontent'
 
 module DeviantArt
   class Client
@@ -14,6 +15,16 @@ module DeviantArt
       # Fetch full data that is not included in the main devaition details
       def get_deviation_content(deviationid)
         perform(DeviantArt::Deviation::Content, :get, '/api/v1/oauth2/deviation/content', { deviationid: deviationid })
+      end
+
+      #  Fetch content embedded in a deviation.
+      #  Journal and literature deviations support embedding of deviations inside them.
+      def get_deviation_embeddedcontent(deviationid, offset_deviationid: nil, offset: 0, limit: 10)
+        params = { deviationid: deviationid }
+        params['offset_deviationid'] = offset_deviationid if offset_deviationid
+        params['offset'] = offset if offset != 0
+        params['limit'] = limit if limit != 10
+        perform(DeviantArt::Deviation::EmbeddedContent, :get, '/api/v1/oauth2/deviation/embeddedcontent', params)
       end
 
       # Fetch a list of users who faved the deviation
