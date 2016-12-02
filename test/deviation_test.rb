@@ -43,6 +43,24 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(Array, result.css_fonts)
     end
   end
+  describe '#get_deviation_embeddedcontent' do
+    before do
+      @deviationid = fixture('deviation_embeddedcontent-input.json').json['deviationid']
+      @deviation_embeddedcontent = fixture('deviation_embeddedcontent.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/embeddedcontent\?deviationid=.*`,
+        da: @da,
+        body: @deviation_embeddedcontent)
+    end
+    it 'requests the correct resource' do
+      result = @da.get_deviation_embeddedcontent(@deviationid)
+      assert_instance_of(DeviantArt::Deviation::EmbeddedContent, result)
+      assert_includes([true, false], result.has_more)
+      assert_includes([true, false], result.has_less)
+      assert_instance_of(Array, result.results)
+    end
+  end
   describe '#get_deviation_whofaved' do
     before do
       @deviationid = fixture('deviation_whofaved-input.json').json['deviationid']
