@@ -17,8 +17,8 @@ module DeviantArt
         perform(DeviantArt::Deviation::Content, :get, '/api/v1/oauth2/deviation/content', { deviationid: deviationid })
       end
 
-      #  Fetch content embedded in a deviation.
-      #  Journal and literature deviations support embedding of deviations inside them.
+      # Fetch content embedded in a deviation.
+      # Journal and literature deviations support embedding of deviations inside them.
       def get_deviation_embeddedcontent(deviationid, offset_deviationid: nil, offset: 0, limit: 10)
         params = { deviationid: deviationid }
         params['offset_deviationid'] = offset_deviationid if offset_deviationid
