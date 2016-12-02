@@ -41,7 +41,7 @@ module DeviantArt
         perform(DeviantArt::Deviation::Download, :get, "/api/v1/oauth2/deviation/download/#{deviationid}")
       end
 
-      # TODO: embeddedcontent, metadata
+      # TODO: metadata
     end
   end
 end
