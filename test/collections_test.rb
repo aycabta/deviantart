@@ -16,10 +16,10 @@ describe DeviantArt::Client::Collections do
         body: @collections_folders)
     end
     it 'requests the correct resource' do
-      result = @da.get_collections_folders(username: @username, ext_preload: true)
-      assert_instance_of(DeviantArt::Collections::Folders, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::Deviation, result.results.first.deviations.first)
+      resp = @da.get_collections_folders(username: @username, ext_preload: true)
+      assert_instance_of(DeviantArt::Collections::Folders, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::Deviation, resp.results.first.deviations.first)
     end
   end
   describe '#get_collections' do
@@ -36,10 +36,10 @@ describe DeviantArt::Client::Collections do
         body: @collections)
     end
     it 'requests the correct resource' do
-      result = @da.get_collections(@folderid, username: @username)
-      assert_instance_of(DeviantArt::Collections, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::Deviation, result.results.first)
+      resp = @da.get_collections(@folderid, username: @username)
+      assert_instance_of(DeviantArt::Collections, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::Deviation, resp.results.first)
     end
   end
 end
