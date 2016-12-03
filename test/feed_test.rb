@@ -15,10 +15,10 @@ describe DeviantArt::Client::Feed do
         body: @feed_home)
     end
     it 'requests the correct resource' do
-      result = @da.get_feed
-      assert_instance_of(DeviantArt::Feed::Home, result)
-      assert_instance_of(Array, result.items)
-      assert_instance_of(DeviantArt::User, result.items.first.by_user)
+      resp = @da.get_feed
+      assert_instance_of(DeviantArt::Feed::Home, resp)
+      assert_instance_of(Array, resp.items)
+      assert_instance_of(DeviantArt::User, resp.items.first.by_user)
     end
   end
 end
