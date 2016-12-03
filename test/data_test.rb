@@ -15,10 +15,10 @@ describe DeviantArt::Client::Data do
         body: @countries)
     end
     it 'requests the correct resource' do
-      result = @da.get_countries
-      assert_instance_of(DeviantArt::Data::Countries, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(String, result.results.first.name)
+      resp = @da.get_countries
+      assert_instance_of(DeviantArt::Data::Countries, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(String, resp.results.first.name)
     end
   end
   describe '#get_privacy' do
@@ -31,9 +31,9 @@ describe DeviantArt::Client::Data do
         body: @privacy)
     end
     it 'requests the correct resource' do
-      result = @da.get_privacy
-      assert_instance_of(DeviantArt::Data::Privacy, result)
-      assert_instance_of(String, result.text)
+      resp = @da.get_privacy
+      assert_instance_of(DeviantArt::Data::Privacy, resp)
+      assert_instance_of(String, resp.text)
     end
   end
   describe '#get_submission' do
@@ -46,9 +46,9 @@ describe DeviantArt::Client::Data do
         body: @submission)
     end
     it 'requests the correct resource' do
-      result = @da.get_submission
-      assert_instance_of(DeviantArt::Data::Submission, result)
-      assert_instance_of(String, result.text)
+      resp = @da.get_submission
+      assert_instance_of(DeviantArt::Data::Submission, resp)
+      assert_instance_of(String, resp.text)
     end
   end
   describe '#get_tos' do
@@ -61,9 +61,9 @@ describe DeviantArt::Client::Data do
         body: @tos)
     end
     it 'requests the correct resource' do
-      result = @da.get_tos
-      assert_instance_of(DeviantArt::Data::TOS, result)
-      assert_instance_of(String, result.text)
+      resp = @da.get_tos
+      assert_instance_of(DeviantArt::Data::TOS, resp)
+      assert_instance_of(String, resp.text)
     end
   end
 end
