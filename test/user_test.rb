@@ -16,10 +16,10 @@ describe DeviantArt::Client::User do
         body: @profile)
     end
     it 'requests the correct resource' do
-      result = @da.get_profile(@username)
-      assert_instance_of(DeviantArt::User::Profile, result)
-      assert_instance_of(DeviantArt::User, result.user)
-      assert_instance_of(DeviantArt::Deviation, result.profile_pic)
+      resp = @da.get_profile(@username)
+      assert_instance_of(DeviantArt::User::Profile, resp)
+      assert_instance_of(DeviantArt::User, resp.user)
+      assert_instance_of(DeviantArt::Deviation, resp.profile_pic)
     end
   end
   describe '#get_friends' do
@@ -33,10 +33,10 @@ describe DeviantArt::Client::User do
         body: @friends)
     end
     it 'requests the correct resource' do
-      result = @da.get_friends(@username)
-      assert_instance_of(DeviantArt::User::Friends, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first.user)
+      resp = @da.get_friends(@username)
+      assert_instance_of(DeviantArt::User::Friends, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::User, resp.results.first.user)
     end
   end
   describe '#whois' do
@@ -50,10 +50,10 @@ describe DeviantArt::Client::User do
         body: @whois)
     end
     it 'requests the correct resource' do
-      result = @da.whois(@users.json)
-      assert_instance_of(DeviantArt::User::Whois, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first)
+      resp = @da.whois(@users.json)
+      assert_instance_of(DeviantArt::User::Whois, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::User, resp.results.first)
     end
   end
   describe '#whoami' do
@@ -66,8 +66,8 @@ describe DeviantArt::Client::User do
         body: @whoami)
     end
     it 'requests the correct resource' do
-      result = @da.whoami
-      assert_instance_of(DeviantArt::User, result)
+      resp = @da.whoami
+      assert_instance_of(DeviantArt::User, resp)
     end
   end
   describe '#search_friends' do
@@ -80,10 +80,10 @@ describe DeviantArt::Client::User do
         body: @friends_search)
     end
     it 'requests the correct resource' do
-      result = @da.search_friends('n', username: 'Ray-kbys')
-      assert_instance_of(DeviantArt::User::Friends::Search, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first)
+      resp = @da.search_friends('n', username: 'Ray-kbys')
+      assert_instance_of(DeviantArt::User::Friends::Search, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::User, resp.results.first)
     end
   end
   describe '#get_statuses' do
@@ -96,11 +96,11 @@ describe DeviantArt::Client::User do
         body: @statuses)
     end
     it 'requests the correct resource' do
-      result = @da.get_statuses(@statuses.json['results'].first['author']['username'])
-      assert_instance_of(DeviantArt::User::Statuses, result)
-      assert_instance_of(Array, result.results)
-      assert_includes([true, false], result.has_more)
-      assert_instance_of(DeviantArt::Status, result.results.first)
+      resp = @da.get_statuses(@statuses.json['results'].first['author']['username'])
+      assert_instance_of(DeviantArt::User::Statuses, resp)
+      assert_instance_of(Array, resp.results)
+      assert_includes([true, false], resp.has_more)
+      assert_instance_of(DeviantArt::Status, resp.results.first)
     end
   end
   describe '#get_status' do
@@ -113,8 +113,8 @@ describe DeviantArt::Client::User do
         body: @status)
     end
     it 'requests the correct resource' do
-      result = @da.get_status(@status.json['statusid'])
-      assert_instance_of(DeviantArt::Status, result)
+      resp = @da.get_status(@status.json['statusid'])
+      assert_instance_of(DeviantArt::Status, resp)
     end
   end
   describe '#get_watchers' do
@@ -128,10 +128,10 @@ describe DeviantArt::Client::User do
         body: @watchers)
     end
     it 'requests the correct resource' do
-      result = @da.get_watchers(username: @username)
-      assert_instance_of(DeviantArt::User::Watchers, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first.user)
+      resp = @da.get_watchers(username: @username)
+      assert_instance_of(DeviantArt::User::Watchers, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::User, resp.results.first.user)
     end
   end
 end
