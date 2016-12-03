@@ -65,11 +65,9 @@ describe DeviantArt::Error do
   end
   describe '#get_deviation 401 invalid token' do
     before do
-      client_id = 9999
-      client_secret = 'GreatPerfect'
       @da = DeviantArt::Client.new do |config|
-        config.client_id = client_id
-        config.client_secret = client_secret
+        config.client_id = 9999
+        config.client_secret = 'GreatPerfect'
         config.grant_type = :client_credentials
         config.access_token_auto_refresh = true
       end
