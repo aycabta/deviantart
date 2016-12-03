@@ -15,14 +15,14 @@ describe DeviantArt::Client::Deviation do
         body: @deviation)
     end
     it 'requests the correct resource' do
-      result = @da.get_deviation(@deviation.json['deviationid'])
-      assert_instance_of(DeviantArt::Deviation, result)
-      assert_instance_of(Array, result.thumbs)
-      assert_instance_of(Fixnum, result.thumbs.first.width)
-      assert_instance_of(DeviantArt::User, result.author)
-      result.thumbs.first.height = 1234
-      assert_equal(result.thumbs.first.height, 1234)
-      assert_equal(result.deviationid, @deviation.json['deviationid'])
+      resp = @da.get_deviation(@deviation.json['deviationid'])
+      assert_instance_of(DeviantArt::Deviation, resp)
+      assert_instance_of(Array, resp.thumbs)
+      assert_instance_of(Fixnum, resp.thumbs.first.width)
+      assert_instance_of(DeviantArt::User, resp.author)
+      resp.thumbs.first.height = 1234
+      assert_equal(resp.thumbs.first.height, 1234)
+      assert_equal(resp.deviationid, @deviation.json['deviationid'])
     end
   end
   describe '#get_deviation_content' do
@@ -36,11 +36,11 @@ describe DeviantArt::Client::Deviation do
         body: @deviation_content)
     end
     it 'requests the correct resource' do
-      result = @da.get_deviation_content(@deviationid)
-      assert_instance_of(DeviantArt::Deviation::Content, result)
-      assert_instance_of(String, result.html)
-      assert_instance_of(String, result.css)
-      assert_instance_of(Array, result.css_fonts)
+      resp = @da.get_deviation_content(@deviationid)
+      assert_instance_of(DeviantArt::Deviation::Content, resp)
+      assert_instance_of(String, resp.html)
+      assert_instance_of(String, resp.css)
+      assert_instance_of(Array, resp.css_fonts)
     end
   end
   describe '#get_deviation_embeddedcontent' do
@@ -54,11 +54,11 @@ describe DeviantArt::Client::Deviation do
         body: @deviation_embeddedcontent)
     end
     it 'requests the correct resource' do
-      result = @da.get_deviation_embeddedcontent(@deviationid)
-      assert_instance_of(DeviantArt::Deviation::EmbeddedContent, result)
-      assert_includes([true, false], result.has_more)
-      assert_includes([true, false], result.has_less)
-      assert_instance_of(Array, result.results)
+      resp = @da.get_deviation_embeddedcontent(@deviationid)
+      assert_instance_of(DeviantArt::Deviation::EmbeddedContent, resp)
+      assert_includes([true, false], resp.has_more)
+      assert_includes([true, false], resp.has_less)
+      assert_instance_of(Array, resp.results)
     end
   end
   describe '#get_deviation_whofaved' do
@@ -72,10 +72,10 @@ describe DeviantArt::Client::Deviation do
         body: @deviation_whofaved)
     end
     it 'requests the correct resource' do
-      result = @da.get_deviation_whofaved(@deviationid)
-      assert_instance_of(DeviantArt::Deviation::WhoFaved, result)
-      assert_instance_of(Array, result.results)
-      assert_instance_of(DeviantArt::User, result.results.first.user)
+      resp = @da.get_deviation_whofaved(@deviationid)
+      assert_instance_of(DeviantArt::Deviation::WhoFaved, resp)
+      assert_instance_of(Array, resp.results)
+      assert_instance_of(DeviantArt::User, resp.results.first.user)
     end
   end
   describe '#download_deviation' do
@@ -89,12 +89,12 @@ describe DeviantArt::Client::Deviation do
         body: @deviation_download)
     end
     it 'requests the correct resource' do
-      result = @da.download_deviation(@deviationid)
-      assert_instance_of(DeviantArt::Deviation::Download, result)
-      assert_instance_of(String, result.src)
-      assert_instance_of(Fixnum, result.filesize)
-      assert_instance_of(Fixnum, result.width)
-      assert_instance_of(Fixnum, result.height)
+      resp = @da.download_deviation(@deviationid)
+      assert_instance_of(DeviantArt::Deviation::Download, resp)
+      assert_instance_of(String, resp.src)
+      assert_instance_of(Fixnum, resp.filesize)
+      assert_instance_of(Fixnum, resp.width)
+      assert_instance_of(Fixnum, resp.height)
     end
   end
 end
