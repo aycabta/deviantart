@@ -43,6 +43,23 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(Array, resp.css_fonts)
     end
   end
+  describe '#get_deviation_metadata' do
+    before do
+      @deviation_metadata = fixture('deviation_metadata.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/metadata`,
+        da: @da,
+        body: @deviation_metadata)
+    end
+    it 'requests the correct resource' do
+      resp = @da.get_deviation_metadata(@deviation_metadata.json['metadata'].first['deviationid'])
+      assert_instance_of(DeviantArt::Deviation::Metadata, resp)
+      assert_instance_of(Array, resp.metadata)
+      assert_instance_of(DeviantArt::User, resp.metadata.first.author)
+      assert_instance_of(String, resp.metadata.first.title)
+    end
+  end
   describe '#get_deviation_embeddedcontent' do
     before do
       @deviationid = fixture('deviation_embeddedcontent-input.json').json['deviationid']
