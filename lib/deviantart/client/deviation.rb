@@ -36,6 +36,7 @@ module DeviantArt
         params['ext_camera'] = ext_camera
         params['ext_stats'] = ext_stats
         params['ext_collection'] = ext_collection
+        # TODO: why does :get fail?
         perform(DeviantArt::Deviation::Metadata, :post, '/api/v1/oauth2/deviation/metadata', params)
       end
 
