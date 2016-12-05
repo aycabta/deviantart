@@ -47,7 +47,7 @@ describe DeviantArt::Client::Deviation do
     before do
       @deviation_metadata = fixture('deviation_metadata.json')
       stub_da_request(
-        method: :get,
+        method: :post,
         url: %r`^https://#{@da.host}/api/v1/oauth2/deviation/metadata`,
         da: @da,
         body: @deviation_metadata)

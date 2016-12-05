@@ -36,7 +36,7 @@ module DeviantArt
         params['ext_camera'] = ext_camera
         params['ext_stats'] = ext_stats
         params['ext_collection'] = ext_collection
-        perform(DeviantArt::Deviation::Metadata, :get, '/api/v1/oauth2/deviation/metadata', params)
+        perform(DeviantArt::Deviation::Metadata, :post, '/api/v1/oauth2/deviation/metadata', params)
       end
 
       # Fetch a list of users who faved the deviation
