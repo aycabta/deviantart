@@ -129,25 +129,32 @@ module DeviantArt
 
     def request(method, path, params = {})
       uri = URI.parse("https://#{@host}#{path}")
-      case method
-      when :get
-        uri.query = URI.encode_www_form(params)
-        request = Net::HTTP::Get.new(uri)
-      when :post
-        request = Net::HTTP::Post.new(uri.path)
-        if params.any?{ |key, value| value.is_a?(Enumerable) }
-          converted_params = []
-          params.each do |key, value|
-            if value.is_a?(Enumerable)
-              value.each_index do |i|
-                converted_params << ["#{key}[#{i}]", value[i]]
-              end
-            else
-              converted_params << [key, value]
+      if params.any?{ |key, value| value.is_a?(Enumerable) }
+        converted_params = []
+        params.each do |key, value|
+          if value.is_a?(Enumerable)
+            value.each_index do |i|
+              converted_params << ["#{key}[#{i}]", value[i]]
             end
+          else
+            converted_params << [key, value]
           end
+        end
+        case method
+        when :get
+          uri.query = URI.encode_www_form(converted_params)
+          request = Net::HTTP::Get.new(uri)
+        when :post
+          request = Net::HTTP::Post.new(uri.path)
           request.body = URI.encode_www_form(converted_params)
-        else
+        end
+      else
+        case method
+        when :get
+          uri.query = URI.encode_www_form(params)
+          request = Net::HTTP::Get.new(uri)
+        when :post
+          request = Net::HTTP::Post.new(uri.path)
           request.set_form_data(params)
         end
       end
