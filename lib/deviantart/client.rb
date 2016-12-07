@@ -140,23 +140,15 @@ module DeviantArt
             converted_params << [key, value]
           end
         end
-        case method
-        when :get
-          uri.query = URI.encode_www_form(converted_params)
-          request = Net::HTTP::Get.new(uri)
-        when :post
-          request = Net::HTTP::Post.new(uri.path)
-          request.body = URI.encode_www_form(converted_params)
-        end
-      else
-        case method
-        when :get
-          uri.query = URI.encode_www_form(params)
-          request = Net::HTTP::Get.new(uri)
-        when :post
-          request = Net::HTTP::Post.new(uri.path)
-          request.set_form_data(params)
-        end
+        params = converted_params
+      end
+      case method
+      when :get
+        uri.query = URI.encode_www_form(params)
+        request = Net::HTTP::Get.new(uri)
+      when :post
+        request = Net::HTTP::Post.new(uri.path)
+        request.body = URI.encode_www_form(params)
       end
       request['Content-Type'] = 'application/x-www-form-urlencoded'
       request['User-Agent'] = user_agent
