@@ -76,8 +76,11 @@ describe DeviantArt::Error do
       @minor_version = 'test'
       dummy_token = { 'Authorization' => "Bearer dummybearer" }
       @da.headers = @da.headers.merge(dummy_token)
-      stub_request(:post, "https://#{DeviantArt::Client.default_host}/oauth2/token")
-        .to_return(status: 401, body: @error)
+      stub_da_request(
+        method: :post,
+        url: "https://#{DeviantArt::Client.default_host}/oauth2/token",
+        status_code: 401,
+        body: @error)
       stub_da_request(
         method: :get,
         url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
