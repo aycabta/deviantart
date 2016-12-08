@@ -126,6 +126,15 @@ module DeviantArt
       @on_refresh_access_token = block
     end
 
+    def refresh_access_token
+      case @grant_type.to_sym
+      when :authorization_code
+        refresh_authorization_code
+      when :client_credentials
+        refresh_client_credentials
+      end
+    end
+
   private
 
     def request(method, path, params = {})
@@ -193,15 +202,6 @@ module DeviantArt
         @on_refresh_authorization_code.call(@access_token, response.json['refresh_token']) if @on_refresh_authorization_code
       else
         @access_token = nil
-      end
-    end
-
-    def refresh_access_token
-      case @grant_type.to_sym
-      when :authorization_code
-        refresh_authorization_code
-      when :client_credentials
-        refresh_client_credentials
       end
     end
   end
