@@ -90,28 +90,29 @@ module DeviantArt
         refresh_access_token
         response = request(method, path, params)
       end
-      case response.code.to_i
+      status_code = response.code.to_i
+      case status_code
       when 200
         klass.new(response.json)
       when 400
         # Request failed due to client error,
         # e.g. validation failed or User not found
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       when 401
         # Invalid token
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       when 429
         # Rate limit reached or service overloaded
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       when 500
         # Our servers encountered an internal error, try again
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       when 503
         # Our servers are currently unavailable, try again later.
         # This is normally due to planned or emergency maintenance.
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       else
-        DeviantArt::Error.new(response.json, response.code.to_i)
+        DeviantArt::Error.new(response.json, status_code)
       end
     end
 
