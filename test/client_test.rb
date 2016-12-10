@@ -27,7 +27,7 @@ describe DeviantArt::Client do
       assert_equal('success', resp.status)
     end
   end
-  describe '#on_refresh_access_token' do
+  describe '#on_refresh_access_token and #on_refresh_authorization_code' do
     before do
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
@@ -40,6 +40,10 @@ describe DeviantArt::Client do
       @da.access_token = nil
       @da.on_refresh_access_token do |access_token|
         assert_instance_of(String, access_token)
+      end
+      @da.on_refresh_authorization_code do |access_token, refresh_token|
+        assert_instance_of(String, access_token)
+        assert_instance_of(String, refresh_token)
       end
       @da.refresh_access_token
     end
