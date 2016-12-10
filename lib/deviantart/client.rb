@@ -6,6 +6,8 @@ require 'deviantart/client/data'
 require 'deviantart/client/feed'
 # TODO: comments, cured, messages, notes, stash, util
 require 'deviantart/error'
+require 'deviantart/client_credentials'
+require 'deviantart/client_credentials/access_token'
 require 'net/http'
 require 'uri'
 require 'json'
@@ -183,11 +185,14 @@ module DeviantArt
         :post, '/oauth2/token',
         { grant_type: 'client_credentials', client_id: @client_id, client_secret: @client_secret }
       )
-      if response.code == '200'
+      status_code = response.code.to_i
+      if status_code == 200
         @access_token = response.json['access_token']
         @on_refresh_access_token.call(@access_token) if @on_refresh_access_token
+        ClientCredentials::AccessToken.new(response.json)
       else
         @access_token = nil
+        DeviantArt::Error.new(response.json, status_code)
       end
       response
     end
