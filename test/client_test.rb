@@ -17,8 +17,11 @@ describe DeviantArt::Client do
     it 'requests the correct resource' do
       @da.access_token = nil
       assert_nil(@da.access_token)
-      @da.refresh_access_token
+      resp = @da.refresh_access_token
       assert(!@da.access_token.nil?)
+      assert_equal('Bearer', resp.token_type)
+      assert_equal(3600, resp.expires_in)
+      assert_equal('success', resp.status)
     end
   end
 end
