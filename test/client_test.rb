@@ -1,5 +1,7 @@
 require 'helper'
 require 'deviantart'
+require 'deviantart/authorization_code'
+require 'deviantart/authorization_code/refresh_token'
 
 describe DeviantArt::Client do
   before(:all) do
@@ -19,6 +21,7 @@ describe DeviantArt::Client do
       assert_nil(@da.access_token)
       resp = @da.refresh_access_token
       assert(!@da.access_token.nil?)
+      assert_instance_of(DeviantArt::AuthorizationCode::RefreshToken, resp)
       assert_equal('Bearer', resp.token_type)
       assert_equal(3600, resp.expires_in)
       assert_equal('success', resp.status)
