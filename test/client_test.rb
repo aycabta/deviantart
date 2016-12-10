@@ -5,7 +5,7 @@ describe DeviantArt::Client do
   before(:all) do
     @da, @credentials = create_da
   end
-  describe '#' do
+  describe '#refresh_access_token' do
     before do
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
