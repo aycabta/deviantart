@@ -16,9 +16,9 @@ describe DeviantArt::Error do
       resp = @da.get_deviation(@dummyid)
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(404, resp.status_code)
-      assert_equal("error", resp.status)
-      assert_equal("invalid_request", resp.error)
-      assert_equal("Api endpoint not found.", resp.error_description)
+      assert_equal('error', resp.status)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Api endpoint not found.', resp.error_description)
     end
   end
   describe '#get_deviation 401 invalid request with no access token' do
@@ -35,9 +35,9 @@ describe DeviantArt::Error do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(401, resp.status_code)
-      assert_equal("error", resp.status)
-      assert_equal("invalid_request", resp.error)
-      assert_equal("Must provide an access_token to access this resource.", resp.error_description)
+      assert_equal('error', resp.status)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Must provide an access_token to access this resource.', resp.error_description)
     end
   end
   describe '#get_deviation 404 version error' do
@@ -58,8 +58,8 @@ describe DeviantArt::Error do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(404, resp.status_code)
-      assert_equal("error", resp.status)
-      assert_equal("version_error", resp.error)
+      assert_equal('error', resp.status)
+      assert_equal('version_error', resp.error)
       assert_equal("Api Version 1.#{@minor_version} not supported", resp.error_description)
     end
   end
@@ -90,9 +90,9 @@ describe DeviantArt::Error do
     it 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
-      assert_equal("error", resp.status)
-      assert_equal("invalid_token", resp.error)
-      assert_equal("Invalid token.", resp.error_description)
+      assert_equal('error', resp.status)
+      assert_equal('invalid_token', resp.error)
+      assert_equal('Invalid token.', resp.error_description)
     end
   end
 end

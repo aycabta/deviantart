@@ -163,7 +163,7 @@ module DeviantArt
       request['Content-Type'] = 'application/x-www-form-urlencoded'
       request['User-Agent'] = user_agent
       if not @access_token.nil?
-        request["Authorization"] = "Bearer #{@access_token}"
+        request['Authorization'] = "Bearer #{@access_token}"
       end
       @headers.each_pair do |key, value|
         request[key] = value
