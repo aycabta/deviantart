@@ -189,6 +189,7 @@ module DeviantArt
       else
         @access_token = nil
       end
+      response
     end
 
     def refresh_authorization_code
@@ -203,6 +204,7 @@ module DeviantArt
       else
         @access_token = nil
       end
+      response
     end
   end
 end
