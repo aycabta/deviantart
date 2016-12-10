@@ -27,4 +27,21 @@ describe DeviantArt::Client do
       assert_equal('success', resp.status)
     end
   end
+  describe '#on_refresh_access_token' do
+    before do
+      @refresh_authorization_code = fixture('refresh_authorization_code.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{DeviantArt::Client.default_host}/oauth2/token",
+        status_code: 200,
+        body: @refresh_authorization_code)
+    end
+    it 'requests the correct resource' do
+      @da.access_token = nil
+      @da.on_refresh_access_token do |access_token|
+        assert_instance_of(String, access_token)
+      end
+      @da.refresh_access_token
+    end
+  end
 end
