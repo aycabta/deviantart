@@ -57,8 +57,8 @@ module DeviantArt
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
-      @on_refresh_access_token = nil
-      @on_refresh_authorization_code = nil
+      @on_refresh_access_token = []
+      @on_refresh_authorization_code = []
       @access_token_auto_refresh = true
       @grant_type = nil
       @headers = {}
@@ -123,12 +123,12 @@ module DeviantArt
 
     # Call given block when authorization code is refreshed
     def on_refresh_authorization_code(&block)
-      @on_refresh_authorization_code = block
+      @on_refresh_authorization_code << block
     end
 
     # Call given block when access token is refreshed
     def on_refresh_access_token(&block)
-      @on_refresh_access_token = block
+      @on_refresh_access_token << block
     end
 
     def refresh_access_token
@@ -191,7 +191,11 @@ module DeviantArt
       status_code = response.code.to_i
       if status_code == 200
         @access_token = response.json['access_token']
-        @on_refresh_access_token.call(@access_token) if @on_refresh_access_token
+        if !@on_refresh_access_token.empty?
+          @on_refresh_access_token.each do |p|
+            p.call(@access_token)
+          end
+        end
         ClientCredentials::AccessToken.new(response.json)
       else
         @access_token = nil
@@ -208,8 +212,16 @@ module DeviantArt
       status_code = response.code.to_i
       if status_code == 200
         @access_token = response.json['access_token']
-        @on_refresh_access_token.call(@access_token) if @on_refresh_access_token
-        @on_refresh_authorization_code.call(@access_token, response.json['refresh_token']) if @on_refresh_authorization_code
+        if !@on_refresh_access_token.empty?
+          @on_refresh_access_token.each do |p|
+            p.call(@access_token)
+          end
+        end
+        if !@on_refresh_authorization_code.empty?
+          @on_refresh_authorization_code.each do |p|
+            p.call(@access_token, response.json['refresh_token'])
+          end
+        end
         AuthorizationCode::RefreshToken.new(response.json)
       else
         @access_token = nil
