@@ -201,7 +201,6 @@ module DeviantArt
         @access_token = nil
         DeviantArt::Error.new(response.json, status_code)
       end
-      response
     end
 
     def refresh_authorization_code
