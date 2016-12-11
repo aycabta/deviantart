@@ -25,7 +25,7 @@ describe DeviantArt::Client do
       assert_equal('success', resp.status)
     end
   end
-  describe '#on_refresh_access_token and #on_refresh_authorization_code' do
+  describe '#on_refresh_access_token and #on_refresh_authorization_code with Authorization Code Grant' do
     before do
       @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
