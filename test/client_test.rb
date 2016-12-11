@@ -4,11 +4,9 @@ require 'deviantart/authorization_code'
 require 'deviantart/authorization_code/refresh_token'
 
 describe DeviantArt::Client do
-  before(:all) do
-    @da, @credentials = create_da
-  end
   describe '#refresh_access_token' do
     before do
+      @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
         method: :post,
@@ -29,6 +27,7 @@ describe DeviantArt::Client do
   end
   describe '#on_refresh_access_token and #on_refresh_authorization_code' do
     before do
+      @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
         method: :post,
