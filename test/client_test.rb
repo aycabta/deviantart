@@ -4,7 +4,7 @@ require 'deviantart/authorization_code'
 require 'deviantart/authorization_code/refresh_token'
 
 describe DeviantArt::Client do
-  describe '#refresh_access_token' do
+  describe '#refresh_access_token with Authorization Code Grant' do
     before do
       @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
