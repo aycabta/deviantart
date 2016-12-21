@@ -2,8 +2,8 @@ require 'bundler/gem_tasks'
 require 'rake/testtask'
 require 'readline'
 require 'net/http'
+require 'launchy'
 
-BROWSER_COMMAND_FILE = 'test/browser_command'
 AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
 OUTPUT_PIPE = 'test/output_pipe'
 
@@ -13,18 +13,6 @@ Rake::TestTask.new(:test) do |t|
   t.libs << "test"
   t.libs << "lib"
   t.test_files = test_pettern
-end
-
-def get_browser_command
-  open(BROWSER_COMMAND_FILE, 'r').read
-end
-
-file BROWSER_COMMAND_FILE do
-  browser_command = Readline.readline('Input your browser command> ')
-  open(BROWSER_COMMAND_FILE, 'w') do |f|
-    f.write(browser_command)
-  end
-  puts "Wrote \"#{browser_command}\" to #{BROWSER_COMMAND_FILE}"
 end
 
 def wait_oauth_consumer_booting
@@ -45,7 +33,7 @@ def wait_oauth_consumer_booting
   end
 end
 
-file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
+file AUTHORIZATION_CODE_FILE do
   if File.exists?(OUTPUT_PIPE)
     File.unlink(OUTPUT_PIPE)
   end
@@ -70,7 +58,7 @@ file AUTHORIZATION_CODE_FILE => BROWSER_COMMAND_FILE do
         cv.wait(mutex)
       end
       puts 'Open browser for authorization'
-      system("#{get_browser_command} http://localhost:4567/auth/deviantart &")
+      Launchy.open('http://localhost:4567/auth/deviantart')
       is_browsed = true
       cv.signal
     }
