@@ -1,5 +1,6 @@
 require 'deviantart/collections'
 require 'deviantart/collections/folders'
+require 'deviantart/collections/fave'
 
 module DeviantArt
   class Client
@@ -24,7 +25,14 @@ module DeviantArt
         perform(DeviantArt::Collections, :get, "/api/v1/oauth2/collections/#{folderid}", params)
       end
 
-      # TODO: fave, folders/create, folders/remove/{folderid}, unfav
+      #   Add deviation to favourites
+      def fave(deviationid, folderid: nil)
+        params = { deviationid: deviationid }
+        params['folderid'] = folderid unless folderid.nil?
+        perform(DeviantArt::Collections::Fave, :post, '/api/v1/oauth2/collections/fave', params)
+      end
+
+      # TODO: folders/create, folders/remove/{folderid}, unfav
     end
   end
 end
