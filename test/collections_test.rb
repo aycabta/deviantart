@@ -53,6 +53,7 @@ describe DeviantArt::Client::Collections do
         body: @fave)
     end
     it 'requests the correct resource' do
+      # TODO: add unfave after this for real access
       resp = @da.fave(@deviationid)
       assert_instance_of(DeviantArt::Collections::Fave, resp)
       assert_includes([true, false], resp.success)
