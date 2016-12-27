@@ -140,8 +140,6 @@ module DeviantArt
       end
     end
 
-  private
-
     def request(method, path, params = {})
       uri = URI.parse("https://#{@host}#{path}")
       if params.any?{ |key, value| value.is_a?(Enumerable) }
@@ -182,6 +180,7 @@ module DeviantArt
       end
       response
     end
+    private :request
 
     def refresh_client_credentials
       response = request(
@@ -202,6 +201,7 @@ module DeviantArt
         DeviantArt::Error.new(response.json, status_code)
       end
     end
+    private :refresh_client_credentials
 
     def refresh_authorization_code
       response = request(
@@ -227,5 +227,6 @@ module DeviantArt
         DeviantArt::Error.new(response.json, status_code)
       end
     end
+    private refresh_authorization_code
   end
 end
