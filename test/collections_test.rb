@@ -106,12 +106,13 @@ describe DeviantArt::Client::Collections do
   describe '#unfave to not #fave-ed' do
     before do
       @deviationid = fixture('fave-input.json').json['deviationid']
-      @fave = fixture('fave.json')
+      @unfave_error = fixture('unfave-error.json')
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/collections/unfave",
         da: @da,
-        body: @fave)
+        body: @unfave_error,
+        status_code: 400)
     end
     it 'requests the correct resource' do
       resp = @da.unfave(@deviationid)
