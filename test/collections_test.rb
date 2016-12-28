@@ -102,4 +102,23 @@ describe DeviantArt::Client::Collections do
       assert_equal('Deviation is already in favourites.', resp.error_description)
     end
   end
+  describe '#unfave to not #fave-ed' do
+    before do
+      @deviationid = fixture('fave-input.json').json['deviationid']
+      @fave = fixture('fave.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/unfave",
+        da: @da,
+        body: @fave)
+    end
+    it 'requests the correct resource' do
+      resp = @da.unfave(@deviationid)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
+      assert_equal('error', resp.status)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Deviation is not in favourites.', resp.error_description)
+    end
+  end
 end
