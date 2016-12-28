@@ -68,4 +68,37 @@ describe DeviantArt::Client::Collections do
       assert_instance_of(Fixnum, resp.favourites)
     end
   end
+  describe '#fave twice' do
+    before do
+      @deviationid = fixture('fave-input.json').json['deviationid']
+      @fave = fixture('fave.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/fave",
+        da: @da,
+        body: @fave)
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/unfave",
+        da: @da,
+        body: @fave)
+    end
+    after do
+      resp = @da.unfave(@deviationid)
+      assert_instance_of(DeviantArt::Collections::Unfave, resp)
+      assert_includes([true, false], resp.success)
+      assert_instance_of(Fixnum, resp.favourites)
+    end
+    it 'requests the correct resource' do
+      resp = @da.fave(@deviationid)
+      assert_instance_of(DeviantArt::Collections::Fave, resp)
+      assert_includes([true, false], resp.success)
+      assert_instance_of(Fixnum, resp.favourites)
+      resp = @da.fave(@deviationid)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal('error', resp.status)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Deviation is already in favourites.', resp.error_description)
+    end
+  end
 end
