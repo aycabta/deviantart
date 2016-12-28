@@ -72,28 +72,29 @@ describe DeviantArt::Client::Collections do
     before do
       @deviationid = fixture('fave-input.json').json['deviationid']
       @fave = fixture('fave.json')
+      @fave_error = fixture('fave-error.json')
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/collections/fave",
         da: @da,
         body: @fave)
+      resp = @da.fave(@deviationid)
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/fave",
+        da: @da,
+        body: @fave_error,
+        status_code: 400)
+    end
+    after do
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/collections/unfave",
         da: @da,
         body: @fave)
-    end
-    after do
       resp = @da.unfave(@deviationid)
-      assert_instance_of(DeviantArt::Collections::Unfave, resp)
-      assert_includes([true, false], resp.success)
-      assert_instance_of(Fixnum, resp.favourites)
     end
     it 'requests the correct resource' do
-      resp = @da.fave(@deviationid)
-      assert_instance_of(DeviantArt::Collections::Fave, resp)
-      assert_includes([true, false], resp.success)
-      assert_instance_of(Fixnum, resp.favourites)
       resp = @da.fave(@deviationid)
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(400, resp.status_code)
