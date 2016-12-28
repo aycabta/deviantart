@@ -1,0 +1,6 @@
+{
+  "error": "invalid_request",
+  "error_description": "Deviation is not in favourites.",
+  "error_code": 1,
+  "status": "error"
+}
