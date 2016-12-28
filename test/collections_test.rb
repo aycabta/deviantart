@@ -96,6 +96,7 @@ describe DeviantArt::Client::Collections do
       assert_instance_of(Fixnum, resp.favourites)
       resp = @da.fave(@deviationid)
       assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
       assert_equal('error', resp.status)
       assert_equal('invalid_request', resp.error)
       assert_equal('Deviation is already in favourites.', resp.error_description)
