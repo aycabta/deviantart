@@ -227,6 +227,6 @@ module DeviantArt
         DeviantArt::Error.new(response.json, status_code)
       end
     end
-    private refresh_authorization_code
+    private :refresh_authorization_code
   end
 end
