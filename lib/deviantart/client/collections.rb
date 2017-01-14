@@ -33,7 +33,7 @@ module DeviantArt
         perform(DeviantArt::Collections::Fave, :post, '/api/v1/oauth2/collections/fave', params)
       end
 
-      #   Add deviation to favourites
+      # Remove deviation from favourites
       def unfave(deviationid, folderid: nil)
         params = { deviationid: deviationid }
         params['folderid'] = folderid unless folderid.nil?
