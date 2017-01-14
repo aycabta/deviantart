@@ -26,7 +26,7 @@ module DeviantArt
         perform(DeviantArt::Collections, :get, "/api/v1/oauth2/collections/#{folderid}", params)
       end
 
-      #   Add deviation to favourites
+      # Add deviation to favourites
       def fave(deviationid, folderid: nil)
         params = { deviationid: deviationid }
         params['folderid'] = folderid unless folderid.nil?
