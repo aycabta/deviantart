@@ -139,4 +139,24 @@ describe DeviantArt::Client::Collections do
       assert_instance_of(String, resp.name)
     end
   end
+  describe '#create_collection_folder' do
+    before do
+      @validate = fixture('collections_folders_create-error_validate.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/folders/create",
+        da: @da,
+        body: @validate,
+        status_code: 400)
+    end
+    it 'validation failed' do
+      resp = @da.create_collection_folder(' ')
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('failed to validate folder', resp.error_details.folder)
+      assert_equal('Request field validation failed.', resp.error_description)
+      assert_equal('error', resp.status)
+    end
+  end
 end
