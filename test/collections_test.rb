@@ -123,4 +123,20 @@ describe DeviantArt::Client::Collections do
       assert_equal('Deviation is not in favourites.', resp.error_description)
     end
   end
+  describe '#create_collection_folder' do
+    before do
+      @create = fixture('collections_folders_create.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/folders/create",
+        da: @da,
+        body: @create)
+    end
+    it 'requests the correct resource' do
+      resp = @da.create_collection_folder(@create.json['name'])
+      assert_instance_of(DeviantArt::Collections::Folders::Create, resp)
+      assert_instance_of(String, resp.folderid)
+      assert_instance_of(String, resp.name)
+    end
+  end
 end
