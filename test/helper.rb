@@ -87,6 +87,9 @@ def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v
     built_headers = built_headers.merge(headers)
     request = request.with(headers: built_headers) unless built_headers.empty?
     request.to_return(response_parameters)
+    request
+  else
+    nil
   end
 end
 
