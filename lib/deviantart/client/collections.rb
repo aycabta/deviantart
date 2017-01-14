@@ -40,7 +40,7 @@ module DeviantArt
         perform(DeviantArt::Collections::Unfave, :post, '/api/v1/oauth2/collections/unfave', params)
       end
 
-      # TODO: folders/create, folders/remove/{folderid}, unfav
+      # TODO: folders/create, folders/remove/{folderid}
     end
   end
 end
