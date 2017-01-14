@@ -72,7 +72,7 @@ def create_da
 end
 
 def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v1/oauth2/", da: nil, body: nil, status_code: 200, headers: {})
-  if not real?
+  unless real?
     request = stub_request(method, url)
     built_headers = {}
     if !da.nil?
