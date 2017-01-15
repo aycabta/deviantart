@@ -159,4 +159,20 @@ describe DeviantArt::Client::Collections do
       assert_equal('error', resp.status)
     end
   end
+  describe '#remove_collection_folder' do
+    before do
+      @folderid = fixture('collections_folders_remove-input.json').json['folderid']
+      @remove = fixture('collections_folders_remove.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/folders/remove/#{@folderid}",
+        da: @da,
+        body: @remove)
+    end
+    it 'requests the correct resource' do
+      resp = @da.remove_collection_folder(@folderid)
+      assert_instance_of(DeviantArt::Collections::Folders::Remove, resp)
+      assert_equal(true, resp.success)
+    end
+  end
 end
