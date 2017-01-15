@@ -3,6 +3,7 @@ require 'deviantart/collections/folders'
 require 'deviantart/collections/fave'
 require 'deviantart/collections/unfave'
 require 'deviantart/collections/folders/create'
+require 'deviantart/collections/folders/remove'
 
 module DeviantArt
   class Client
@@ -45,6 +46,11 @@ module DeviantArt
       def create_collection_folder(name)
         params = { folder: name }
         perform(DeviantArt::Collections::Folders::Create, :post, '/api/v1/oauth2/collections/folders/create', params)
+      end
+
+      # Delete collection folder
+      def remove_collection_folder(folderid)
+        perform(DeviantArt::Collections::Folders::Remove, :get, "/api/v1/oauth2/collections/folders/remove/#{folderid}")
       end
 
       # TODO: folders/remove/{folderid}
