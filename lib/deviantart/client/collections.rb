@@ -47,7 +47,7 @@ module DeviantArt
         perform(DeviantArt::Collections::Folders::Create, :post, '/api/v1/oauth2/collections/folders/create', params)
       end
 
-      # TODO: folders/create, folders/remove/{folderid}
+      # TODO: folders/remove/{folderid}
     end
   end
 end
