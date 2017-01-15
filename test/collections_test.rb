@@ -175,4 +175,25 @@ describe DeviantArt::Client::Collections do
       assert_equal(true, resp.success)
     end
   end
+  describe '#remove_collection_folder' do
+    before do
+      @folderid = fixture('collections_folders_remove-error-input.json').json['folderid']
+      @remove = fixture('collections_folders_remove-error.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/folders/remove/#{@folderid}",
+        da: @da,
+        body: @remove,
+        status_code: 400)
+    end
+    it 'validation failed' do
+      resp = @da.remove_collection_folder(@folderid)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('folderid is not a valid UUID', resp.error_details.folderid)
+      assert_equal('Request field validation failed.', resp.error_description)
+      assert_equal('error', resp.status)
+    end
+  end
 end
