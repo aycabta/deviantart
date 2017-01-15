@@ -52,8 +52,6 @@ module DeviantArt
       def remove_collection_folder(folderid)
         perform(DeviantArt::Collections::Folders::Remove, :get, "/api/v1/oauth2/collections/folders/remove/#{folderid}")
       end
-
-      # TODO: folders/remove/{folderid}
     end
   end
 end
