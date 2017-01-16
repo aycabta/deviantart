@@ -78,7 +78,7 @@ describe DeviantArt::Client::Collections do
         url: "https://#{@da.host}/api/v1/oauth2/collections/fave",
         da: @da,
         body: @fave)
-      resp = @da.fave(@deviationid)
+      @da.fave(@deviationid)
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/collections/fave",
@@ -92,7 +92,7 @@ describe DeviantArt::Client::Collections do
         url: "https://#{@da.host}/api/v1/oauth2/collections/unfave",
         da: @da,
         body: @fave)
-      resp = @da.unfave(@deviationid)
+      @da.unfave(@deviationid)
     end
     it 'requests the correct resource' do
       resp = @da.fave(@deviationid)
