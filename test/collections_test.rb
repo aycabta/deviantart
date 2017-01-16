@@ -61,11 +61,11 @@ describe DeviantArt::Client::Collections do
       resp = @da.fave(@deviationid)
       assert_instance_of(DeviantArt::Collections::Fave, resp)
       assert_includes([true, false], resp.success)
-      assert_instance_of(Integer, resp.favourites)
+      assert_kind_of(Integer, resp.favourites)
       resp = @da.unfave(@deviationid)
       assert_instance_of(DeviantArt::Collections::Unfave, resp)
       assert_includes([true, false], resp.success)
-      assert_instance_of(Integer, resp.favourites)
+      assert_kind_of(Integer, resp.favourites)
     end
   end
   describe '#fave twice' do

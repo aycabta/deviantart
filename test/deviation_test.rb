@@ -18,7 +18,7 @@ describe DeviantArt::Client::Deviation do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Deviation, resp)
       assert_instance_of(Array, resp.thumbs)
-      assert_instance_of(Integer, resp.thumbs.first.width)
+      assert_kind_of(Integer, resp.thumbs.first.width)
       assert_instance_of(DeviantArt::User, resp.author)
       resp.thumbs.first.height = 1234
       assert_equal(resp.thumbs.first.height, 1234)
@@ -127,9 +127,9 @@ describe DeviantArt::Client::Deviation do
       resp = @da.download_deviation(@deviationid)
       assert_instance_of(DeviantArt::Deviation::Download, resp)
       assert_instance_of(String, resp.src)
-      assert_instance_of(Integer, resp.filesize)
-      assert_instance_of(Integer, resp.width)
-      assert_instance_of(Integer, resp.height)
+      assert_kind_of(Integer, resp.filesize)
+      assert_kind_of(Integer, resp.width)
+      assert_kind_of(Integer, resp.height)
     end
   end
 end
