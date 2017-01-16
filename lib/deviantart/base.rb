@@ -39,7 +39,7 @@ module DeviantArt
           define_singleton_method(reader_name, proc { |dummy=nil| instance_variable_get(variable_name) })
         end
         if !receiver.respond_to?(writer_name)
-          define_singleton_method(writer_name, method(:instance_variable_set).curry.(variable_name))
+          define_singleton_method(writer_name, method(:instance_variable_set).to_proc.curry.(variable_name))
         end
       end
     end
