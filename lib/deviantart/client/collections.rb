@@ -44,7 +44,8 @@ module DeviantArt
 
       # Create new collection folder
       def create_collection_folder(name)
-        params = { folder: name }
+        params = {}
+        params['folder'] = name unless name.nil?
         perform(DeviantArt::Collections::Folders::Create, :post, '/api/v1/oauth2/collections/folders/create', params)
       end
 
