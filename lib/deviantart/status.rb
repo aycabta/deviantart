@@ -6,5 +6,13 @@ module DeviantArt
     point_to_class [:author], DeviantArt::User
     point_to_class [:items, :[], :status], DeviantArt::Status
     point_to_class [:items, :[], :deviation], DeviantArt::Deviation
+
+    def inspect
+      "#{self.class.name}: #{@body} by #{@author} #{@statusid}"
+    end
+
+    def to_s
+      inspect
+    end
   end
 end
