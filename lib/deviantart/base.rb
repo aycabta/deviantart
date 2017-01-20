@@ -25,6 +25,10 @@ module DeviantArt
       self.class.name
     end
 
+    def to_s
+      inspect
+    end
+
     def define_hash_attrs(receiver, attrs, point)
       attrs.each_pair do |key, value|
         attr_accessor_with_receiver(receiver, key)
