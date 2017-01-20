@@ -19,6 +19,7 @@ describe DeviantArt::Client::User do
       resp = @da.get_profile(@username)
       assert_instance_of(DeviantArt::User::Profile, resp)
       assert_instance_of(DeviantArt::User, resp.user)
+      assert_equal("DeviantArt::User: #{@profile.json['user']['username']} #{@profile.json['user']['userid']}", resp.user.inspect)
       assert_instance_of(DeviantArt::Deviation, resp.profile_pic)
     end
   end
