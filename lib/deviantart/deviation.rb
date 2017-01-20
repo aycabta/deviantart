@@ -11,7 +11,7 @@ module DeviantArt
 
     # TODO test
     def inspect
-      "#{self.class.name}: #{@title} by #{@author} #{@deviationid}"
+      "#{self.class.name}: #{@title} by #{@author.username} #{@deviationid}"
     end
 
     def to_s
