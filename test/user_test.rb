@@ -116,6 +116,7 @@ describe DeviantArt::Client::User do
     it 'requests the correct resource' do
       resp = @da.get_status(@status.json['statusid'])
       assert_instance_of(DeviantArt::Status, resp)
+      assert_equal("DeviantArt::Status: #{resp.body} by #{resp.author.username} #{resp.statusid}", resp.inspect)
     end
   end
   describe '#get_watchers' do
