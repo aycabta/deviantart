@@ -8,7 +8,7 @@ module DeviantArt
     point_to_class [:items, :[], :deviation], DeviantArt::Deviation
 
     def inspect
-      "#{self.class.name}: #{@body} by #{@author} #{@statusid}"
+      "#{self.class.name}: #{@body} by #{@author.username} #{@statusid}"
     end
 
     def to_s
