@@ -7,3 +7,7 @@ rvm:
   - jruby-1.7.26
   - jruby-9.1.7.0
 script: bundle exec rake test
+matrix:
+  allow_failures:
+    - rvm: jruby-1.7.26
+    - rvm: jruby-9.1.7.0
