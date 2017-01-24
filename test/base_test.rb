@@ -9,6 +9,7 @@ describe DeviantArt::Base do
     end
     it 'has inspect' do
       assert_equal('DeviantArt::Base', @base.inspect)
+      assert_equal(@base.to_s, @base.inspect)
     end
   end
 end
