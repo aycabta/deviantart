@@ -216,4 +216,5 @@ describe DeviantArt::Client::Collections do
       assert_equal('error', resp.status)
     end
   end
+  # TODO: create and remove
 end
