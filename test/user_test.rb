@@ -136,4 +136,20 @@ describe DeviantArt::Client::User do
       assert_instance_of(DeviantArt::User, resp.results.first.user)
     end
   end
+  describe '#watch_status' do
+    before do
+      @watching = fixture('user_friends_watching.json')
+      @username = fixture('user_friends_watching-input.json').json['username']
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watching/`,
+        da: @da,
+        body: @watching)
+    end
+    it 'requests the correct resource' do
+      resp = @da.watch_status(@username)
+      assert_instance_of(DeviantArt::User::Friends::Watching, resp)
+      assert_includes([true, false], resp.watching)
+    end
+  end
 end
