@@ -5,6 +5,7 @@ require 'deviantart/user/friends/search'
 require 'deviantart/user/whois'
 require 'deviantart/user/statuses'
 require 'deviantart/user/watchers'
+require 'deviantart/user/friends/watching'
 
 module DeviantArt
   class Client
@@ -67,6 +68,11 @@ module DeviantArt
         params['offset'] = offset if offset != 0
         params['limit'] = limit if limit != 10
         perform(DeviantArt::User::Watchers, :get, "/api/v1/oauth2/user/watchers/#{username.nil? ? '' : username}", params)
+      end
+
+      # Check if user is being watched by the given user
+      def watch_status(username)
+        perform(DeviantArt::User::Friends::Watching, :get, "/api/v1/oauth2/user/friends/watching/#{username.nil? ? '' : username}")
       end
 
       # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post
