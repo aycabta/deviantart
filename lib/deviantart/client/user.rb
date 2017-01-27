@@ -75,7 +75,7 @@ module DeviantArt
         perform(DeviantArt::User::Friends::Watching, :get, "/api/v1/oauth2/user/friends/watching/#{username.nil? ? '' : username}")
       end
 
-      # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, friends/watching/{username}, profile/update, statuses/post
+      # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, profile/update, statuses/post
     end
   end
 end
