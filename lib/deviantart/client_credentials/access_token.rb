@@ -5,4 +5,3 @@ module DeviantArt
     attr_accessor :expires_in, :status, :access_token, :token_type
   end
 end
-
