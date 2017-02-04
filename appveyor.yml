@@ -1,0 +1,15 @@
+---
+install:
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - gem install bundler --no-document
+  - bundle install
+build: off
+test_script:
+  - bundle exec rake test
+deploy: off
+environment:
+  matrix:
+    - ruby_version: "22"
+    - ruby_version: "22-x64"
+    - ruby_version: "23"
+    - ruby_version: "23-x64"
