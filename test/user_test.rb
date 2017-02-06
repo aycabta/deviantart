@@ -171,4 +171,21 @@ describe DeviantArt::Client::User do
       assert_equal('username is required', resp.error_details.username)
     end
   end
+  describe '#watch' do
+    before do
+      @username = fixture('user_friends_watch-input.json').json['username']
+      @watching_error = fixture('user_friends_watch.json')
+      stub_da_request(
+        method: :post,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watch/`,
+        da: @da,
+        body: @watching_error,
+        status_code: 400)
+    end
+    it 'requests the correct resource' do
+      resp = @da.watch(@username)
+      assert_instance_of(DeviantArt::User::Friends::Watch, resp)
+      assert_equal(true, resp.success)
+    end
+  end
 end
