@@ -79,7 +79,16 @@ module DeviantArt
 
       # Watch a user
       def watch(username, watch = {})
-        perform(DeviantArt::User::Friends::Watch, :post, "/api/v1/oauth2/user/friends/watch/#{username.nil? ? '' : username}")
+        watch_params = {}
+        %w(friend deviations journals forum_threads critiques scraps activity collections).each do |p|
+          if watch[p]
+            watch_params[p] = true
+          else
+            watch_params[p] = false
+          end
+        end
+        params = { watch: watch_params }
+        perform(DeviantArt::User::Friends::Watch, :post, "/api/v1/oauth2/user/friends/watch/#{username.nil? ? '' : username}", params)
       end
 
       # Unwatch a user
