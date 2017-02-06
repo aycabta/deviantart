@@ -90,4 +90,5 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Badges
 
-[![Build Status](https://travis-ci.org/aycabta/deviantart.svg)](https://travis-ci.org/aycabta/deviantart)
+- [![Build Status](https://travis-ci.org/aycabta/deviantart.svg)](https://travis-ci.org/aycabta/deviantart)
+- [![Build Status](https://ci.appveyor.com/api/projects/status/github/aycabta/deviantart?branch=master&svg=true)](https://ci.appveyor.com/project/aycabta/deviantart)
