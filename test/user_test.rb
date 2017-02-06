@@ -205,4 +205,7 @@ describe DeviantArt::Client::User do
       assert_equal(true, resp.success)
     end
   end
+  # TODO:
+  #   - have {username} after unwatch and watch
+  #   - don't have {username} after unwatch
 end
