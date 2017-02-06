@@ -188,4 +188,21 @@ describe DeviantArt::Client::User do
       assert_equal(true, resp.success)
     end
   end
+  describe '#unwatch' do
+    before do
+      @username = fixture('user_friends_unwatch-input.json').json['username']
+      @unwatch = fixture('user_friends_unwatch.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/unwatch/`,
+        da: @da,
+        body: @unwatch,
+        status_code: 200)
+    end
+    it 'requests the correct resource' do
+      resp = @da.unwatch(@username)
+      assert_instance_of(DeviantArt::User::Friends::Unwatch, resp)
+      assert_equal(true, resp.success)
+    end
+  end
 end
