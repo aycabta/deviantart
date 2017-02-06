@@ -174,13 +174,13 @@ describe DeviantArt::Client::User do
   describe '#watch' do
     before do
       @username = fixture('user_friends_watch-input.json').json['username']
-      @watching_error = fixture('user_friends_watch.json')
+      @watch = fixture('user_friends_watch.json')
       stub_da_request(
         method: :post,
         url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watch/`,
         da: @da,
-        body: @watching_error,
-        status_code: 400)
+        body: @watch,
+        status_code: 200)
     end
     it 'requests the correct resource' do
       resp = @da.watch(@username)
