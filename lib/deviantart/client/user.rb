@@ -7,6 +7,7 @@ require 'deviantart/user/statuses'
 require 'deviantart/user/watchers'
 require 'deviantart/user/friends/watching'
 require 'deviantart/user/friends/watch'
+require 'deviantart/user/friends/unwatch'
 
 module DeviantArt
   class Client
@@ -79,6 +80,11 @@ module DeviantArt
       # Watch a user
       def watch(username, watch = {})
         perform(DeviantArt::User::Friends::Watch, :post, "/api/v1/oauth2/user/friends/watch/#{username.nil? ? '' : username}")
+      end
+
+      # Unwatch a user
+      def unwatch(username)
+        perform(DeviantArt::User::Friends::Unwatch, :get, "/api/v1/oauth2/user/friends/unwatch/#{username.nil? ? '' : username}")
       end
 
       # TODO: damntoken, friends/unwatch/{username}, friends/watch/{username}, profile/update, statuses/post
