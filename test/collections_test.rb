@@ -219,11 +219,23 @@ describe DeviantArt::Client::Collections do
   describe '#create_collection_folder and #remove_collection_folder' do
     before do
       @create = fixture('collections_folders_create.json')
+      @remove = fixture('collections_folders_remove.json')
+      @collections_folders = fixture('collections_folders.json')
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/collections/folders/create",
         da: @da,
         body: @create)
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/collections/folders/remove/`,
+        da: @da,
+        body: @remove)
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/collections/folders`,
+        da: @da,
+        body: @collections_folders)
       resp = @da.create_collection_folder(@create.json['name'])
       @folderid = resp.folderid
       @da.remove_collection_folder(@folderid)
