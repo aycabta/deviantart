@@ -216,5 +216,21 @@ describe DeviantArt::Client::Collections do
       assert_equal('error', resp.status)
     end
   end
-  # TODO: create and remove
+  describe '#create_collection_folder and #remove_collection_folder' do
+    before do
+      @create = fixture('collections_folders_create.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/collections/folders/create",
+        da: @da,
+        body: @create)
+      resp = @da.create_collection_folder(@create.json['name'])
+      @folderid = resp.folderid
+      @da.remove_collection_folder(@folderid)
+    end
+    it 'requests the correct resource' do
+      resp = @da.get_collections_folders()
+      assert(resp.results.index{ |i| i.folderid == @folderid }.nil?)
+    end
+  end
 end
