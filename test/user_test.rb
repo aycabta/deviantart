@@ -179,8 +179,7 @@ describe DeviantArt::Client::User do
         method: :post,
         url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watch/`,
         da: @da,
-        body: @watch,
-        status_code: 200)
+        body: @watch)
     end
     it 'requests the correct resource' do
       resp = @da.watch(@username)
@@ -196,8 +195,7 @@ describe DeviantArt::Client::User do
         method: :get,
         url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/unwatch/`,
         da: @da,
-        body: @unwatch,
-        status_code: 200)
+        body: @unwatch)
     end
     it 'requests the correct resource' do
       resp = @da.unwatch(@username)
