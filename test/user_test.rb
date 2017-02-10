@@ -228,6 +228,32 @@ describe DeviantArt::Client::User do
       assert_equal('error', resp.status)
     end
   end
+  describe '#watch' do
+    before do
+      @watch = fixture('user_friends_watch-user_own.json')
+      @whoami = fixture('user_friends_watch-user_own-whoami.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/user/whoami?",
+        da: @da,
+        body: @whoami)
+      stub_da_request(
+        method: :post,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watch/`,
+        da: @da,
+        body: @watch,
+        status_code: 400)
+    end
+    it 'add you to your own friend' do
+      resp = @da.watch(@da.whoami.username)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Failed to add friend - You can not add yourself to your own friends list.', resp.error_description)
+      assert_equal(2, resp.error_code)
+      assert_equal('error', resp.status)
+    end
+  end
   describe '#unwatch' do
     before do
       @username = fixture('user_friends_unwatch-input.json').json['username']
