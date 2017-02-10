@@ -1,0 +1,6 @@
+{
+  "error": "invalid_request",
+  "error_description": "User not found.",
+  "error_code": 0,
+  "status": "error"
+}
