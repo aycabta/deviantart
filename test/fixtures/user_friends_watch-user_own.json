@@ -1,0 +1,6 @@
+{
+  "error": "invalid_request",
+  "error_description": "Failed to add friend - You can not add yourself to your own friends list.",
+  "error_code": 2,
+  "status": "error"
+}
