@@ -270,7 +270,7 @@ describe DeviantArt::Client::User do
       assert_equal(true, resp.success)
     end
   end
-  # TODO: abnormal test for #watch and #unwatch
+  # TODO: abnormal test for #unwatch
   describe '#watch_status after #watch' do
     before do
       @username = fixture('user_friends_watch-input.json').json['username']
