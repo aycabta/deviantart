@@ -1,0 +1,8 @@
+{
+  "error": "invalid_request",
+  "error_description": "Request field validation failed.",
+  "error_details": {
+    "username": "username is required"
+  },
+  "status": "error"
+}
