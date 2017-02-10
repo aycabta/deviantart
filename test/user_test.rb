@@ -187,6 +187,26 @@ describe DeviantArt::Client::User do
       assert_equal(true, resp.success)
     end
   end
+  describe '#watch' do
+    before do
+      @watch = fixture('user_friends_watch-username_required.json')
+      stub_da_request(
+        method: :post,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/friends/watch/`,
+        da: @da,
+        body: @watch,
+        status_code: 400)
+    end
+    it 'requires username' do
+      resp = @da.watch('')
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal(400, resp.status_code)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('username is required', resp.error_details.username)
+      assert_equal('Request field validation failed.', resp.error_description)
+      assert_equal('error', resp.status)
+    end
+  end
   describe '#unwatch' do
     before do
       @username = fixture('user_friends_unwatch-input.json').json['username']
