@@ -8,6 +8,7 @@ require 'deviantart/user/watchers'
 require 'deviantart/user/friends/watching'
 require 'deviantart/user/friends/watch'
 require 'deviantart/user/friends/unwatch'
+require 'deviantart/user/damn_token'
 
 module DeviantArt
   class Client
@@ -94,6 +95,11 @@ module DeviantArt
       # Unwatch a user
       def unwatch(username)
         perform(DeviantArt::User::Friends::Unwatch, :get, "/api/v1/oauth2/user/friends/unwatch/#{username.nil? ? '' : username}")
+      end
+
+      # Retrieve the dAmn auth token required to connect to the dAmn servers
+      def damntoken
+        perform(DeviantArt::User::DamnToken, :get, '/api/v1/oauth2/user/damntoken?')
       end
 
       # TODO: damntoken, profile/update, statuses/post
