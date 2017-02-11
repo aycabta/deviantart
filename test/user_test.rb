@@ -371,4 +371,19 @@ describe DeviantArt::Client::User do
       assert_equal(false, resp.watching)
     end
   end
+  describe '#damntoken' do
+    before do
+      @damntoken = fixture('user_damntoken.json')
+      stub_da_request(
+        method: :get,
+        url: "https://#{@da.host}/api/v1/oauth2/user/damntoken?",
+        da: @da,
+        body: @damntoken)
+    end
+    it 'requests the correct resource' do
+      resp = @da.damntoken
+      assert_instance_of(DeviantArt::User::DamnToken, resp)
+      assert_instance_of(String, resp.damntoken)
+    end
+  end
 end
