@@ -75,4 +75,20 @@ describe DeviantArt::Client::Gallery do
       assert_equal(@foldername, resp.name)
     end
   end
+  describe '#remove_gallery_folder' do
+    before do
+      @folderid = fixture('gallery_folders_remove-input.json').json['folderid']
+      @folder = fixture('gallery_folders_remove.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/folders/remove/`,
+        da: @da,
+        body: @folder)
+    end
+    it 'requests the correct resource' do
+      resp = @da.remove_gallery_folder(@folderid)
+      assert_instance_of(DeviantArt::Gallery::Folders::Remove, resp)
+      assert_equal(true, resp.success)
+    end
+  end
 end
