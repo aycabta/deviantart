@@ -58,4 +58,21 @@ describe DeviantArt::Client::Gallery do
       assert_instance_of(DeviantArt::Deviation, resp.results.first)
     end
   end
+  describe '#create_gallery_folder' do
+    before do
+      @foldername = fixture('gallery_folders_create-input.json').json['folder']
+      @folder = fixture('gallery_folders_create.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/gallery/folders/create",
+        da: @da,
+        body: @folder)
+    end
+    it 'requests the correct resource' do
+      resp = @da.create_gallery_folder(@foldername)
+      assert_instance_of(DeviantArt::Gallery::Folders::Create, resp)
+      assert_instance_of(String, resp.folderid)
+      assert_equal(@foldername, resp.name)
+    end
+  end
 end
