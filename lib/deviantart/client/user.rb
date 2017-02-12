@@ -102,7 +102,7 @@ module DeviantArt
         perform(DeviantArt::User::DamnToken, :get, '/api/v1/oauth2/user/damntoken?')
       end
 
-      # TODO: damntoken, profile/update, statuses/post
+      # TODO: profile/update, statuses/post
     end
   end
 end
