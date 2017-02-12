@@ -2,6 +2,7 @@ require 'deviantart/gallery'
 require 'deviantart/gallery/all'
 require 'deviantart/gallery/folders'
 require 'deviantart/gallery/folders/create'
+require 'deviantart/gallery/folders/remove'
 
 module DeviantArt
   class Client
@@ -45,6 +46,11 @@ module DeviantArt
       def create_gallery_folder(foldername)
         params = { folder: foldername }
         perform(DeviantArt::Gallery::Folders::Create, :post, '/api/v1/oauth2/gallery/folders/create', params)
+      end
+
+      # Delete gallery folder
+      def remove_gallery_folder(folderid)
+        perform(DeviantArt::Gallery::Folders::Remove, :get, "/api/v1/oauth2/gallery/folders/remove/#{folderid}")
       end
 
       # TODO: remove/{folderid}
