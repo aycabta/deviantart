@@ -1,6 +1,7 @@
 require 'deviantart/gallery'
 require 'deviantart/gallery/all'
 require 'deviantart/gallery/folders'
+require 'deviantart/gallery/folders/create'
 
 module DeviantArt
   class Client
@@ -38,6 +39,12 @@ module DeviantArt
           path = '/api/v1/oauth2/gallery/'
         end
         perform(DeviantArt::Gallery, :get, path, params)
+      end
+
+      # Create new gallery folders.
+      def create_gallery_folder(foldername)
+        params = { folder: foldername }
+        perform(DeviantArt::Gallery::Folders::Create, :post, '/api/v1/oauth2/gallery/folders/create', params)
       end
 
       # TODO: create, remove/{folderid}
