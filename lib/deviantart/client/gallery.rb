@@ -44,7 +44,8 @@ module DeviantArt
 
       # Create new gallery folders.
       def create_gallery_folder(foldername)
-        params = { folder: foldername }
+        params = {}
+        params['folder'] = foldername unless foldername.nil?
         perform(DeviantArt::Gallery::Folders::Create, :post, '/api/v1/oauth2/gallery/folders/create', params)
       end
 
