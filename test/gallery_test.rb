@@ -75,6 +75,26 @@ describe DeviantArt::Client::Gallery do
       assert_equal(@foldername, resp.name)
     end
   end
+  describe '#create_gallery_folder' do
+    before do
+      @folder = fixture('gallery_folders_create-folder_is_required.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/gallery/folders/create",
+        da: @da,
+        body: @folder,
+        status_code: 400)
+    end
+    it 'requires folder' do
+      resp = @da.create_gallery_folder(nil)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal('invalid_request', resp.error)
+      assert_equal('Request field validation failed.', resp.error_description)
+      assert_equal('folder is required', resp.error_details.folder)
+      assert_equal('error', resp.status)
+      assert_equal(400, resp.status_code)
+    end
+  end
   describe '#remove_gallery_folder' do
     before do
       @folderid = fixture('gallery_folders_remove-input.json').json['folderid']
