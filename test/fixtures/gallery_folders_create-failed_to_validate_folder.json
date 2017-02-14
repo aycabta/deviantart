@@ -1,0 +1,8 @@
+{
+  "error": "invalid_request",
+  "error_description": "Request field validation failed.",
+  "error_details": {
+    "folder": "failed to validate folder"
+  },
+  "status": "error"
+}
