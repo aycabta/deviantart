@@ -105,7 +105,7 @@ describe DeviantArt::Client::Gallery do
         body: @folder,
         status_code: 400)
     end
-    it '' do
+    it 'failed to validate folder' do
       resp = @da.create_gallery_folder('')
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal('invalid_request', resp.error)
