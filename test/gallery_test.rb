@@ -131,4 +131,30 @@ describe DeviantArt::Client::Gallery do
       assert_equal(true, resp.success)
     end
   end
+  describe '#remove_gallery_folder' do
+    before do
+      @gallery_folders = fixture('gallery_folders.json')
+      @remove = fixture('gallery_folders_remove-failed_to_remove_top_folder.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/folders`,
+        da: @da,
+        body: @gallery_folders)
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/gallery/folders/remove/`,
+        da: @da,
+        body: @remove,
+        status_code: 500)
+    end
+    it 'failed to remove parent' do
+      top_folder = @da.get_gallery_folders.results.find { |f| f.parent.nil? }
+      resp = @da.remove_gallery_folder(top_folder.folderid)
+      assert_instance_of(DeviantArt::Error, resp)
+      assert_equal('server_error', resp.error)
+      assert_equal('Internal Server Error.', resp.error_description)
+      assert_equal('error', resp.status)
+      assert_equal(500, resp.status_code)
+    end
+  end
 end
