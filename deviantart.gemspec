@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["aycabta@gmail.com"]
 
   spec.summary       = %q{deviantART API library}
-  spec.description   = %q{deviantART API library}
+  spec.description   = %Q{deviantART API library\n}
   spec.homepage      = "https://github.com/aycabta/deviantart"
   spec.license       = "MIT"
 
