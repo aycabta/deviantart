@@ -53,8 +53,6 @@ module DeviantArt
       def remove_gallery_folder(folderid)
         perform(DeviantArt::Gallery::Folders::Remove, :get, "/api/v1/oauth2/gallery/folders/remove/#{folderid}")
       end
-
-      # TODO: remove/{folderid}
     end
   end
 end
