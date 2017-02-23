@@ -177,7 +177,7 @@ module DeviantArt
       end
       response = @http.request(request)
       if response.code == '403'
-        # You must send User-Agent and use HTTP compression in request
+        # need to send User-Agent and use HTTP compression in request
         response.json = JSON.parse('{}')
       else
         response.json = JSON.parse(response.body)
