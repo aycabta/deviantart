@@ -5,7 +5,7 @@ describe DeviantArt::Client::Feed do
   before(:all) do
     @da, @credentials = create_da
   end
-  describe '#get_collections_folders' do
+  describe '#get_feed' do
     before do
       @feed_home = fixture('feed_home.json')
       stub_da_request(
