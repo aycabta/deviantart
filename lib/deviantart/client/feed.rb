@@ -20,7 +20,7 @@ module DeviantArt
         perform(DeviantArt::Feed::Profile, :get, '/api/v1/oauth2/feed/profile', params)
       end
 
-      # TODO: home/{bucketid}, notifications, profile, settings, settings/update
+      # TODO: home/{bucketid}, notifications, settings, settings/update
     end
   end
 end
