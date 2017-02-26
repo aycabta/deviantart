@@ -21,4 +21,20 @@ describe DeviantArt::Client::Feed do
       assert_instance_of(DeviantArt::User, resp.items.first.by_user)
     end
   end
+  describe '#profile' do
+    before do
+      @feed_profile = fixture('feed_profile.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/feed/profile`,
+        da: @da,
+        body: @feed_profile)
+    end
+    it 'requests the correct resource' do
+      resp = @da.profile
+      assert_instance_of(DeviantArt::Feed::Profile, resp)
+      assert_instance_of(Array, resp.items)
+      assert_instance_of(DeviantArt::User, resp.items.first.by_user)
+    end
+  end
 end
