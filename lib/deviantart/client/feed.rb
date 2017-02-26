@@ -14,7 +14,7 @@ module DeviantArt
       end
 
       # Fetch Profile Feed
-      def profile(cursor: nil)
+      def feed_profile(cursor: nil)
         params = {}
         params['cursor'] = cursor unless cursor.nil?
         perform(DeviantArt::Feed::Profile, :get, '/api/v1/oauth2/feed/profile', params)
