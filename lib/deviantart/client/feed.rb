@@ -6,7 +6,7 @@ module DeviantArt
   class Client
     module Feed
       # Fetch Watch Feed
-      def get_feed(mature_content: false, cursor: nil)
+      def feed_home(mature_content: false, cursor: nil)
         params = {}
         params['cursor'] = cursor unless cursor.nil?
         params['mature_content'] = mature_content
