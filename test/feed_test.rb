@@ -1,12 +1,12 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Client::Feed do
-  before(:all) do
+class DeviantArt::Client::Feed::Test < Test::Unit::TestCase
+  setup do
     @da, @credentials = create_da
   end
-  describe '#feed_home' do
-    before do
+  sub_test_case '#feed_home' do
+    setup do
       @feed_home = fixture('feed_home.json')
       stub_da_request(
         method: :get,
@@ -14,15 +14,15 @@ describe DeviantArt::Client::Feed do
         da: @da,
         body: @feed_home)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.feed_home
       assert_instance_of(DeviantArt::Feed::Home, resp)
       assert_instance_of(Array, resp.items)
       assert_instance_of(DeviantArt::User, resp.items.first.by_user)
     end
   end
-  describe '#feed_profile' do
-    before do
+  sub_test_case '#feed_profile' do
+    setup do
       @feed_profile = fixture('feed_profile.json')
       stub_da_request(
         method: :get,
@@ -30,7 +30,7 @@ describe DeviantArt::Client::Feed do
         da: @da,
         body: @feed_profile)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.feed_profile
       assert_instance_of(DeviantArt::Feed::Profile, resp)
       assert_instance_of(Array, resp.items)

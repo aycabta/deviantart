@@ -1,12 +1,12 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Client::Gallery do
-  before(:all) do
+class DeviantArt::Client::Gallery::Test < Test::Unit::TestCase
+  setup do
     @da, @credentials = create_da
   end
-  describe '#get_gallery_all' do
-    before do
+  sub_test_case '#get_gallery_all' do
+    setup do
       @username = fixture('gallery-input.json').json['username']
       @gallery_all = fixture('gallery_all.json')
       stub_da_request(
@@ -15,15 +15,15 @@ describe DeviantArt::Client::Gallery do
         da: @da,
         body: @gallery_all)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_gallery_all(username: @username)
       assert_instance_of(DeviantArt::Gallery::All, resp)
       assert_instance_of(Array, resp.results)
       assert_instance_of(DeviantArt::Deviation, resp.results.first)
     end
   end
-  describe '#get_gallery_folders' do
-    before do
+  sub_test_case '#get_gallery_folders' do
+    setup do
       @username = fixture('gallery-input.json').json['username']
       @gallery_folders = fixture('gallery_folders.json')
       stub_da_request(
@@ -32,15 +32,15 @@ describe DeviantArt::Client::Gallery do
         da: @da,
         body: @gallery_folders)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_gallery_folders(username: @username, calculate_size: true, ext_preload: true)
       assert_instance_of(DeviantArt::Gallery::Folders, resp)
       assert_instance_of(Array, resp.results)
       assert_instance_of(DeviantArt::Deviation, resp.results.first.deviations.first)
     end
   end
-  describe '#get_gallery' do
-    before do
+  sub_test_case '#get_gallery' do
+    setup do
       gallery_input = fixture('gallery-input.json').json
       @username = gallery_input['username']
       @folderid = gallery_input['folderid']
@@ -51,15 +51,15 @@ describe DeviantArt::Client::Gallery do
         da: @da,
         body: @gallery)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_gallery(username: @username, folderid: @folderid)
       assert_instance_of(DeviantArt::Gallery, resp)
       assert_instance_of(Array, resp.results)
       assert_instance_of(DeviantArt::Deviation, resp.results.first)
     end
   end
-  describe '#create_gallery_folder' do
-    before do
+  sub_test_case '#create_gallery_folder' do
+    setup do
       @foldername = fixture('gallery_folders_create-input.json').json['folder']
       @folder = fixture('gallery_folders_create.json')
       stub_da_request(
@@ -68,15 +68,15 @@ describe DeviantArt::Client::Gallery do
         da: @da,
         body: @folder)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.create_gallery_folder(@foldername)
       assert_instance_of(DeviantArt::Gallery::Folders::Create, resp)
       assert_instance_of(String, resp.folderid)
       assert_equal(@foldername, resp.name)
     end
   end
-  describe '#create_gallery_folder' do
-    before do
+  sub_test_case '#create_gallery_folder' do
+    setup do
       @folder = fixture('gallery_folders_create-folder_is_required.json')
       stub_da_request(
         method: :post,
@@ -85,7 +85,7 @@ describe DeviantArt::Client::Gallery do
         body: @folder,
         status_code: 400)
     end
-    it 'requires folder' do
+    test 'requires folder' do
       resp = @da.create_gallery_folder(nil)
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal('invalid_request', resp.error)
@@ -95,8 +95,8 @@ describe DeviantArt::Client::Gallery do
       assert_equal(400, resp.status_code)
     end
   end
-  describe '#create_gallery_folder' do
-    before do
+  sub_test_case '#create_gallery_folder' do
+    setup do
       @folder = fixture('gallery_folders_create-failed_to_validate_folder.json')
       stub_da_request(
         method: :post,
@@ -105,7 +105,7 @@ describe DeviantArt::Client::Gallery do
         body: @folder,
         status_code: 400)
     end
-    it 'failed to validate folder' do
+    test 'failed to validate folder' do
       resp = @da.create_gallery_folder('')
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal('invalid_request', resp.error)
@@ -115,8 +115,8 @@ describe DeviantArt::Client::Gallery do
       assert_equal(400, resp.status_code)
     end
   end
-  describe '#remove_gallery_folder' do
-    before do
+  sub_test_case '#remove_gallery_folder' do
+    setup do
       @folderid = fixture('gallery_folders_remove-input.json').json['folderid']
       @folder = fixture('gallery_folders_remove.json')
       stub_da_request(
@@ -125,14 +125,14 @@ describe DeviantArt::Client::Gallery do
         da: @da,
         body: @folder)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.remove_gallery_folder(@folderid)
       assert_instance_of(DeviantArt::Gallery::Folders::Remove, resp)
       assert_equal(true, resp.success)
     end
   end
-  describe '#remove_gallery_folder' do
-    before do
+  sub_test_case '#remove_gallery_folder' do
+    setup do
       @gallery_folders = fixture('gallery_folders.json')
       @remove = fixture('gallery_folders_remove-failed_to_remove_top_folder.json')
       stub_da_request(
@@ -147,7 +147,7 @@ describe DeviantArt::Client::Gallery do
         body: @remove,
         status_code: 500)
     end
-    it 'failed to remove parent' do
+    test 'failed to remove parent' do
       top_folder = @da.get_gallery_folders.results.find { |f| f.parent.nil? }
       resp = @da.remove_gallery_folder(top_folder.folderid)
       assert_instance_of(DeviantArt::Error, resp)

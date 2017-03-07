@@ -3,18 +3,18 @@ require 'deviantart'
 require 'deviantart/base'
 require 'deviantart/deviation'
 
-describe DeviantArt::Base do
-  describe '#inspect' do
-    before do
+class DeviantArt::Base::Test < Test::Unit::TestCase
+  sub_test_case '#inspect' do
+    setup do
       @base = DeviantArt::Base.new({})
     end
-    it 'returns name' do
+    test 'returns name' do
       assert_equal('DeviantArt::Base', @base.inspect)
       assert_equal(@base.to_s, @base.inspect)
     end
   end
-  describe '.point_to_class' do
-    before do
+  sub_test_case '.point_to_class' do
+    setup do
       klass = Class.new(DeviantArt::Base)
       klass.__send__(:attr_accessor, :has_more, :next_offset, :name, :results)
       klass.point_to_class [:results, :[]], DeviantArt::Deviation
@@ -28,7 +28,7 @@ describe DeviantArt::Base do
         ]
       })
     end
-    it 'builds attributes' do
+    test 'builds attributes' do
       assert_kind_of(DeviantArt::Base, @instance)
       assert_instance_of(Array, @instance.results)
       assert_instance_of(DeviantArt::Deviation, @instance.results.first)

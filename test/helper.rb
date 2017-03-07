@@ -1,8 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'deviantart'
 
-require 'minitest/autorun'
-require 'webmock/minitest'
+require 'test-unit'
+require 'webmock/test_unit'
 require 'json'
 
 def real?

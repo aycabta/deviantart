@@ -1,9 +1,9 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Error do
-  describe '#get_deviation 404 API endpoint not found' do
-    before do
+class DeviantArt::Error::Test < Test::Unit::TestCase
+  sub_test_case '#get_deviation 404 API endpoint not found' do
+    setup do
       @da = DeviantArt::Client.new
       @error = fixture('error_404_api_endpoint_not_found.json')
       @dummyid = 'dummy-id'
@@ -12,7 +12,7 @@ describe DeviantArt::Error do
         url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@dummyid}",
         body: @error, status_code: 404)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation(@dummyid)
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(404, resp.status_code)
@@ -21,8 +21,8 @@ describe DeviantArt::Error do
       assert_equal('Api endpoint not found.', resp.error_description)
     end
   end
-  describe '#get_deviation 401 invalid request with no access token' do
-    before do
+  sub_test_case '#get_deviation 401 invalid request with no access token' do
+    setup do
       @da = DeviantArt::Client.new
       @error = fixture('error_401_invalid_request_with_no_access_token.json')
       @deviation = fixture('deviation.json')
@@ -31,7 +31,7 @@ describe DeviantArt::Error do
         url: "https://#{@da.host}/api/v1/oauth2/deviation/#{@deviation.json['deviationid']}",
         body: @error, status_code: 401)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(401, resp.status_code)
@@ -40,8 +40,8 @@ describe DeviantArt::Error do
       assert_equal('Must provide an access_token to access this resource.', resp.error_description)
     end
   end
-  describe '#get_deviation 404 version error' do
-    before do
+  sub_test_case '#get_deviation 404 version error' do
+    setup do
       @da, @credentials = create_da
       @error = fixture('error_404_version_error.json')
       @deviation = fixture('deviation.json')
@@ -54,7 +54,7 @@ describe DeviantArt::Error do
         da: @da,
         body: @error, status_code: 404, headers: dummy_version)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal(404, resp.status_code)
@@ -63,8 +63,8 @@ describe DeviantArt::Error do
       assert_equal("Api Version 1.#{@minor_version} not supported", resp.error_description)
     end
   end
-  describe '#get_deviation 401 invalid token' do
-    before do
+  sub_test_case '#get_deviation 401 invalid token' do
+    setup do
       @da = DeviantArt::Client.new do |config|
         config.client_id = 9999
         config.client_secret = 'GreatPerfect'
@@ -87,7 +87,7 @@ describe DeviantArt::Error do
         da: @da,
         body: @error, status_code: 404, headers: dummy_token)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Error, resp)
       assert_equal('error', resp.status)

@@ -1,12 +1,12 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Client::Data do
-  before(:all) do
+class DeviantArt::Client::Data::Test < Test::Unit::TestCase
+  setup do
     @da, @credentials = create_da
   end
-  describe '#get_countries' do
-    before do
+  sub_test_case '#get_countries' do
+    setup do
       @countries = fixture('data_countries.json')
       stub_da_request(
         method: :get,
@@ -14,15 +14,15 @@ describe DeviantArt::Client::Data do
         da: @da,
         body: @countries)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_countries
       assert_instance_of(DeviantArt::Data::Countries, resp)
       assert_instance_of(Array, resp.results)
       assert_instance_of(String, resp.results.first.name)
     end
   end
-  describe '#get_privacy' do
-    before do
+  sub_test_case '#get_privacy' do
+    setup do
       @privacy = fixture('data_privacy.json')
       stub_da_request(
         method: :get,
@@ -30,14 +30,14 @@ describe DeviantArt::Client::Data do
         da: @da,
         body: @privacy)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_privacy
       assert_instance_of(DeviantArt::Data::Privacy, resp)
       assert_instance_of(String, resp.text)
     end
   end
-  describe '#get_submission' do
-    before do
+  sub_test_case '#get_submission' do
+    setup do
       @submission = fixture('data_submission.json')
       stub_da_request(
         method: :get,
@@ -45,14 +45,14 @@ describe DeviantArt::Client::Data do
         da: @da,
         body: @submission)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_submission
       assert_instance_of(DeviantArt::Data::Submission, resp)
       assert_instance_of(String, resp.text)
     end
   end
-  describe '#get_tos' do
-    before do
+  sub_test_case '#get_tos' do
+    setup do
       @tos = fixture('data_tos.json')
       stub_da_request(
         method: :get,
@@ -60,7 +60,7 @@ describe DeviantArt::Client::Data do
         da: @da,
         body: @tos)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_tos
       assert_instance_of(DeviantArt::Data::TOS, resp)
       assert_instance_of(String, resp.text)

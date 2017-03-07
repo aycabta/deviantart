@@ -1,12 +1,12 @@
 require 'helper'
 require 'deviantart'
 
-describe DeviantArt::Client::Deviation do
-  before(:all) do
+class DeviantArt::Client::Deviation::Test < Test::Unit::TestCase
+  setup do
     @da, @credentials = create_da
   end
-  describe '#get_deviation' do
-    before do
+  sub_test_case '#get_deviation' do
+    setup do
       @deviation = fixture('deviation.json')
       stub_da_request(
         method: :get,
@@ -14,7 +14,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Deviation, resp)
       assert_equal("DeviantArt::Deviation: #{@deviation.json['title']} by #{@deviation.json['author']['username']} #{@deviation.json['deviationid']}", resp.inspect)
@@ -26,8 +26,8 @@ describe DeviantArt::Client::Deviation do
       assert_equal(resp.deviationid, @deviation.json['deviationid'])
     end
   end
-  describe '#get_deviation_content' do
-    before do
+  sub_test_case '#get_deviation_content' do
+    setup do
       @deviationid = fixture('deviation_content-input.json').json['deviationid']
       @deviation_content = fixture('deviation_content.json')
       stub_da_request(
@@ -36,7 +36,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_content)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation_content(@deviationid)
       assert_instance_of(DeviantArt::Deviation::Content, resp)
       assert_instance_of(String, resp.html)
@@ -44,8 +44,8 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(Array, resp.css_fonts)
     end
   end
-  describe '#get_deviation_metadata' do
-    before do
+  sub_test_case '#get_deviation_metadata' do
+    setup do
       @deviation_metadata = fixture('deviation_metadata.json')
       stub_da_request(
         method: :get,
@@ -53,7 +53,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_metadata)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation_metadata(@deviation_metadata.json['metadata'].first['deviationid'])
       assert_instance_of(DeviantArt::Deviation::Metadata, resp)
       assert_instance_of(Array, resp.metadata)
@@ -61,8 +61,8 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(String, resp.metadata.first.title)
     end
   end
-  describe '#get_deviation_metadata with multi' do
-    before do
+  sub_test_case '#get_deviation_metadata with multi' do
+    setup do
       @deviation_metadata_multi = fixture('deviation_metadata_multi.json')
       stub_da_request(
         method: :get,
@@ -70,7 +70,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_metadata_multi)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation_metadata(@deviation_metadata_multi.json['metadata'].map{ |m| m['deviationid'] })
       assert_instance_of(DeviantArt::Deviation::Metadata, resp)
       assert_instance_of(Array, resp.metadata)
@@ -79,8 +79,8 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(String, resp.metadata.first.title)
     end
   end
-  describe '#get_deviation_embeddedcontent' do
-    before do
+  sub_test_case '#get_deviation_embeddedcontent' do
+    setup do
       @deviationid = fixture('deviation_embeddedcontent-input.json').json['deviationid']
       @deviation_embeddedcontent = fixture('deviation_embeddedcontent.json')
       stub_da_request(
@@ -89,7 +89,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_embeddedcontent)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation_embeddedcontent(@deviationid)
       assert_instance_of(DeviantArt::Deviation::EmbeddedContent, resp)
       assert_includes([true, false], resp.has_more)
@@ -97,8 +97,8 @@ describe DeviantArt::Client::Deviation do
       assert_instance_of(Array, resp.results)
     end
   end
-  describe '#get_deviation_whofaved' do
-    before do
+  sub_test_case '#get_deviation_whofaved' do
+    setup do
       @deviationid = fixture('deviation_whofaved-input.json').json['deviationid']
       @deviation_whofaved = fixture('deviation_whofaved.json')
       stub_da_request(
@@ -107,15 +107,15 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_whofaved)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.get_deviation_whofaved(@deviationid)
       assert_instance_of(DeviantArt::Deviation::WhoFaved, resp)
       assert_instance_of(Array, resp.results)
       assert_instance_of(DeviantArt::User, resp.results.first.user)
     end
   end
-  describe '#download_deviation' do
-    before do
+  sub_test_case '#download_deviation' do
+    setup do
       @deviationid = fixture('deviation_download-input.json').json['deviationid']
       @deviation_download = fixture('deviation_download.json')
       stub_da_request(
@@ -124,7 +124,7 @@ describe DeviantArt::Client::Deviation do
         da: @da,
         body: @deviation_download)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       resp = @da.download_deviation(@deviationid)
       assert_instance_of(DeviantArt::Deviation::Download, resp)
       assert_instance_of(String, resp.src)

@@ -4,9 +4,9 @@ require 'deviantart/authorization_code'
 require 'deviantart/authorization_code/refresh_token'
 require 'deviantart/client_credentials/access_token'
 
-describe DeviantArt::Client do
-  describe '#refresh_access_token with Authorization Code Grant' do
-    before do
+class DeviantArt::Client::Test < Test::Unit::TestCase
+  sub_test_case '#refresh_access_token with Authorization Code Grant' do
+    setup do
       @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
@@ -15,7 +15,7 @@ describe DeviantArt::Client do
         status_code: 200,
         body: @refresh_authorization_code)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       @da.access_token = nil
       assert_nil(@da.access_token)
       resp = @da.refresh_access_token
@@ -26,8 +26,8 @@ describe DeviantArt::Client do
       assert_equal('success', resp.status)
     end
   end
-  describe '#on_refresh_access_token and #on_refresh_authorization_code with Authorization Code Grant' do
-    before do
+  sub_test_case '#on_refresh_access_token and #on_refresh_authorization_code with Authorization Code Grant' do
+    setup do
       @da, @credentials = create_da
       @refresh_authorization_code = fixture('refresh_authorization_code.json')
       stub_da_request(
@@ -36,7 +36,7 @@ describe DeviantArt::Client do
         status_code: 200,
         body: @refresh_authorization_code)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       @da.access_token = nil
       @da.on_refresh_access_token do |access_token|
         assert_instance_of(String, access_token)
@@ -48,8 +48,8 @@ describe DeviantArt::Client do
       @da.refresh_access_token
     end
   end
-  describe '#refresh_access_token with Client Credentials Grant' do
-    before do
+  sub_test_case '#refresh_access_token with Client Credentials Grant' do
+    setup do
       credentials_input = fixture('credentials-input.json')
       @da = DeviantArt::Client.new do |config|
         config.client_id = credentials_input.json['client_credentials']['client_id']
@@ -64,7 +64,7 @@ describe DeviantArt::Client do
         status_code: 200,
         body: @refresh_client_credentials)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       @da.access_token = nil
       assert_nil(@da.access_token)
       resp = @da.refresh_access_token
@@ -75,8 +75,8 @@ describe DeviantArt::Client do
       assert_equal('success', resp.status)
     end
   end
-  describe '#on_refresh_access_token with Client Credentials Grant' do
-    before do
+  sub_test_case '#on_refresh_access_token with Client Credentials Grant' do
+    setup do
       credentials_input = fixture('credentials-input.json')
       @da = DeviantArt::Client.new do |config|
         config.client_id = credentials_input.json['client_credentials']['client_id']
@@ -91,7 +91,7 @@ describe DeviantArt::Client do
         status_code: 200,
         body: @refresh_client_credentials)
     end
-    it 'requests the correct resource' do
+    test 'requests the correct resource' do
       @da.access_token = nil
       @da.on_refresh_access_token do |access_token|
         assert_instance_of(String, access_token)
