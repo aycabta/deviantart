@@ -63,16 +63,18 @@ The tests run with the access token.
 --snip--
 Open browser for authorization
 Got access token!
-# Running:
-
+Loaded suite -e
+Started
 ..............
 
-Finished in 4.44s, 3.14159 runs/s, 11.4478 assertions/s.
-
-14 runs, 51 assertions, 0 failures, 0 errors, 0 skips
+Finished in 23.157618292 seconds.
+---------------------------------
+62 tests, 234 assertions, 0 failures, 0 errors, 0 pendings, 0 omissions, 0 notifications
+100% passed
+---------------------------------
 ```
 
-The browser command is cached at `test/browser_command`, the access token is cached at `test/fixtures/authorization_code.json`.
+The access token is cached at `test/fixtures/authorization_code.json`.
 
 ## API
 
