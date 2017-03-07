@@ -100,7 +100,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
       resp = @da.get_statuses(@statuses.json['results'].first['author']['username'])
       assert_instance_of(DeviantArt::User::Statuses, resp)
       assert_instance_of(Array, resp.results)
-      assert_includes([true, false], resp.has_more)
+      assert_boolean(resp.has_more)
       assert_instance_of(DeviantArt::Status, resp.results.first)
     end
   end
@@ -149,7 +149,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
     test 'requests the correct resource' do
       resp = @da.watch_status(@username)
       assert_instance_of(DeviantArt::User::Friends::Watching, resp)
-      assert_includes([true, false], resp.watching)
+      assert_boolean(resp.watching)
     end
   end
   sub_test_case '#watch_status' do

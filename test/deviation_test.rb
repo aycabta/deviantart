@@ -92,8 +92,8 @@ class DeviantArt::Client::Deviation::Test < Test::Unit::TestCase
     test 'requests the correct resource' do
       resp = @da.get_deviation_embeddedcontent(@deviationid)
       assert_instance_of(DeviantArt::Deviation::EmbeddedContent, resp)
-      assert_includes([true, false], resp.has_more)
-      assert_includes([true, false], resp.has_less)
+      assert_boolean(resp.has_more)
+      assert_boolean(resp.has_less)
       assert_instance_of(Array, resp.results)
     end
   end

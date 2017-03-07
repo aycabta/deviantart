@@ -60,11 +60,11 @@ class DeviantArt::Client::Collections::Test < Test::Unit::TestCase
     test 'requests the correct resource' do
       resp = @da.fave(@deviationid)
       assert_instance_of(DeviantArt::Collections::Fave, resp)
-      assert_includes([true, false], resp.success)
+      assert_boolean(resp.success)
       assert_kind_of(Integer, resp.favourites)
       resp = @da.unfave(@deviationid)
       assert_instance_of(DeviantArt::Collections::Unfave, resp)
-      assert_includes([true, false], resp.success)
+      assert_boolean(resp.success)
       assert_kind_of(Integer, resp.favourites)
     end
   end
