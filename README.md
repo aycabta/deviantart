@@ -41,10 +41,8 @@ If you want to use **real** API in test, run this one:
 
 ```bash
 $ bundle exec rake real
-Input your browser command>
 ```
 
-This prompt demands browser command for OAuth 2 authorization of deviantART.
 After this, Rake task performs some steps:
 
 - creates named pipe
@@ -53,8 +51,6 @@ After this, Rake task performs some steps:
 
 ```bash
 $ bundle exec rake real
-Input your browser command> firefox
-Wrote "firefox" to test/browser_command
 Boot Sinatra OAuth consumer...
 Open browser for authorization
 ```

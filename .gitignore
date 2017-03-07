@@ -9,5 +9,4 @@
 /spec/reports/
 /tmp/
 test/fixtures/authorization_code.json
-test/browser_command
 *.swp
