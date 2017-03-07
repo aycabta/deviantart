@@ -28,6 +28,7 @@ deviation.title # => deviation's title
 At the first, install gems:
 
 ```bash
+$ cd deviantart
 $ bundle install
 ```
 
