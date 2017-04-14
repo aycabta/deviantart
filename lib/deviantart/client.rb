@@ -54,6 +54,19 @@ module DeviantArt
     #
     # [#client_id] App's +client_id+.
     # [#client_secret] App's +client_secret+.
+    #
+    # = Example
+    #
+    #   da = DeviantArt::Client.new do |config|
+    #     config.client_id = 9999
+    #     config.client_secret = 'LMNOPQRSTUVWXYZZZZZZZZ9999999999'
+    #     config.grant_type = :client_credentials
+    #     # auto refresh access_token with Client Credentials Grant when expired
+    #     config.access_token_auto_refresh = true
+    #   end
+    #
+    #   deviation = da.get_deviation('F98C2XXX-C6A8-XXXX-08F9-57CCXXXXX187')
+    #   deviation.title # => deviation's title
     def initialize(options = {})
       @access_token = nil
       @host = @@default_host
