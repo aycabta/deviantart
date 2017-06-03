@@ -2,7 +2,9 @@
 
 ## Installation
 
-    $ gem install deviantart
+```bash
+$ gem install deviantart
+```
 
 ## Usage
 
