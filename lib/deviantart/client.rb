@@ -153,7 +153,7 @@ module DeviantArt
       end
     end
 
-    def request(method, path, params = {})
+    private def request(method, path, params = {})
       uri = URI.parse("https://#{@host}#{path}")
       if params.any?{ |key, value| value.is_a?(Enumerable) }
         converted_params = []
@@ -197,9 +197,8 @@ module DeviantArt
       end
       response
     end
-    private :request
 
-    def refresh_client_credentials
+    private def refresh_client_credentials
       response = request(
         :post, '/oauth2/token',
         { grant_type: 'client_credentials', client_id: @client_id, client_secret: @client_secret }
@@ -218,9 +217,8 @@ module DeviantArt
         DeviantArt::Error.new(response.json, status_code)
       end
     end
-    private :refresh_client_credentials
 
-    def refresh_authorization_code
+    private def refresh_authorization_code
       response = request(
         :post, '/oauth2/token',
         { grant_type: 'refresh_token', client_id: @client_id, client_secret: @client_secret, refresh_token: @refresh_token }
@@ -244,6 +242,5 @@ module DeviantArt
         DeviantArt::Error.new(response.json, status_code)
       end
     end
-    private :refresh_authorization_code
   end
 end

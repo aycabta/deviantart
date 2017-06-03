@@ -30,16 +30,15 @@ module DeviantArt
       inspect
     end
 
-    def define_hash_attrs(receiver, attrs, point)
+    private def define_hash_attrs(receiver, attrs, point)
       attrs.each_pair do |key, value|
         attr_accessor_with_receiver(receiver, key)
         receiver.instance_variable_set(:"@#{key}", nested_value(value, point + [key.to_sym]))
       end
       receiver
     end
-    private :define_hash_attrs
 
-    def attr_accessor_with_receiver(receiver, name)
+    private def attr_accessor_with_receiver(receiver, name)
       receiver.instance_eval do
         reader_name = name.to_sym
         writer_name = :"#{name}="
@@ -52,17 +51,15 @@ module DeviantArt
         end
       end
     end
-    private :attr_accessor_with_receiver
 
-    def define_array_attrs(array, attrs, point)
+    private def define_array_attrs(array, attrs, point)
       attrs.each do |value|
         array << nested_value(value, point)
       end
       array
     end
-    private :define_array_attrs
 
-    def nested_value(value, point)
+    private def nested_value(value, point)
       if self.class.points_class_mapping.include?(point)
         self.class.points_class_mapping[point].new(value)
       else
@@ -76,7 +73,6 @@ module DeviantArt
         end
       end
     end
-    private :nested_value
   end
 
   class Deviation < Base; end
