@@ -32,6 +32,7 @@ class DeviantArt::Base::Test < Test::Unit::TestCase
       assert_kind_of(DeviantArt::Base, @instance)
       assert_instance_of(Array, @instance.results)
       assert_instance_of(DeviantArt::Deviation, @instance.results.first)
+      assert_equal('aaa', @instance.results.first.title)
     end
   end
 end
