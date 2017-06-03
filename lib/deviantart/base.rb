@@ -12,6 +12,7 @@ module DeviantArt
       def points_class_mapping
         @points_class_mapping ||= {}
       end
+
       private def points_class_mapping=(v)
         @points_class_mapping = v
       end
