@@ -144,6 +144,7 @@ module DeviantArt
       @on_refresh_access_token << block
     end
 
+    # Refresh access token by authorization code or client credentials
     def refresh_access_token
       case @grant_type.to_sym
       when :authorization_code
