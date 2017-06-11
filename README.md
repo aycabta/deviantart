@@ -50,7 +50,7 @@ After this, Rake task performs some steps:
 
 - creates named pipe
 - OAuth consumer server launches internal
-- opens the browser with authorization page
+- opens your browser with authorization page
 
 ```bash
 $ bundle exec rake real
@@ -59,8 +59,8 @@ Open browser for authorization
 ```
 
 The OAuth consumer server writes access token to named pipe and terminates after you permit it on browser.
-Rake task takes access token via named pipe.
-The tests run with the access token.
+Rake task takes authorization code via named pipe.
+The tests run with it.
 
 ```bash
 --snip--
@@ -77,7 +77,7 @@ Finished in 23.157618292 seconds.
 ---------------------------------
 ```
 
-The access token is cached at `test/fixtures/authorization_code.json`.
+The authorization code is cached at `test/fixtures/authorization_code.json`.
 
 ## API
 
