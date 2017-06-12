@@ -77,7 +77,7 @@ file AUTHORIZATION_CODE_FILE do
   File.unlink(OUTPUT_PIPE)
 end
 
-task :access_token => AUTHORIZATION_CODE_FILE
+task access_token: AUTHORIZATION_CODE_FILE
 
 Rake::TestTask.new(:real) do |t|
   t.deps << :access_token
@@ -88,4 +88,4 @@ Rake::TestTask.new(:real) do |t|
   t.test_files = test_pettern
 end
 
-task :default => :test
+task default: :test

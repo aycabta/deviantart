@@ -39,11 +39,11 @@ def create_da
     access_token = credentials_input.json['authorization_code']['access_token']
     refresh_token = credentials_input.json['authorization_code']['refresh_token']
     stub_request(:get, "https://#{DeviantArt::Client.default_host}/oauth2/token")
-      .with(body: { 'client_id' => client_id.to_s, 'client_secret' => client_secret, 'grant_type' => 'refresh_token' },
-            headers: { 'Content-Type'=>'application/x-www-form-urlencoded' })
+      .with(body: { 'client_id': client_id.to_s, 'client_secret': client_secret, 'grant_type': 'refresh_token' },
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' })
       .to_return(status: 200,
                  body: credentials.json['authorization_code'].to_s,
-                 headers: { 'Content-Type' => 'application/x-www-form-urlencoded' })
+                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' })
   end
   da = DeviantArt::Client.new do |config|
     config.client_id = client_id
@@ -76,7 +76,7 @@ def stub_da_request(method: :get, url: "https://#{DeviantArt::Client.host}/api/v
     request = stub_request(method, url)
     built_headers = {}
     if !da.nil?
-      built_headers = built_headers.merge({ 'Authorization' => "Bearer #{da.access_token}" })
+      built_headers = built_headers.merge({ 'Authorization': "Bearer #{da.access_token}" })
     end
     response_parameters = {}
     if !body.nil?
