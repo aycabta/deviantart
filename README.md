@@ -83,7 +83,11 @@ The authorization code is cached at `test/fixtures/authorization_code.json`.
 
 ## Official API Document
 
-[Developers - DeviantArt](https://www.deviantart.com/developers/)
+[DeviantArt & Sta.sh - APIs | Developers | DeviantArt](https://www.deviantart.com/developers/http/v1/20160316)
+
+And for OAuth 2.0:
+
+[Authentication | Developers | DeviantArt](https://www.deviantart.com/developers/authentication)
 
 ## License
 
