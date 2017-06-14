@@ -13,10 +13,6 @@ module DeviantArt
         @points_class_mapping ||= {}
       end
 
-      private def points_class_mapping=(v)
-        @points_class_mapping = v
-      end
-
       def point_to_class(point, klass)
         self.points_class_mapping[point] = klass
       end
