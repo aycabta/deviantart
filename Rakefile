@@ -10,8 +10,8 @@ OUTPUT_PIPE = 'test/output_pipe'
 test_pettern = FileList['test/**/*_test.rb']
 
 Rake::TestTask.new(:test) do |t|
-  t.libs << "test"
-  t.libs << "lib"
+  t.libs << 'test'
+  t.libs << 'lib'
   t.test_files = test_pettern
 end
 
@@ -83,8 +83,8 @@ Rake::TestTask.new(:real) do |t|
   t.deps << :access_token
   t.ruby_opts << '-I. -e "ENV[\'REAL\']=\'1\'"'
   t.loader = :direct
-  t.libs << "test"
-  t.libs << "lib"
+  t.libs << 'test'
+  t.libs << 'lib'
   t.test_files = test_pettern
 end
 

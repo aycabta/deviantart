@@ -74,7 +74,7 @@ class DeviantArt::Error::Test < Test::Unit::TestCase
       @error = fixture('error_401_invalid_token.json')
       @deviation = fixture('deviation.json')
       @minor_version = 'test'
-      dummy_token = { 'Authorization' => "Bearer dummybearer" }
+      dummy_token = { 'Authorization' => 'Bearer dummybearer' }
       @da.headers = @da.headers.merge(dummy_token)
       stub_da_request(
         method: :post,
