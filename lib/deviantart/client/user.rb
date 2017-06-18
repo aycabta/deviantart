@@ -9,6 +9,8 @@ require 'deviantart/user/friends/watching'
 require 'deviantart/user/friends/watch'
 require 'deviantart/user/friends/unwatch'
 require 'deviantart/user/damn_token'
+require 'deviantart/country_id'
+require 'deviantart/artist_specialty'
 
 module DeviantArt
   class Client
