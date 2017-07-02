@@ -27,7 +27,7 @@ deviation.title # => deviation's title
 
 ## How to Test
 
-At the first, install gems:
+At the first, install dependency gems:
 
 ```bash
 $ cd deviantart
