@@ -1,4 +1,5 @@
 require 'deviantart/user'
+require 'deviantart/user/update_profile'
 require 'deviantart/user/profile'
 require 'deviantart/user/friends'
 require 'deviantart/user/friends/search'
@@ -21,6 +22,19 @@ module DeviantArt
         params['ext_collections'] = ext_collections if ext_collections
         params['ext_galleries'] = ext_galleries if ext_galleries
         perform(DeviantArt::User::Profile, :get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params)
+      end
+
+      def update_profile(user_is_artist = nil, artist_level = nil, artist_specialty = nil, real_name = nil,  tagline = nil, countryid = nil, website = nil, bio = nil)
+        params = {}
+        params['user_is_artist'] = user_is_artist if user_is_artist
+        params['artist_level'] = artist_level if artist_level
+        params['artist_specialty'] = artist_specialty if artist_specialty
+        params['real_name'] = real_name if real_name
+        params['tagline'] = tagline if tagline
+        params['countryid'] = countryid if countryid
+        params['website'] = website if website
+        params['bio'] = bio if bio
+        perform(DeviantArt::User::UpdateProfile, :post, '/api/v1/oauth2/user/profile/update', params)
       end
 
       # Get the users list of friends
