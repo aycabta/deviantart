@@ -24,7 +24,7 @@ module DeviantArt
         perform(DeviantArt::User::Profile, :get, "/api/v1/oauth2/user/profile/#{username.nil? ? '' : username}", params)
       end
 
-      def update_profile(user_is_artist = nil, artist_level = nil, artist_specialty = nil, real_name = nil,  tagline = nil, countryid = nil, website = nil, bio = nil)
+      def update_profile(user_is_artist: nil, artist_level: nil, artist_specialty: nil, real_name: nil,  tagline: nil, countryid: nil, website: nil, bio: nil)
         params = {}
         params['user_is_artist'] = user_is_artist if user_is_artist
         params['artist_level'] = artist_level if artist_level
