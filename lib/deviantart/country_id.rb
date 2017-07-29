@@ -94,7 +94,7 @@ module DeviantArt
     Guatemala = 89
     Guernsey = 243
     Guinea = 90
-    Guinea-Bissau = 91
+    GuineaBissau = 91
     Guyana = 92
     Haiti = 93
     HeardIslandAndMcDonaldIslands = 94
