@@ -38,6 +38,21 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
       assert_instance_of(DeviantArt::User::UpdateProfile, resp)
     end
   end
+  sub_test_case '#update_profile' do
+    setup do
+      @profile = fixture('user_update_profile_with_no_parameters.json')
+      stub_da_request(
+        method: :post,
+        url: "https://#{@da.host}/api/v1/oauth2/user/profile/update",
+        da: @da,
+        body: @profile,
+        status_code: 400)
+    end
+    test 'with no parameters should fail' do
+      resp = @da.update_profile
+      assert_instance_of(DeviantArt::Error, resp)
+    end
+  end
   sub_test_case '#get_friends' do
     setup do
       @username = fixture('user_friends-input.json').json['username']
