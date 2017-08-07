@@ -17,7 +17,7 @@ class DeviantArt::Client::Deviation::Test < Test::Unit::TestCase
     test 'requests the correct resource' do
       resp = @da.get_deviation(@deviation.json['deviationid'])
       assert_instance_of(DeviantArt::Deviation, resp)
-      assert_equal("DeviantArt::Deviation: #{@deviation.json['title']} by #{@deviation.json['author']['username']} #{@deviation.json['deviationid']}", resp.inspect)
+      assert_equal("DeviantArt::Deviation: #{@deviation.json['title']} by #{@deviation.json['author']['username']} #{@deviation.json['deviationid']}", resp.to_s)
       assert_instance_of(Array, resp.thumbs)
       assert_kind_of(Integer, resp.thumbs.first.width)
       assert_instance_of(DeviantArt::User, resp.author)

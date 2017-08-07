@@ -4,13 +4,13 @@ require 'deviantart/base'
 require 'deviantart/deviation'
 
 class DeviantArt::Base::Test < Test::Unit::TestCase
-  sub_test_case '#inspect' do
+  sub_test_case '#to_s' do
     setup do
       @base = DeviantArt::Base.new({})
     end
     test 'returns name' do
-      assert_equal('DeviantArt::Base', @base.inspect)
-      assert_equal(@base.to_s, @base.inspect)
+      assert_equal('DeviantArt::Base', @base.to_s)
+      assert_equal(@base.to_s, @base.to_s)
     end
   end
   sub_test_case '.point_to_class' do

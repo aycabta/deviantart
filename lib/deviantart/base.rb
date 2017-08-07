@@ -18,12 +18,8 @@ module DeviantArt
       end
     end
 
-    def inspect
-      self.class.name
-    end
-
     def to_s
-      inspect
+      self.class.name
     end
 
     private def define_hash_attrs(receiver, attrs, point)

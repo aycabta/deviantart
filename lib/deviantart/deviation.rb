@@ -9,12 +9,8 @@ module DeviantArt
     point_to_class [:daily_deviation, :giver], DeviantArt::User
     point_to_class [:daily_deviation, :suggester], DeviantArt::User
 
-    def inspect
-      "#{self.class.name}: #{@title} by #{@author.username} #{@deviationid}"
-    end
-
     def to_s
-      inspect
+      "#{self.class.name}: #{@title} by #{@author.username} #{@deviationid}"
     end
   end
 end

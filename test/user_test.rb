@@ -19,7 +19,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
       resp = @da.get_profile(@username)
       assert_instance_of(DeviantArt::User::Profile, resp)
       assert_instance_of(DeviantArt::User, resp.user)
-      assert_equal("DeviantArt::User: #{@profile.json['user']['username']} #{@profile.json['user']['userid']}", resp.user.inspect)
+      assert_equal("DeviantArt::User: #{@profile.json['user']['username']} #{@profile.json['user']['userid']}", resp.user.to_s)
       assert_instance_of(DeviantArt::Deviation, resp.profile_pic)
     end
   end
@@ -146,7 +146,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
     test 'requests the correct resource' do
       resp = @da.get_status(@status.json['statusid'])
       assert_instance_of(DeviantArt::Status, resp)
-      assert_equal("DeviantArt::Status: #{resp.body} by #{resp.author.username} #{resp.statusid}", resp.inspect)
+      assert_equal("DeviantArt::Status: #{resp.body} by #{resp.author.username} #{resp.statusid}", resp.to_s)
     end
   end
   sub_test_case '#get_watchers' do

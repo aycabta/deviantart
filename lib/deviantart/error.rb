@@ -9,7 +9,7 @@ module DeviantArt
       @status_code = status_code
     end
 
-    def inspect
+    def to_s
       messages = []
       messages << self.class.name
       messages << "status_code: #{@status_code}"
