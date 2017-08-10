@@ -25,17 +25,26 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
   end
   sub_test_case '#update_profile' do
     setup do
-      @profile = fixture('user_update_profile.json')
+      @profile = fixture('user_profile.json')
+      @username = @profile.json['user']['username']
+      @update_profile = fixture('user_update_profile.json')
+      stub_da_request(
+        method: :get,
+        url: %r`^https://#{@da.host}/api/v1/oauth2/user/profile/#{@username}`,
+        da: @da,
+        body: @profile)
       stub_da_request(
         method: :post,
         url: "https://#{@da.host}/api/v1/oauth2/user/profile/update",
         da: @da,
-        body: @profile)
+        body: @update_profile)
     end
     test 'requests the correct resource' do
-      # get profile before update
+      original_profile = @da.get_profile(@username)
       resp = @da.update_profile(countryid: DeviantArt::CountryID::UnitedStates)
       assert_instance_of(DeviantArt::User::UpdateProfile, resp)
+      updated_profile = @da.get_profile(@username)
+      resp = @da.update_profile(countryid: original_profile.countryid)
     end
   end
   sub_test_case '#update_profile' do
