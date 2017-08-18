@@ -17,7 +17,7 @@ module DeviantArt
       messages << "error: #{@error}" if @error
       messages << "error_description: #{@error_description}" if @error_description
       messages << "error_details: #{@error_details}" if @error_details
-      messages.join("\n")
+      messages.join(', ')
     end
   end
 end
