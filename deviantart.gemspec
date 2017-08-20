@@ -10,7 +10,9 @@ Gem::Specification.new do |spec|
   spec.email         = ['aycabta@gmail.com']
 
   spec.summary       = %q{deviantART API library}
-  spec.description   = %Q{deviantART API library\n}
+  spec.description   = <<~EOD
+    A Ruby interface to the deviantART API.
+  EOD
   spec.homepage      = 'https://github.com/aycabta/deviantart'
   spec.license       = 'MIT'
 
