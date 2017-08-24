@@ -35,4 +35,14 @@ class DeviantArt::Base::Test < Test::Unit::TestCase
       assert_equal('aaa', @instance.results.first.title)
     end
   end
+  sub_test_case '#to_s' do
+    setup do
+      @instance = DeviantArt::Base.new({})
+    end
+    test 'returns correct' do
+      assert_kind_of(DeviantArt::Base, @instance)
+      assert_instance_of(String, @instance.to_s)
+      assert_equal('DeviantArt::Base', @instance.to_s)
+    end
+  end
 end
