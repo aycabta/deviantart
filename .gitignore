@@ -10,3 +10,5 @@
 /tmp/
 test/fixtures/authorization_code.json
 *.swp
+*.swo
+*.swn
