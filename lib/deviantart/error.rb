@@ -2,6 +2,21 @@ require 'deviantart/base'
 
 module DeviantArt
   class Error < Base
+    # :method: error
+    #
+
+    # :method: error_description
+    #
+
+    # :method: error_details
+    #
+
+    # :method: error_code
+    #
+
+    # :method: status_code
+    #
+
     attr_accessor :error, :error_description, :error_details, :error_code, :status_code
 
     def initialize(json, status_code)
