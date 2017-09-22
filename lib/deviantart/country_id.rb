@@ -1,4 +1,6 @@
 module DeviantArt
+  ##
+  # Client ID for user profile
   module CountryID
     Unspecified = 0
     UnitedStates = 1
