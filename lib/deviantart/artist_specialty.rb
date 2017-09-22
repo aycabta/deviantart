@@ -1,4 +1,6 @@
 module DeviantArt
+  ##
+  # Artist specialty for user profile
   module ArtistSpecialty
     ArtisanCrafts = 1
     DesignAndInterfaces = 2
