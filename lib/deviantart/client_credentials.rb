@@ -1,6 +1,6 @@
 require 'deviantart/base'
 
 module DeviantArt
-  class ClientCredentials < Base
+  class ClientCredentials
   end
 end
