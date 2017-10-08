@@ -182,7 +182,7 @@ module DeviantArt
     Portugal = 172
     PuertoRico = 173
     Qatar = 174
-    Réunion = 175
+    Reunion = 175
     Romania = 176
     Russia = 177
     Rwanda = 178
@@ -193,7 +193,7 @@ module DeviantArt
     SaintVincentAndTheGrenadines = 182
     Samoa = 183
     SanMarino = 184
-    SãoTomeAndPrincipe = 185
+    SaoTomeAndPrincipe = 185
     SaudiArabia = 186
     Senegal = 187
     Serbia = 234
