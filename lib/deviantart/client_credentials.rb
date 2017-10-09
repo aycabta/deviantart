@@ -2,7 +2,7 @@ require 'deviantart/base'
 
 module DeviantArt
   ##
-  # A class for client_credentials
+  # A class for Client Credentials Grant
   class ClientCredentials
   end
 end
