@@ -1,6 +1,6 @@
 require 'deviantart/base'
 
 module DeviantArt
-  class Data < Base
+  class Data
   end
 end

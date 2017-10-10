@@ -1,6 +1,6 @@
 require 'deviantart/base'
 
 module DeviantArt
-  class Feed < Base
+  class Feed
   end
 end
