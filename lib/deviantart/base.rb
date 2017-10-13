@@ -1,4 +1,6 @@
 module DeviantArt
+  ##
+  # Base of response class
   class Base
     attr_reader :attrs
     @points_class_mapping = {}
