@@ -10,7 +10,7 @@ module DeviantArt
     # offset or cursor to the endpoint.
 
     # :method: results
-    # Friends list as DeviantArt::Deviation.
+    # Deviations list as DeviantArt::Deviation.
 
     attr_accessor :has_more, :next_offset, :results
     point_to_class [:results, :[]], DeviantArt::Deviation
