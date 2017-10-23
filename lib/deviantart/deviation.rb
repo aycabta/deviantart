@@ -3,7 +3,7 @@ require 'deviantart/base'
 module DeviantArt
   class Deviation < Base
     # :method: deviationid
-    #
+    # An UUID for deviation
 
     # :method: printid
     #
