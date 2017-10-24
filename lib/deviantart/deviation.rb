@@ -9,7 +9,7 @@ module DeviantArt
     #
 
     # :method: url
-    #
+    # The URL for deviation
 
     # :method: title
     #
