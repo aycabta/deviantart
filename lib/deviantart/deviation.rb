@@ -12,7 +12,7 @@ module DeviantArt
     # The URL for deviation
 
     # :method: title
-    #
+    # The title of deviation
 
     # :method: category
     #
