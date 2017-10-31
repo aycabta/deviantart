@@ -27,7 +27,7 @@ module DeviantArt
     #
 
     # :method: author
-    #
+    # The author of this deviation as DeviantArt::User
 
     # :method: stats
     #
