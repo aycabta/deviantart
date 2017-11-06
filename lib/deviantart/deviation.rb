@@ -24,7 +24,7 @@ module DeviantArt
     #
 
     # :method: is_deleted
-    #
+    # The flag for what the deviation is deleted
 
     # :method: author
     # The author of this deviation as DeviantArt::User
