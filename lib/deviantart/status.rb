@@ -6,7 +6,7 @@ module DeviantArt
     #
 
     # :method: body
-    #
+    # Message body
 
     # :method: ts
     #
