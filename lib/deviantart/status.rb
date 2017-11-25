@@ -3,7 +3,7 @@ require 'deviantart/base'
 module DeviantArt
   class Status < Base
     # :method: statusid
-    #
+    # An ID for status
 
     # :method: body
     # Message body
