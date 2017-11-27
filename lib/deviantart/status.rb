@@ -12,7 +12,7 @@ module DeviantArt
     #
 
     # :method: url
-    #
+    # An URL for status
 
     # :method: comments_count
     #
