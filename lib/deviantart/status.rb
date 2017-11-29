@@ -21,7 +21,7 @@ module DeviantArt
     #
 
     # :method: is_deleted
-    #
+    # Deleted flag
 
     # :method: author
     #
