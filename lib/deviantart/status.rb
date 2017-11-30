@@ -24,7 +24,7 @@ module DeviantArt
     # Deleted flag
 
     # :method: author
-    #
+    # An author name
 
     # :method: items
     #
