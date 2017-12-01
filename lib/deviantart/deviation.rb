@@ -60,7 +60,7 @@ module DeviantArt
     #
 
     # :method: is_mature
-    #
+    # Is this mature content?
 
     # :method: is_downloadable
     #
