@@ -15,7 +15,7 @@ module DeviantArt
     #
 
     # :method: status_code
-    #
+    # HTTP status code
 
     attr_accessor :error, :error_description, :error_details, :error_code, :status_code
 
