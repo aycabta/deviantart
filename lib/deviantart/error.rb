@@ -3,7 +3,8 @@ require 'deviantart/base'
 module DeviantArt
   class Error < Base
     # :method: error
-    #
+    # Error type in JSON.
+    # For example: invalid_request, unauthorized and server_error
 
     # :method: error_description
     #
