@@ -13,7 +13,11 @@ module DeviantArt
     #
 
     # :method: error_code
-    #
+    # Optional.
+    # Some endpoints may provide additional error codes so your application
+    # can provide fine grained handling of the error states. Each endpoint
+    # will define any additional codes in its documentation, all codes start
+    # from zero and are specific to that particular endpoint.
 
     # :method: status_code
     # HTTP status code
