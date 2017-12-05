@@ -10,7 +10,9 @@ module DeviantArt
     #
 
     # :method: error_details
-    #
+    # Optional.
+    # For validation errors, this will be a key/value map containing error
+    # information for each field.
 
     # :method: error_code
     # Optional.
