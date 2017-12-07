@@ -4,11 +4,11 @@ module DeviantArt
   class Error < Base
     # :method: error
     # Error type in JSON.
-    # For example: invalid_request, unauthorized and server_error
+    # For example: +invalid_request+, +unauthorized+ and +server_error+
 
     # :method: error_description
     # The error message. You should NOT parse this as it may change, use error
-    # or error_code for conditional logic within your app.
+    # or +error_code+ for conditional logic within your app.
 
     # :method: error_details
     # Optional.
