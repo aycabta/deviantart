@@ -23,7 +23,7 @@ module DeviantArt
     # from zero and are specific to that particular endpoint.
 
     # :method: status_code
-    # HTTP status code
+    # This is the HTTP status code of response.
 
     attr_accessor :error, :error_description, :error_details, :error_code, :status_code
 
