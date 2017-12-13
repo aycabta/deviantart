@@ -5,6 +5,7 @@ module DeviantArt
     attr_reader :attrs
     @points_class_mapping = {}
 
+    # Build response object from JSON data
     def initialize(attrs)
       @attrs = attrs
       define_hash_attrs(self, @attrs, [])
