@@ -22,7 +22,7 @@ with some tokens from OAuth API.
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.2.6')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.2.8')
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
