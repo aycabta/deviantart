@@ -16,6 +16,8 @@ module DeviantArt
         @points_class_mapping ||= {}
       end
 
+      ##
+      # Set nested +point+ by Array to specified +klass+.
       def point_to_class(point, klass)
         self.points_class_mapping[point] = klass
       end
