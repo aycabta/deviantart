@@ -15,10 +15,10 @@ module DeviantArt
     # The title of deviation
 
     # :method: category
-    #
+    # Category as String like "Fantasy"
 
     # :method: category_path
-    #
+    # Category path as String like "digitalart/paintings/fantasy"
 
     # :method: is_favourited
     #
