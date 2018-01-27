@@ -42,7 +42,7 @@ module DeviantArt
     # This has +src+ as image URL, height and width as pixel size and transparency as boolean
 
     # :method: content
-    #
+    # This has +src+ as image URL, height and width as pixel size, transparency as boolean and filesize as byte
 
     # :method: thumbs
     #
