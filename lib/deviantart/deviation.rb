@@ -63,7 +63,7 @@ module DeviantArt
     # Is this mature content?
 
     # :method: is_downloadable
-    #
+    # Is this danloadable?
 
     # :method: download_filesize
     #
