@@ -33,7 +33,7 @@ module DeviantArt
     #
 
     # :method: published_time
-    #
+    # Published time as Unix time
 
     # :method: allows_comments
     #
