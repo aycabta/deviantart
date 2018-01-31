@@ -66,7 +66,7 @@ module DeviantArt
     # Is this danloadable?
 
     # :method: download_filesize
-    #
+    # The filesize of the image that is from ["content"]["src"]
 
     # :method: challenge
     #
