@@ -21,7 +21,7 @@ module DeviantArt
     # Category path as String like "digitalart/paintings/fantasy"
 
     # :method: is_favourited
-    #
+    # Is this favorited by you?
 
     # :method: is_deleted
     # The flag for what the deviation is deleted
