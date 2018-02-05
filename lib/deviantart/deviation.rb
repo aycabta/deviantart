@@ -30,7 +30,7 @@ module DeviantArt
     # The author of this deviation as DeviantArt::User
 
     # :method: stats
-    #
+    # This has numbers of comments and favorites
 
     # :method: published_time
     # Published time as Unix time
