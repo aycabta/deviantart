@@ -36,7 +36,7 @@ module DeviantArt
     # Published time as Unix time
 
     # :method: allows_comments
-    #
+    # Boolean
 
     # :method: preview
     # This has +src+ as image URL, height and width as pixel size and transparency as boolean
