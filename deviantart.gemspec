@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Code Ass']
   spec.email         = ['aycabta@gmail.com']
 
-  spec.summary       = %q{deviantART API library}
+  spec.summary       = %q{deviantART API wrapper}
   spec.description   = <<-EOD
 A Ruby interface to the deviantART API,
 with some tokens from OAuth API.
