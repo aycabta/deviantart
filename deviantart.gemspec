@@ -6,7 +6,7 @@ require 'deviantart/version'
 Gem::Specification.new do |spec|
   spec.name          = 'deviantart'
   spec.version       = DeviantArt::VERSION
-  spec.authors       = ['Code Ass']
+  spec.authors       = ['aycabta']
   spec.email         = ['aycabta@gmail.com']
 
   spec.summary       = %q{deviantART API wrapper}
