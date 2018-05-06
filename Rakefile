@@ -7,12 +7,12 @@ require 'launchy'
 AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
 OUTPUT_PIPE = 'test/output_pipe'
 
-test_pettern = FileList['test/**/*_test.rb']
+test_pettern = 'test/**/*_test.rb'
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.libs << 'lib'
-  t.test_files = test_pettern
+  t.pattern = 'test/**/*_test.rb'
 end
 
 def wait_oauth_consumer_booting
@@ -85,7 +85,7 @@ Rake::TestTask.new(:real) do |t|
   t.loader = :direct
   t.libs << 'test'
   t.libs << 'lib'
-  t.test_files = test_pettern
+  t.pattern = test_pettern
 end
 
 task default: :test
