@@ -81,7 +81,7 @@ task access_token: AUTHORIZATION_CODE_FILE
 
 Rake::TestTask.new(:real) do |t|
   t.deps << :access_token
-  t.ruby_opts << '-I. -e "ENV[\'REAL\']=\'1\'"'
+  t.ruby_opts << %q{-I. -e "ENV['REAL']='1'"}
   t.loader = :direct
   t.libs << 'test'
   t.libs << 'lib'
