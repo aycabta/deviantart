@@ -34,7 +34,7 @@ class DeviantArt::Client::Feed::Test < Test::Unit::TestCase
       resp = @da.feed_profile
       assert_instance_of(DeviantArt::Feed::Profile, resp)
       assert_instance_of(Array, resp.items)
-      assert_instance_of(DeviantArt::User, resp.items.first.by_user)
+      assert_instance_of(DeviantArt::User, resp.items.first.by_user) unless resp.items.empty?
     end
   end
 end
