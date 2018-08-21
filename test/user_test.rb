@@ -140,7 +140,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
       assert_instance_of(DeviantArt::User::Statuses, resp)
       assert_instance_of(Array, resp.results)
       assert_boolean(resp.has_more)
-      assert_instance_of(DeviantArt::Status, resp.results.first)
+      assert_instance_of(DeviantArt::Status, resp.results.first) unless resp.results.empty?
     end
   end
   sub_test_case '#get_status' do
