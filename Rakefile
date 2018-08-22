@@ -6,6 +6,7 @@ require 'launchy'
 
 AUTHORIZATION_CODE_FILE = 'test/fixtures/authorization_code.json'
 OUTPUT_PIPE = 'test/output_pipe'
+PORT_FOR_REAL_TEST = ENV['REAL_PORT'].to_i || 4567
 
 test_pettern = 'test/**/*_test.rb'
 
@@ -16,7 +17,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 def wait_oauth_consumer_booting
-  http = Net::HTTP.new('localhost', 4567)
+  http = Net::HTTP.new('localhost', PORT_FOR_REAL_TEST)
   http.open_timeout = 1
   begin
     http.start
@@ -58,7 +59,7 @@ file AUTHORIZATION_CODE_FILE do
         cv.wait(mutex)
       end
       puts 'Open browser for authorization'
-      Launchy.open('http://localhost:4567/auth/deviantart')
+      Launchy.open("http://localhost:#{PORT_FOR_REAL_TEST}/auth/deviantart")
       is_browsed = true
       cv.signal
     }
