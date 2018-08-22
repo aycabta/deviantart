@@ -44,6 +44,7 @@ class DeviantArt::Client::User::Test < Test::Unit::TestCase
       resp = @da.update_profile(countryid: DeviantArt::CountryID::UnitedStates)
       assert_instance_of(DeviantArt::User::UpdateProfile, resp)
       updated_profile = @da.get_profile(@username)
+      assert(updated_profile)
       resp = @da.update_profile(countryid: original_profile.countryid)
     end
   end
