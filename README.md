@@ -1,5 +1,7 @@
 # deviantART API library
 
+For deviations.
+
 ## Installation
 
 ```bash
