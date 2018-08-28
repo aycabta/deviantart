@@ -6,7 +6,7 @@ require 'webmock/test_unit'
 require 'json'
 
 def real?
-  ENV.include?('REAL') && !ENV['REAL'].nil? && !ENV['REAL'].empty?
+  defined?(REAL) || ENV.include?('REAL') && !ENV['REAL'].nil? && !ENV['REAL'].empty?
 end
 
 def fixture_path
