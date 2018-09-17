@@ -1,6 +1,6 @@
 # deviantART API library
 
-For deviations.
+For deviations!
 
 ## Installation
 
