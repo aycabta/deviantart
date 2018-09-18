@@ -7,6 +7,7 @@ For deviations!
 ```bash
 $ gem install deviantart
 ```
+And please read "Usage" section.
 
 ## Usage
 
