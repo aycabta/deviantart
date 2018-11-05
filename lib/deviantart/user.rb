@@ -1,6 +1,8 @@
 require 'deviantart/base'
 
 module DeviantArt
+  ##
+  # User class for API response
   class User < Base
     # :method: userid
     # The user's ID as UUID, for example 80D3D72E-1B28-4F15-E529-A2EADB60B093.
