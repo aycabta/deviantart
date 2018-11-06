@@ -1,6 +1,8 @@
 require 'deviantart/base'
 
 module DeviantArt
+  ##
+  # Deviation class for API response
   class Deviation < Base
     # :method: deviationid
     # An UUID for deviation
