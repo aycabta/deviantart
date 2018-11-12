@@ -1,6 +1,8 @@
 module DeviantArt
   ##
   # Client ID for user profile
+  #
+  # This is from GET /data/countries
   module CountryID
     Unspecified = 0
     UnitedStates = 1
