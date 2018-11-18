@@ -87,7 +87,7 @@ module DeviantArt
     point_to_class [:daily_deviation, :suggester], DeviantArt::User
 
     def to_s
-      "#{self.class.name}: #{@title} by #{@author.username} #{@deviationid}"
+      "#{self.class.name}: #{@title} by #{@author.username} (#{@deviationid})"
     end
   end
 end
