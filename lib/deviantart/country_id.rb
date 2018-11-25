@@ -4,6 +4,7 @@ module DeviantArt
   #
   # This is from GET /data/countries
   module CountryID
+    # TODO: auto generation
     Unspecified = 0
     UnitedStates = 1
     Canada = 2
