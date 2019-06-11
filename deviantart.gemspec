@@ -30,7 +30,7 @@ with some tokens from OAuth API.
   spec.add_development_dependency 'webmock'
   spec.add_development_dependency 'sinatra'
   spec.add_development_dependency 'omniauth'
-  spec.add_development_dependency 'omniauth-oauth2', '~> 1.3.1'
+  spec.add_development_dependency 'omniauth-oauth2'
   spec.add_development_dependency 'omniauth-deviantart'
   spec.add_development_dependency 'launchy'
 end
