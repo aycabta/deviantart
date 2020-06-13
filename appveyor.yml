@@ -1,7 +1,7 @@
 ---
 install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
-  - gem install bundler --no-document -f
+  - gem install bundler -f
   - bundle install
 build: off
 test_script:
