@@ -1,8 +1,7 @@
 ---
 install:
   - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
-  - gem --version
-  - gem install --help
+  - gem update --system -f
   - gem install bundler -N -f
   - bundle install
 build: off
