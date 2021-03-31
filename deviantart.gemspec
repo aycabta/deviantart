@@ -33,4 +33,5 @@ with some tokens from OAuth API.
   spec.add_development_dependency 'omniauth-oauth2'
   spec.add_development_dependency 'omniauth-deviantart'
   spec.add_development_dependency 'launchy'
+  spec.add_development_dependency 'rexml'
 end
