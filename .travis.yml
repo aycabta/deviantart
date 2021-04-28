@@ -1,12 +1,12 @@
 ---
 language: ruby
 rvm:
-  - 2.5.8
-  - 2.6.6
-  - 2.7.2
-  - 3.0.0
+  - 2.5.9
+  - 2.6.7
+  - 2.7.3
+  - 3.0.1
   - ruby-head
-  - jruby-9.2.14.1
+  - jruby-9.2.17.0
 before_install:
   - yes | gem update --system
   - gem update bundler
