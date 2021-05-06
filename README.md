@@ -85,7 +85,7 @@ The authorization code is cached at `test/fixtures/authorization_code.json`.
 
 ## API
 
-TBW
+Please check [documents on RubyDoc.info](https://www.rubydoc.info/gems/deviantart).
 
 ## Official API Document
 
