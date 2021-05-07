@@ -83,10 +83,6 @@ Finished in 23.157618292 seconds.
 
 The authorization code is cached at `test/fixtures/authorization_code.json`.
 
-## API
-
-Please check [documents on RubyDoc.info](https://www.rubydoc.info/gems/deviantart).
-
 ## Official API Document
 
 REST APIs:
