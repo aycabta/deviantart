@@ -54,7 +54,7 @@ After this, Rake task performs some steps:
 
 - creates named pipe
 - OAuth consumer server launches internal
-- opens your browser with authorization page
+- opens your browser with the authorization page
 
 ```bash
 $ bundle exec rake real
@@ -62,8 +62,8 @@ Boot Sinatra OAuth consumer...
 Open browser for authorization
 ```
 
-The OAuth consumer server writes access token to named pipe and terminates after you permit it on browser.
-Rake task takes authorization code via named pipe.
+The OAuth consumer server writes an access token to the named pipe and terminates after you permit it on the browser.
+Rake task takes authorization code via the named pipe.
 The tests run with it.
 
 ```bash
