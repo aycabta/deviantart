@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   deviantart:
     name: >-
-      reline ${{ matrix.os }} ${{ matrix.ruby }}
+      deviantart ${{ matrix.os }} ${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
