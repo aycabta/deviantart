@@ -99,6 +99,5 @@ The gem is available as open source under the terms of the [MIT License](http://
 
 ## Badges
 
-- [![Build Status](https://travis-ci.org/aycabta/deviantart.svg)](https://travis-ci.org/aycabta/deviantart)
 - [![Actions Status](https://github.com/aycabta/deviantart/workflows/ubuntu/badge.svg)](https://github.com/aycabta/deviantart/actions)
 - [![Actions Status](https://github.com/aycabta/deviantart/workflows/windows/badge.svg)](https://github.com/aycabta/deviantart/actions)
